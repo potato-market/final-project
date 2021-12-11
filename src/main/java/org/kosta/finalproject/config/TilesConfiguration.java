@@ -1,4 +1,4 @@
-package org.kosta.finalproject;
+package org.kosta.finalproject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
