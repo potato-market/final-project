@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE tiles-definitions PUBLIC 
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+ <tiles-definitions>  
+ 	<!-- HomeController 에서 viewName을 main.tiles 로 줄 예정 -->
+	<definition name="main.tiles" template="/WEB-INF/views/templates/layout.jsp">
+		<put-attribute name="title" value="potato-market"/>
+		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/views/main.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
+	</definition>
+	
+	<!-- <definition name="main2.tiles" extends="home.tiles">
+		<put-attribute name="main" value="/WEB-INF/views/main2.jsp"/>
+	</definition> -->
+	<!-- 		
+			definition name="*.tiles"
+							   * 가 {1} 정보로 할당된다 
+							   만약 Controller에서 viewName을 main2.tiles로 주면 
+							   main2.jsp가 메인으로 제공된다 
+			사례) HomeController 의 메서드 
+			      @RequestMapping("main2")
+					public String main2() {
+						return "main2.tiles";
+					}				   
+	 -->
+	<definition name="*.tiles" extends="main.tiles">
+		<put-attribute name="title" value="{1}" />
+		<put-attribute name="main" value="/WEB-INF/views/{1}.jsp"/>
+	</definition>
+	<!-- 
+			아래와 같이 하위 디렉토리 처리도 가능 
+			@RequestMapping("admin/main")
+			public String adminMain() {
+						return "admin/main.tiles"; // views/admin/main 이 레이아웃 적용된 화면으로 제공 
+			}	
+	 -->
+	<definition name="*/*.tiles" extends="main.tiles">
+		<put-attribute name="title" value="{2}" />
+		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+ </tiles-definitions>   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
