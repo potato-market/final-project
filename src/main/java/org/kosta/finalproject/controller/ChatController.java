@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ChatController {
 	//private ChatMapper chatMapper;
-
+	//gi
 	@Autowired
 	public ChatController() {
 		super();
