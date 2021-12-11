@@ -777,7 +777,7 @@ element.style {
 }
 
 /* write-form image drag*/
-#dragArea{
+/* #dragArea{
 	width:100%;
 	height:180px;
 	border:1px solid #ced4da;
@@ -825,4 +825,4 @@ element.style {
 .close{
 	color:red;
 	cursor:pointer;
-}
+} */

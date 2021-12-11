@@ -92,7 +92,7 @@
                                         <!--end image-->
                                         <div class="meta2">
                                             <figure>
-                                                 <i class="fa fa-user"> Jane Doe</i>&nbsp<i class="fa fa-map-marker"> ì¼ì±ë</i>&nbsp<i class="fa fa-clock-o"> 16ë¶ ì </i> 
+                                                 <i class="fa fa-user"> Jane Doe</i>&nbsp<i class="fa fa-map-marker"> 삼성동</i>&nbsp<i class="fa fa-clock-o"> 16분전 </i> 
                                             </figure>
                                         </div>
                                         <!--end meta-->
@@ -100,7 +100,7 @@
                                             <p style="width:100%;"> <i class="fa fa-question"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
                                         </div>
                                         <!--end description-->
-                                        	<a href="community-detail.html" class="detail text-caps underline">ëê¸ë¬ê¸°</a>	
+                                        	<a href="community-detail.html" class="detail text-caps underline">댓글쓰기</a>	
                                     </div>
                                 </div>
                                 <!--end item-->

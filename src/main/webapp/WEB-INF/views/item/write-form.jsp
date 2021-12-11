@@ -129,6 +129,11 @@
 									images here</span>
 							</div>
 						</section>
+						 <section class="clearfix">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary large icon float-right">완료<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </section>
 					</form>
 					<!--end form-submit-->
 				</div>
