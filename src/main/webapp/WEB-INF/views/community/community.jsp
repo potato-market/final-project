@@ -87,12 +87,12 @@
                                 <div class="item">
                                     <div class="wrapper" onclick="location.href='community-detail.html'">
                                          <h3>
-                                            <a href="#" class="tag category">ëë¤ì§ë¬¸</a>	
+                                            <a href="#" class="tag category">동네생활</a>	
                                          </h3>
                                         <!--end image-->
                                         <div class="meta2">
                                             <figure>
-                                                 <i class="fa fa-user"> Jane Doe</i>&nbsp<i class="fa fa-map-marker"> 삼성동</i>&nbsp<i class="fa fa-clock-o"> 16분전 </i> 
+                                                 <i class="fa fa-user"> Jane Doe</i>&nbsp<i class="fa fa-map-marker"> 삼성동</i>&nbsp<i class="fa fa-clock-o"> 16분전</i> 
                                             </figure>
                                         </div>
                                         <!--end meta-->

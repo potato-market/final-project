@@ -30,49 +30,53 @@
 					<div id="container_border"
 						style="background-color: #f7fcf9; padding-bottom: 10px;">
 						<form class="form clearfix">
-							<div class="profile-image"  id="register-image">
+							<div class="profile-image" id="register-image">
 								<div class="image background-image">
-									<img src="assets/img/루피감자.png" alt="">
-									<!-- author-default.png -->
+									<img src="assets/img/루피감자.png" alt=""> <!-- author-default.png -->
 								</div>
 								<div class="single-file-input">
 									<input type="file" id="user_image" name="user_image">
-									<div class="btn btn-framed btn-primary small">Upload a
-										picture</div>
+									<div class="btn btn-framed btn-primary small">Upload a picture</div>
 								</div>
 							</div>
 							<br>
 							<div class="form-group">
-								<input name="id" type="text" placeholder="아이디"
-									class="form-control" id="login_id" placeholder="Your Name"
-									required>
-							</div>
-							<div class="form-group">
-								<input name="name" type="tel" placeholder="전화번호"
-									class="form-control" id="login_tel" required>
+								<input name="id" type="text" placeholder="아이디" class="form-control" id="login_id" placeholder="Your Name" required>
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="address" type="text" placeholder="주소"
-									class="form-control" id="login_address" required>
+								<input name="id" type="text" placeholder="이메일" class="form-control" id="login_email" placeholder="Your Name" required>
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="password" type="password" placeholder="비밀번호"
-									class="form-control" id="login_password" required>
+								<input name="name" type="tel" placeholder="전화번호" class="form-control" id="login_tel" required>
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="passwordCheck" type="password"
-									placeholder="비밀번호 확인" class="form-control" id="login_password"
-									required>
+								<input name="address" type="text" placeholder="주소" class="form-control" id="login_address" readonly required>
+								<div id="map" style="width: 100%; height: 100px; display: none;"></div>
+
+								<!-- span 에 사용가능한지 확인 -->
+								<!-- <div class="hAddr"> 
+									<span id="centerAddr"></span>
+								</div> -->
+								
+							<!-- 부트스트랩 primary 버튼 -->
+							<button type="button" id="getMyPositionBtn" style="display: none">내
+								위치 가져오기</button>
+							</div>
+							<!--end form-group-->
+							<div class="form-group">
+								<input name="password" type="password" placeholder="비밀번호" class="form-control" id="login_password" required>
+							</div>
+							<!--end form-group-->
+							<div class="form-group">
+								<input name="passwordCheck" type="password" placeholder="비밀번호 확인" class="form-control" id="login_password_check" required>
 							</div>
 							<!--end form-group-->
 						</form>
-						<!--end form-group-->
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary2 width-100"
-								style="font-size: 1.3rem;">가입하기</button>
+							<button type="submit" class="btn btn-primary2 width-100" style="font-size: 1.3rem;">가입하기</button>
 						</div>
 					</div>
 					<hr>
@@ -97,13 +101,13 @@
 	<script type="text/javascript" src="assets/js/popper.min.js"></script>
 	<script type="text/javascript"
 		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
 	<script src="assets/js/selectize.min.js"></script>
 	<script src="assets/js/masonry.pkgd.min.js"></script>
 	<script src="assets/js/icheck.min.js"></script>
 	<script src="assets/js/jquery.validate.min.js"></script>
 	<script src="assets/js/custom.js"></script>
-
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=56536b4d771a0c6ee4f8be08caeac525&libraries=services"></script>
+	<script type="text/javascript" src="assets/js/map.js"></script>
 </body>
 </html>

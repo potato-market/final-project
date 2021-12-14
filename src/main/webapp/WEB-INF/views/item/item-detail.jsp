@@ -150,7 +150,8 @@
 									sollicitudin dapibus, risus mi euismod elit, in dictum justo
 									lacus sit amet dui. Sed faucibus vitae nisl at dignissim.</p>
 							</section>
-							<p id="article-counts">관심 6 ∙채팅 11 ∙조회 226</p>
+							<p id="article-counts">관심 6 ∙채팅 11 ∙조회 226</p> 
+							<button type="button">채팅하기</button>
 							<!--end Description-->
 						</div>
 						<!--============ End Listing Detail =========================================================-->

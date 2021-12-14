@@ -53,7 +53,7 @@
 							</button>
 						</div>
 						<div style="text-align: center; font-size: 1.3rem;">
-							<a href="#">비밀번호를 잊으셨나요?</a>
+							<a href="#">아이디</a> / <a href="#">비밀번호를 잊으셨나요?</a>
 						</div>
 					</div>
 					<hr>
@@ -73,17 +73,5 @@
 		</div>
 		<!--end container-->
 	</section>
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
 </body>
 </html>
