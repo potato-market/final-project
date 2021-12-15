@@ -34,7 +34,6 @@
 	</div>
 	<div id="footer">
 		<!-- Tiles footer 영역 -->
-
 		<tiles:insertAttribute name="footer" />
 	</div>
 </body>

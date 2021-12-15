@@ -129,11 +129,14 @@
 									images here</span>
 							</div>
 						</section>
-						 <section class="clearfix">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary large icon float-right">완료<i class="fa fa-chevron-right"></i></button>
-                            </div>
-                        </section>
+						<section class="clearfix">
+							<div class="form-group">
+								<button type="submit"
+									class="btn btn-primary large icon float-right">
+									완료<i class="fa fa-chevron-right"></i>
+								</button>
+							</div>
+						</section>
 					</form>
 					<!--end form-submit-->
 				</div>
@@ -144,34 +147,6 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<!--<script src="assets/js/jquery.validate.min.js"></script>-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/jquery-validate.bootstrap-tooltip.min.js"></script>
-	<script src="assets/js/jQuery.MultiFile.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-submit";
-		var markerDrag = true;
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement,
-				markerDrag);
-	</script>
-
+	<%@ include file="../templates/default_js.jsp"%>
 </body>
 </html>

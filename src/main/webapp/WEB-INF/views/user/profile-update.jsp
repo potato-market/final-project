@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -195,7 +195,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-3">
-							<%@ include file="sidebar.jsp" %>
+							<%@ include file="sidebar.jsp"%>
 						</div>
 						<!--end col-md-3-->
 						<div class="col-md-9">
@@ -269,19 +269,18 @@
 								</div>
 							</form>
 						</div>
-						<div class="col-md-12" style="margin-top:20px;">
+						<div class="col-md-12" style="margin-top: 20px;">
 							<form class="form">
 								<div class="row justify-content-center">
 									<div class="col-md-6">
 										<h3>비밀번호 변경</h3>
-											<div class="form-group">
-												<label for="current_password"
-													class="col-form-label required">Current Password</label> <input
-													name="current_password" type="password"
-													class="form-control" id="current_password"
-													placeholder="Current Password" required>
-											</div>
-											<!--end form-group-->
+										<div class="form-group">
+											<label for="current_password" class="col-form-label required">Current
+												Password</label> <input name="current_password" type="password"
+												class="form-control" id="current_password"
+												placeholder="Current Password" required>
+										</div>
+										<!--end form-group-->
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
@@ -393,18 +392,6 @@
 		<!--end footer-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
+	<%@ include file="../templates/default_js.jsp"%>
 </body>
 </html>
