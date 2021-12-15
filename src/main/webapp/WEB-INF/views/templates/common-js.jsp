@@ -15,6 +15,11 @@
 	<script src="assets/js/masonry.pkgd.min.js"></script>
 	<script src="assets/js/icheck.min.js"></script>
 	<script src="assets/js/jquery.validate.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+	<script src="assets/js/jquery-validate.bootstrap-tooltip.min.js"></script>
+	<script src="assets/js/jQuery.MultiFile.min.js"></script>
+	<script src="assets/js/owl.carousel.min.js"></script>
 	<script src="assets/js/custom.js"></script>
 </body>
 </html>

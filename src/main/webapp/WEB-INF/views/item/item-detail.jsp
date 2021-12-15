@@ -270,6 +270,6 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-	<%@ include file="../templates/default_js.jsp"%>
+	
 </body>
 </html>

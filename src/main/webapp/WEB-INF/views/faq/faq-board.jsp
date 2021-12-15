@@ -206,6 +206,5 @@
 		<!--end footer-->
 	</div>
 	<!--end page-->
-	<%@ include file="../templates/default_js.jsp"%>
 </body>
 </html>

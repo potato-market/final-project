@@ -399,7 +399,6 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-	<%@ include file="../templates/default_js.jsp"%>
 	<script>
 		$("#messaging__chat-window .messaging__content").scrollTop(
 				$(".messaging__content")[0].scrollHeight);
