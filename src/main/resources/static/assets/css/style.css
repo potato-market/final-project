@@ -1599,7 +1599,7 @@ Headers:		'Varela Round', sans-serif;
     height: 5rem;
 }
 .owl-carousel.gallery-carousel .owl-nav .owl-prev i, .owl-carousel.gallery-carousel .owl-nav .owl-next i, .owl-carousel.full-width-carousel .owl-nav .owl-prev i, .owl-carousel.full-width-carousel .owl-nav .owl-next i {
-    background-color: #ff0000;
+    background-color: #8b4513;
     width: 5rem;
     text-align: center;
     line-height: 5rem;
@@ -1632,8 +1632,8 @@ Headers:		'Varela Round', sans-serif;
     opacity: 1;
 }
 .owl-carousel.gallery-carousel-thumbs .owl-thumb.active-thumb {
-    box-shadow: inset 0 0 0 .3rem #ff0000;
-    opacity: 1;
+    box-shadow: inset 0 0 0 .3rem #8b4513;
+    opacity: 1;	
 }
 /********
 --- P ---
@@ -1745,7 +1745,7 @@ Headers:		'Varela Round', sans-serif;
     box-shadow: 0 0.2rem .7rem 0 rgba(0,0,0, .08);
 }
 .page-pagination > nav .pagination .page-item.active .page-link {
-    background-color: #ff0000;
+    background-color: #8B4513;
     color: #fff;
     box-shadow: 0 .1rem 2rem rgba(0,0,0,.15);
 }

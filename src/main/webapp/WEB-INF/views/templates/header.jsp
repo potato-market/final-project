@@ -6,11 +6,9 @@
 		<div class="secondary-navigation">
 			<div class="container">
 				<ul class="right">
-					<li><a href="profile"> <i class="fa fa-heart"></i>내 감자
-					</a></li>
-					<li><a href="/"> <i class="fa fa-sign-in"></i>Sign
-							Out
-					</a></li>
+					<li><a href="admin"> <i class="fa fa-wrench"></i>관리자 페이지</a></li>
+					<li><a href="profile"> <i class="fa fa-heart"></i>내 감자</a></li>
+					<li><a href="/"> <i class="fa fa-sign-in"></i>Sign Out </a></li>
 				</ul>
 				<!--end right-->
 			</div>
