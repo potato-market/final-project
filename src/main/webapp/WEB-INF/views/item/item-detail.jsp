@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,74 +37,70 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
 							<li class="breadcrumb-item"><a href="#">Item</a></li>
-							<li class="breadcrumb-item active"><a href="#">Home & Decor</a></li>
+							<li class="breadcrumb-item active"><a href="#">Home &
+									Decor</a></li>
 						</ol>
 						<!--end breadcrumb-->
 					</div>
 					<!--end container-->
 				</div>
 				<!--============ End Main Navigation ================================================================-->
-			  <!--============ Page Title =========================================================================-->
-                <div class="page-title">
-                    <div class="container clearfix">
-                        <div class="float-left float-xs-none">
-                           <h1>Furniture For Sale</h1>
-                        </div>
-                        <div class="float-right float-xs-none price">
-                            <div class="number">$80</div>
-                        </div>
-                    </div>
-                    <!--end container-->
-                </div>
-                <!--============ End Page Title =====================================================================-->
-                <div class="background"></div>
-                <!--end background-->
-            </div>
-            <!--end hero-wrapper-->
-        </section>
-        <!--end hero-->
+				<!--============ Page Title =========================================================================-->
+				<div class="page-title">
+					<div class="container clearfix">
+						<div class="float-left float-xs-none">
+							<h1>Furniture For Sale</h1>
+						</div>
+						<div class="float-right float-xs-none price">
+							<div class="number">$80</div>
+						</div>
+					</div>
+					<!--end container-->
+				</div>
+				<!--============ End Page Title =====================================================================-->
+				<div class="background"></div>
+				<!--end background-->
+			</div>
+			<!--end hero-wrapper-->
+		</section>
+		<!--end hero-->
 
-        <!--*********************************************************************************************************-->
-        <!--************ CONTENT ************************************************************************************-->
-        <!--*********************************************************************************************************-->
-        <section class="content">
-            <section class="block">
-                <div class="container">
-                    <div class="row">
-                        <!--============ Listing Detail =============================================================-->
-                        <div class="col-md-9">
-                            <!--Gallery Carousel-->
-                            <section>
-                                <div class="gallery-carousel owl-carousel">
-                                    <img src="assets/img/image-20.jpg" alt="" data-hash="1">
-                                    <img src="assets/img/image-01.jpg" alt="" data-hash="2">
-                                    <img src="assets/img/image-21.jpg" alt="" data-hash="3">
-                                    <img src="assets/img/image-22.jpg" alt="" data-hash="4">
-                                    <img src="assets/img/image-23.jpg" alt="" data-hash="5">
-                                    <img src="assets/img/image-14.jpg" alt="" data-hash="6">
-                                </div>
-                                <div class="gallery-carousel-thumbs owl-carousel">
-                                    <a href="#1" class="owl-thumb active-thumb background-image">
-                                        <img src="assets/img/image-20.jpg" alt="">
-                                    </a>
-                                    <a href="#2" class="owl-thumb background-image">
-                                        <img src="assets/img/image-01.jpg" alt="">
-                                    </a>
-                                    <a href="#3" class="owl-thumb background-image">
-                                        <img src="assets/img/image-21.jpg" alt="">
-                                    </a>
-                                    <a href="#4" class="owl-thumb background-image">
-                                        <img src="assets/img/image-22.jpg" alt="">
-                                    </a>
-                                    <a href="#5" class="owl-thumb background-image">
-                                        <img src="assets/img/image-23.jpg" alt="">
-                                    </a>
-                                    <a href="#6" class="owl-thumb background-image">
-                                        <img src="assets/img/image-14.jpg" alt="">
-                                    </a>
-                                </div>
-                            </section>
-                            <!--end Gallery Carousel-->
+		<!--*********************************************************************************************************-->
+		<!--************ CONTENT ************************************************************************************-->
+		<!--*********************************************************************************************************-->
+		<section class="content">
+			<section class="block">
+				<div class="container">
+					<div class="row">
+						<!--============ Listing Detail =============================================================-->
+						<div class="col-md-9">
+							<!--Gallery Carousel-->
+							<section>
+								<div class="gallery-carousel owl-carousel">
+									<img src="assets/img/image-20.jpg" alt="" data-hash="1">
+									<img src="assets/img/image-01.jpg" alt="" data-hash="2">
+									<img src="assets/img/image-21.jpg" alt="" data-hash="3">
+									<img src="assets/img/image-22.jpg" alt="" data-hash="4">
+									<img src="assets/img/image-23.jpg" alt="" data-hash="5">
+									<img src="assets/img/image-14.jpg" alt="" data-hash="6">
+								</div>
+								<div class="gallery-carousel-thumbs owl-carousel">
+									<a href="#1" class="owl-thumb active-thumb background-image">
+										<img src="assets/img/image-20.jpg" alt="">
+									</a> <a href="#2" class="owl-thumb background-image"> <img
+										src="assets/img/image-01.jpg" alt="">
+									</a> <a href="#3" class="owl-thumb background-image"> <img
+										src="assets/img/image-21.jpg" alt="">
+									</a> <a href="#4" class="owl-thumb background-image"> <img
+										src="assets/img/image-22.jpg" alt="">
+									</a> <a href="#5" class="owl-thumb background-image"> <img
+										src="assets/img/image-23.jpg" alt="">
+									</a> <a href="#6" class="owl-thumb background-image"> <img
+										src="assets/img/image-14.jpg" alt="">
+									</a>
+								</div>
+							</section>
+							<!--end Gallery Carousel-->
 
 							<!--Author-->
 							<section id="article-profile">
@@ -150,7 +146,7 @@
 									sollicitudin dapibus, risus mi euismod elit, in dictum justo
 									lacus sit amet dui. Sed faucibus vitae nisl at dignissim.</p>
 							</section>
-							<p id="article-counts">관심 6 ∙채팅 11 ∙조회 226</p> 
+							<p id="article-counts">관심 6 ∙채팅 11 ∙조회 226</p>
 							<button type="button">채팅하기</button>
 							<!--end Description-->
 						</div>
@@ -274,27 +270,6 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-small";
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
-	</script>
-
+	<%@ include file="../templates/default_js.jsp"%>
 </body>
 </html>
