@@ -54,7 +54,7 @@
 							<!--end form-group-->
 							<div class="form-group">
 								<input name="address" type="text" placeholder="주소" class="form-control" id="login_address" readonly required>
-								<div id="map" style="width: 100%; height: 100px; display: none;"></div>
+								<div id="map" style="width: 100%; height: 100px; display:none;"></div>
 
 								<!-- span 에 사용가능한지 확인 -->
 								<!-- <div class="hAddr"> 
