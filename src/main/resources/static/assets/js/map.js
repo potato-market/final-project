@@ -16,6 +16,15 @@ $(function() {
 
 		// 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
 		map.panTo(currentPos);
+		
+		// 마커 생성
+        var marker = new kakao.maps.Marker({
+            position: currentPos
+        });
+
+        // 기존에 마커가 있다면 제거
+        marker.setMap(null);
+        marker.setMap(map);
 	};
 
 	function locationLoadError(pos) {
@@ -58,7 +67,13 @@ $(function() {
 				}
 			}
 		}
+		
+		// 지도 이동을 막는 버튼
+		$("#stopMovingBtn").on("click", function() {
+			map.setDraggable(false);
+		});
 	});
 
 	$("#getMyPositionBtn").trigger("click");
+	$("#stopMovingBtn").trigger("click");
 })

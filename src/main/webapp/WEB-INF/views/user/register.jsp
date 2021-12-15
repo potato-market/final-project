@@ -56,14 +56,9 @@
 								<input name="address" type="text" placeholder="주소" class="form-control" id="login_address" readonly required>
 								<div id="map" style="width: 100%; height: 100px; display:none;"></div>
 
-								<!-- span 에 사용가능한지 확인 -->
-								<!-- <div class="hAddr"> 
-									<span id="centerAddr"></span>
-								</div> -->
-								
 							<!-- 부트스트랩 primary 버튼 -->
-							<button type="button" id="getMyPositionBtn" style="display: none">내
-								위치 가져오기</button>
+							<button type="button" id="getMyPositionBtn" style="display:none;">내 위치 가져오기</button>
+							<button type="button" id="stopMovingBtn"  style="display:none;"	>지도 드래그 이동 끄기</button>
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
@@ -98,7 +93,7 @@
 		<!--end container-->
 	</section>
 	
-	<%@ include file="../templates/default_js.jsp" %>
+	<%@ include file="../templates/common-js.jsp" %>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=56536b4d771a0c6ee4f8be08caeac525&libraries=services"></script>
 	<script type="text/javascript" src="assets/js/map.js"></script>
