@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.finalproject.model.mapper.FAQMapper">
+	<select id="getTotalFAQCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ;
+	</select>
+	
+	<select id="getAllFAQList" resultMap="AllFAQList">
+		SELECT F.FAQ_ID,F.FAQ_TITLE,F.FAQ_CONTENT,U.USER_ID 
+		FROM FAQ F, USER U
+		WHERE F.USER_ID= U.USER_ID;
+	</select>
+	
+	<resultMap type="org.kosta.finalproject.model.domain.FAQVO" id="AllFAQList" autoMapping="true">
+	<id property="FAQId" column="FAQ_ID"/>
+		<association property="userVO" javaType="org.kosta.finalproject.model.domain.UserVO" autoMapping="true">
+			<id property="userId" column="user_id"/>
+		</association>
+	</resultMap>
 
 	<insert id="writeFAQ" parameterType="org.kosta.finalproject.model.domain.FAQVO">
 		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{FAQTitle}, #{FAQContent},#{userVO.userId});
 	</insert>
+	
+	
 </mapper>
