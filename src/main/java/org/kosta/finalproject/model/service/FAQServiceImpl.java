@@ -1,5 +1,7 @@
 package org.kosta.finalproject.model.service;
 
+import java.util.List;
+
 import org.kosta.finalproject.model.domain.FAQVO;
 import org.kosta.finalproject.model.mapper.FAQMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,16 @@ public class FAQServiceImpl implements FAQService{
 	@Override
 	public void writeFAQ(FAQVO faqVO) {
 		faqMapper.writeFAQ(faqVO);
+	}
+
+	@Override
+	public int getTotalFAQCount() {
+		return faqMapper.getTotalFAQCount();
+	}
+	
+	@Override
+	public List<FAQVO> getAllFAQList() {
+		return faqMapper.getAllFAQList();
 	}
 
 }

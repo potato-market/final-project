@@ -15,7 +15,11 @@ public class FAQController {
 
 	@RequestMapping("faqBoard")
 	public String faqBoard(Model model) {
+		// 글 총 갯수 불러오기
+		model.addAttribute("TotalFAQCount", faqService.getTotalFAQCount());
 
+		// 전체 글 불러오기
+		model.addAttribute("list", faqService.getAllFAQList());
 		return "faq/faq-board.tiles";
 	}
 
