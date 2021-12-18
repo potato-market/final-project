@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.finalproject.model.mapper.FAQMapper">
+
+	<insert id="writeFAQ" parameterType="org.kosta.finalproject.model.domain.FAQVO">
+		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{FAQTitle}, #{FAQContent},#{userVO.userId});
+	</insert>
+</mapper>
