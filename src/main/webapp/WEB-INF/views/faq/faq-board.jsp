@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -67,7 +68,8 @@
 						<div class="col-md-12">
 							<section>
 								<form class="form inputs-underline">
-									<h3>Search in Answers</h3>
+									<h3>Search in Answers  ${TotalFAQCount }</h3>
+									<a href="faq-write-form">글쓰기</a>
 									<div class="form-group">
 										<input type="text" class="form-control" name="name" id="name"
 											placeholder="Enter your search">
@@ -76,29 +78,20 @@
 								</form>
 							</section>
 							<section>
+							<c:forEach var="l" items="${list }">
 								<div class="answer">
 									<div class="box">
-										<h3>Sed tincidunt vel orci sed fermentum. Nullam nec
-											turpis blandit?</h3>
-										<p>Ut nec vulputate enim. Nulla faucibus convallis dui.
-											Donec arcu enim, scelerisque gravida lacus vel, dignissim
-											cursus lectus. Aliquam laoreet purus in iaculis sodales.
-											Morbi convallis diam ac accumsan placerat. Donec ultrices
-											placerat arcu non accumsan</p>
+									<form method="post" action="deleteFAQ">
+										<h3>${l.FAQTitle } ${l.userVO.userId }</h3>
+										<p>${l.FAQContent }</p>
+										<input type="hidden" value="${l.FAQId }" name="faqId">
+										<button class="btn btn-primary text-caps btn-framed">삭제</button>
+									</form>
+									<button class="btn btn-primary text-caps btn-framed" type="button" onclick="location.href='faq-update-form?faqId='+${l.FAQId }">수정</button>
 									</div>
 								</div>
 								<!--end answer-->
-								<div class="answer">
-									<div class="box">
-										<h3>Fusce ut tempus lacus, pretium vestibulum diam</h3>
-										<p>Ut nec vulputate enim. Nulla faucibus convallis dui.
-											Donec arcu enim, scelerisque gravida lacus vel, dignissim
-											cursus lectus. Aliquam laoreet purus in iaculis sodales.
-											Morbi convallis diam ac accumsan placerat. Donec ultrices
-											placerat arcu non accumsan</p>
-									</div>
-								</div>
-								<!--end answer-->
+								</c:forEach>
 							</section>
 							<div class="page-pagination">
 								<nav aria-label="Pagination">

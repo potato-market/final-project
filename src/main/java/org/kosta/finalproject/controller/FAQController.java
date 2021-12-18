@@ -1,22 +1,35 @@
 package org.kosta.finalproject.controller;
 
+import org.kosta.finalproject.model.domain.FAQVO;
+import org.kosta.finalproject.model.service.FAQService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FAQController {
-	//private FAQMapper fAQMapper;
-	
 	@Autowired
-	public FAQController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
+	private FAQService faqService;
+
 	@RequestMapping("faqBoard")
-	public String faqBoard() {
+	public String faqBoard(Model model) {
+
 		return "faq/faq-board.tiles";
 	}
-	
+
+	// faq 작성 화면
+	@RequestMapping("faq-write-form")
+	public String writeFAQForm(Model model) {
+		return "faq/faq-write-form.tiles";
+	}
+
+	@PostMapping("writeFAQ")
+	public String writeFAQ(FAQVO faqVO) {
+		faqService.writeFAQ(faqVO);
+		return "redirect:faqBoard";
+
+	}
+
 }
