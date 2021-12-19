@@ -7,7 +7,12 @@ import org.kosta.finalproject.model.domain.FAQVO;
 public interface FAQService {
 
 	void writeFAQ(FAQVO faqVO);
+	
 	List<FAQVO> getAllFAQList();
+	
 	int getTotalFAQCount();
+	
+	FAQVO getFAQByNo(int faqId);
+	
 
 }

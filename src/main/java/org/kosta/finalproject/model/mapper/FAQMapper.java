@@ -8,10 +8,12 @@ import org.kosta.finalproject.model.domain.FAQVO;
 @Mapper
 public interface FAQMapper {
 
-	public void writeFAQ(FAQVO faqVO);
+	void writeFAQ(FAQVO faqVO);
 
-	public int getTotalFAQCount();
+	int getTotalFAQCount();
 
-	public List<FAQVO> getAllFAQList();
+	List<FAQVO> getAllFAQList();
+	
+	FAQVO getFAQByNo(int faqId);
 
 }
