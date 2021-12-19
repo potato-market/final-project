@@ -13,6 +13,8 @@ public interface FAQService {
 	int getTotalFAQCount();
 	
 	FAQVO getFAQByNo(int faqId);
+
+	void updateFAQ(FAQVO faqVO);
 	
 
 }

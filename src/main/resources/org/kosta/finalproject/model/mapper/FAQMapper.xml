@@ -11,18 +11,22 @@
 		WHERE F.USER_ID= U.USER_ID;
 	</select>
 	
-	<resultMap type="org.kosta.finalproject.model.domain.FAQVO" id="AllFAQList" autoMapping="true">
+	<resultMap type="FAQVO" id="AllFAQList" autoMapping="true">
 	<id property="FAQId" column="FAQ_ID"/>
-		<association property="userVO" javaType="org.kosta.finalproject.model.domain.UserVO" autoMapping="true">
+		<association property="userVO" javaType="UserVO" autoMapping="true">
 			<id property="userId" column="user_id"/>
 		</association>
 	</resultMap>
 
-	<insert id="writeFAQ" parameterType="org.kosta.finalproject.model.domain.FAQVO">
+	<insert id="writeFAQ" parameterType="FAQVO">
 		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{FAQTitle}, #{FAQContent},#{userVO.userId});
 	</insert>
 	
 	<select id="getFAQByNo" parameterType="int" resultMap="AllFAQList">
-		SELECT FAQ_ID,FAQ_TITLE,FAQ_CONTENT,USER_ID FROM FAQ WHERE FAQ_ID=#{FAQ_ID};
+		SELECT FAQ_ID,FAQ_TITLE,FAQ_CONTENT,USER_ID FROM FAQ WHERE FAQ_ID=#{FAQId};
 	</select>
+	
+	<update id="updateFAQ" parameterType="FAQVO" >
+		UPDATE FAQ SET FAQ_TITLE= #{FAQTitle},FAQ_CONTENT= #{FAQContent} WHERE FAQ_ID=#{FAQId};
+	</update>
 </mapper>

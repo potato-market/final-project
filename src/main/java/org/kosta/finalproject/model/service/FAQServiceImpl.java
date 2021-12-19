@@ -32,4 +32,9 @@ public class FAQServiceImpl implements FAQService{
 		return faqMapper.getFAQByNo(faqId);
 	}
 
+	@Override
+	public void updateFAQ(FAQVO faqVO) {
+		faqMapper.updateFAQ(faqVO);
+		
+	}
 }

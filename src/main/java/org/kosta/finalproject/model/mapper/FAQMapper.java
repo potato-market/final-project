@@ -16,4 +16,6 @@ public interface FAQMapper {
 	
 	FAQVO getFAQByNo(int faqId);
 
+	void updateFAQ(FAQVO faqVO);
+
 }

@@ -73,6 +73,7 @@
 								<div class="col-md-8">
 									<div class="form-group">	
 										<label for="title" class="col-form-label required">Title</label>
+										<input type="hidden" value="${faqData.FAQId }" name="FAQId">
 										<input name="FAQTitle" type="text" class="form-control"
 											id="title" value="${faqData.FAQTitle }" required>
 											<input name="userVO.userId" type="text" class="form-control"
