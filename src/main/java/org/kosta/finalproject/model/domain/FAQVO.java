@@ -1,38 +1,38 @@
 package org.kosta.finalproject.model.domain;
 
 public class FAQVO {
-	private int FAQId;
-	private String FAQTitle;
-	private String FAQContent;
+	private int faqId;
+	private String faqTitle;
+	private String faqContent;
 	private UserVO userVO;
 	public FAQVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public FAQVO(int fAQId, String fAQTitle, String fAQContent, UserVO userVO) {
+	public FAQVO(int faqId, String faqTitle, String faqContent, UserVO userVO) {
 		super();
-		FAQId = fAQId;
-		FAQTitle = fAQTitle;
-		FAQContent = fAQContent;
+		this.faqId = faqId;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
 		this.userVO = userVO;
 	}
-	public int getFAQId() {
-		return FAQId;
+	public int getFaqId() {
+		return faqId;
 	}
-	public void setFAQId(int fAQId) {
-		FAQId = fAQId;
+	public void setFaqId(int faqId) {
+		this.faqId = faqId;
 	}
-	public String getFAQTitle() {
-		return FAQTitle;
+	public String getFaqTitle() {
+		return faqTitle;
 	}
-	public void setFAQTitle(String fAQTitle) {
-		FAQTitle = fAQTitle;
+	public void setFaqTitle(String faqTitle) {
+		this.faqTitle = faqTitle;
 	}
-	public String getFAQContent() {
-		return FAQContent;
+	public String getFaqContent() {
+		return faqContent;
 	}
-	public void setFAQContent(String fAQContent) {
-		FAQContent = fAQContent;
+	public void setFaqContent(String faqContent) {
+		this.faqContent = faqContent;
 	}
 	public UserVO getUserVO() {
 		return userVO;
@@ -42,8 +42,9 @@ public class FAQVO {
 	}
 	@Override
 	public String toString() {
-		return "FAQVO [FAQId=" + FAQId + ", FAQTitle=" + FAQTitle + ", FAQContent=" + FAQContent + ", userVO=" + userVO
+		return "FAQVO [faqId=" + faqId + ", faqTitle=" + faqTitle + ", faqContent=" + faqContent + ", userVO=" + userVO
 				+ "]";
 	}
+	
 	
 }

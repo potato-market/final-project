@@ -82,12 +82,12 @@
 								<div class="answer">
 									<div class="box">
 									<form method="post" action="deleteFAQ">
-										<h3>${l.FAQTitle } ${l.userVO.userId }</h3>
-										<p>${l.FAQContent }</p>
-										<input type="hidden" value="${l.FAQId }" name="FAQId">
+										<h3>${l.faqTitle } ${l.userVO.userId }</h3>
+										<p>${l.faqContent }</p>
+										<input type="hidden" value="${l.faqId }" name="faqId">
 										<button class="btn btn-primary text-caps btn-framed">삭제</button>
 									</form>
-									<button class="btn btn-primary text-caps btn-framed" type="button" onclick="location.href='faq-update-form?faqId='+${l.FAQId }">수정</button>
+									<button class="btn btn-primary text-caps btn-framed" type="button" onclick="location.href='faq-update-form?faqId='+${l.faqId }">수정</button>
 									</div>
 								</div>
 								<!--end answer-->

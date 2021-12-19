@@ -73,9 +73,9 @@
 								<div class="col-md-8">
 									<div class="form-group">	
 										<label for="title" class="col-form-label required">Title</label>
-										<input type="hidden" value="${faqData.FAQId }" name="FAQId">
-										<input name="FAQTitle" type="text" class="form-control"
-											id="title" value="${faqData.FAQTitle }" required>
+										<input type="hidden" value="${faqData.faqId }" name="faqId">
+										<input name="faqTitle" type="text" class="form-control"
+											id="title" value="${faqData.faqTitle }" required>
 											<input name="userVO.userId" type="text" class="form-control"
 											id="userId" value="${faqData.userVO.userId }" required readonly>
 									</div>
@@ -89,8 +89,8 @@
 							<div class="form-group">
 								<label for="details" class="col-form-label">Additional
 									Details</label>
-								<textarea name="FAQContent" id="details" class="form-control"
-									rows="4">${faqData.FAQContent }</textarea>
+								<textarea name="faqContent" id="details" class="form-control"
+									rows="4">${faqData.faqContent }</textarea>
 							</div>
 							<!--end form-group-->
 						</section>

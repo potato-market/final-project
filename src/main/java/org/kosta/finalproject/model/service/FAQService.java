@@ -16,5 +16,7 @@ public interface FAQService {
 
 	void updateFAQ(FAQVO faqVO);
 	
+	void deleteFAQ(int faqId);
+	
 
 }

@@ -12,21 +12,25 @@
 	</select>
 	
 	<resultMap type="FAQVO" id="AllFAQList" autoMapping="true">
-	<id property="FAQId" column="FAQ_ID"/>
+	<id property="faqId" column="FAQ_ID"/>
 		<association property="userVO" javaType="UserVO" autoMapping="true">
 			<id property="userId" column="user_id"/>
 		</association>
 	</resultMap>
 
 	<insert id="writeFAQ" parameterType="FAQVO">
-		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{FAQTitle}, #{FAQContent},#{userVO.userId});
+		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{faqTitle}, #{faqContent},#{userVO.userId});
 	</insert>
 	
 	<select id="getFAQByNo" parameterType="int" resultMap="AllFAQList">
-		SELECT FAQ_ID,FAQ_TITLE,FAQ_CONTENT,USER_ID FROM FAQ WHERE FAQ_ID=#{FAQId};
+		SELECT FAQ_ID,FAQ_TITLE,FAQ_CONTENT,USER_ID FROM FAQ WHERE FAQ_ID=#{faqId};
 	</select>
 	
 	<update id="updateFAQ" parameterType="FAQVO" >
-		UPDATE FAQ SET FAQ_TITLE= #{FAQTitle},FAQ_CONTENT= #{FAQContent} WHERE FAQ_ID=#{FAQId};
+		UPDATE FAQ SET FAQ_TITLE= #{faqTitle},FAQ_CONTENT= #{faqContent} WHERE FAQ_ID=#{faqId};
 	</update>
+	
+	<delete id="deleteFAQ" parameterType="int">
+		DELETE FROM FAQ WHERE FAQ_ID=#{faq_ID}
+	</delete>
 </mapper>
