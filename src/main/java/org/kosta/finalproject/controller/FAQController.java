@@ -43,6 +43,12 @@ public class FAQController {
 		return "faq/faq-update-form.tiles";
 	}
 	
-	
+	// FAQ 수정
+	@PostMapping("updateFAQ") 
+	public String updateFAQ(FAQVO faqVO) {
+	  faqService.updateFAQ(faqVO); 
+	  return "redirect:faqBoard";
+			  
+	}
 
 }

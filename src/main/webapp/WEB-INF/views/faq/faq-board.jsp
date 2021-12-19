@@ -84,7 +84,7 @@
 									<form method="post" action="deleteFAQ">
 										<h3>${l.FAQTitle } ${l.userVO.userId }</h3>
 										<p>${l.FAQContent }</p>
-										<input type="hidden" value="${l.FAQId }" name="faqId">
+										<input type="hidden" value="${l.FAQId }" name="FAQId">
 										<button class="btn btn-primary text-caps btn-framed">삭제</button>
 									</form>
 									<button class="btn btn-primary text-caps btn-framed" type="button" onclick="location.href='faq-update-form?faqId='+${l.FAQId }">수정</button>
