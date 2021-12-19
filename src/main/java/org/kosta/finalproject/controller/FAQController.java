@@ -48,7 +48,13 @@ public class FAQController {
 	public String updateFAQ(FAQVO faqVO) {
 	  faqService.updateFAQ(faqVO); 
 	  return "redirect:faqBoard";
-			  
+	}
+	
+	// FAQ 삭제
+	@PostMapping("deleteFAQ")
+	public String deleteFAQ(int faqId) {
+		faqService.deleteFAQ(faqId);
+		 return "redirect:faqBoard";
 	}
 
 }

@@ -17,5 +17,7 @@ public interface FAQMapper {
 	FAQVO getFAQByNo(int faqId);
 
 	void updateFAQ(FAQVO faqVO);
+	
+	void deleteFAQ(int faqId);
 
 }

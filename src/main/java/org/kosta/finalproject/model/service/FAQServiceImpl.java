@@ -35,6 +35,10 @@ public class FAQServiceImpl implements FAQService{
 	@Override
 	public void updateFAQ(FAQVO faqVO) {
 		faqMapper.updateFAQ(faqVO);
-		
+	}
+	
+	@Override
+	public void deleteFAQ(int faqId) {
+		faqMapper.deleteFAQ(faqId);
 	}
 }

@@ -72,7 +72,7 @@
 								<div class="col-md-8">
 									<div class="form-group">	
 										<label for="title" class="col-form-label required">Title</label>
-										<input name="FAQTitle" type="text" class="form-control"
+										<input name="faqTitle" type="text" class="form-control"
 											id="title" placeholder="Title" required>
 											<input name="userVO.userId" type="text" class="form-control"
 											id="userId" placeholder="아이디" required>
@@ -87,7 +87,7 @@
 							<div class="form-group">
 								<label for="details" class="col-form-label">Additional
 									Details</label>
-								<textarea name="FAQContent" id="details" class="form-control"
+								<textarea name="faqContent" id="details" class="form-control"
 									rows="4"></textarea>
 							</div>
 							<!--end form-group-->
