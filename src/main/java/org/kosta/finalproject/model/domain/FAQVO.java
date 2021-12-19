@@ -9,6 +9,16 @@ public class FAQVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public FAQVO(String faqTitle, String faqContent, UserVO userVO) {
+		super();
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.userVO = userVO;
+	}
+
+
 	public FAQVO(int faqId, String faqTitle, String faqContent, UserVO userVO) {
 		super();
 		this.faqId = faqId;

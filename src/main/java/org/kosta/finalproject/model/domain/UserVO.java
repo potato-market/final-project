@@ -18,6 +18,12 @@ public class UserVO implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UserVO(String userId) {
+		super();
+		this.userId = userId;
+	}
+
 	public UserVO(String userId, String userTel, String userAddress, String userCreatedAt, String userImage,
 			String userType, String userPassword, String userEmail) {
 		super();
