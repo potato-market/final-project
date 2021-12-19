@@ -23,17 +23,26 @@ public class FAQController {
 		return "faq/faq-board.tiles";
 	}
 
-	// faq 작성 화면
+	// FAQ 작성 화면
 	@RequestMapping("faq-write-form")
 	public String writeFAQForm(Model model) {
 		return "faq/faq-write-form.tiles";
 	}
 
+	// FAQ 작성
 	@PostMapping("writeFAQ")
 	public String writeFAQ(FAQVO faqVO) {
 		faqService.writeFAQ(faqVO);
 		return "redirect:faqBoard";
-
 	}
+	
+	//FAQ 수정 화면
+	@RequestMapping("faq-update-form")
+	public String updateFAQForm(Model model,int faqId) {
+		model.addAttribute("faqData", faqService.getFAQByNo(faqId));
+		return "faq/faq-update-form.tiles";
+	}
+	
+	
 
 }

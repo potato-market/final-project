@@ -26,5 +26,10 @@ public class FAQServiceImpl implements FAQService{
 	public List<FAQVO> getAllFAQList() {
 		return faqMapper.getAllFAQList();
 	}
+	
+	@Override
+	public FAQVO getFAQByNo(int faqId) {
+		return faqMapper.getFAQByNo(faqId);
+	}
 
 }
