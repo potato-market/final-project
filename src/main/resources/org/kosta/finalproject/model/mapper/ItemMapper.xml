@@ -1,0 +1,16 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="org.kosta.finalproject.model.mapper.ItemMapper">
+
+
+
+	<insert id="registerItem"
+		parameterType="org.kosta.finalproject.model.domain.ItemVO">
+		insert into ITEM(USER_ID,CATEGORY_ID,ITEM_TITLE,ITEM_PRICE,ITEM_CONTENT)
+		values
+		('potato',#{categoryVO.categoryId},#{itemTitle},#{itemPrice},#{itemContent})
+	</insert>
+
+
+</mapper>
