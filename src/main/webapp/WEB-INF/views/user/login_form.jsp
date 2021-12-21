@@ -25,7 +25,6 @@
 			<div class="row justify-content-center">
 				<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
 					<div id="container_border" style="background-color:#f7fcf9;">
-							<a href="/main">메인화면으로</a>
 						<form class="form clearfix" action="/login" method="post">
 						<sec:csrfInput/><%-- csrf 토큰 --%>
 							<div style="text-align: center; " class="form-group">

@@ -8,6 +8,6 @@
 </head>
 <body>
 SpringBoot + Tiles Framework 
-<a href="login">로그인으로 고우고우 </a>
+<a href="/login_form">로그인으로 고우고우 </a>
 </body>
 </html>
