@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.finalproject.model.mapper.UserMapper">
 <select id="getCountUser" resultType="int" >
-	select count(*) from user
+	select count(*) from USER
 </select>
 
 <select id="getCountAutho" resultType="int" >
@@ -15,7 +15,7 @@ VALUES (#{userId},#{userPassword},#{userTel},#{userAddress},#{userEmail})
 </insert>
 
 <select id="registerIdCheck" parameterType="String" resultType="int">
-select count(*) from user where user_id=#{userId};
+select count(*) from USER where user_id=#{userId};
 </select>
 
 <select id="findUserById" parameterType="String" resultType="org.kosta.finalproject.model.domain.UserVO">

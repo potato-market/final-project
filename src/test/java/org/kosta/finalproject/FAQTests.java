@@ -24,10 +24,10 @@ class FAQTests {
 		System.out.println("총 FAQ 수:"+count);
 	}
 	
-	@Test
-	void writeFAQ() {
-		faqService.writeFAQ(new FAQVO("최종 junit 확인","안녕",new UserVO("ADMIN")));
-	}
+	/*
+	 * @Test void writeFAQ() { faqService.writeFAQ(new FAQVO("최종 junit 확인","안녕",new
+	 * UserVO("ADMIN"))); }
+	 */
 	
 	@Test
 	void getAllFAQList(){
@@ -37,10 +37,11 @@ class FAQTests {
 		}
 	}
 	
-	@Test
-	void updateFAQ() {
-		 faqService.updateFAQ(new FAQVO(19,"최종확인","안녕",new UserVO("ADMIN")));
-	}
+	//@Test
+	/*
+	 * void updateFAQ() { faqService.updateFAQ(new FAQVO(19,"최종확인","안녕",new
+	 * UserVO("ADMIN"))); }
+	 */
 	
 	@Test
 	void deleteFAQ() {
