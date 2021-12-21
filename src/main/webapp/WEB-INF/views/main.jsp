@@ -74,23 +74,22 @@
 											data-placeholder="Select Category">
 											<option value="">Select Category</option>
 											<option value="1">디지털기기</option>
-											<option value="2">인기매물</option>
-											<option value="3">생활가전</option>
-											<option value="4">가구/인테리어</option>
-											<option value="5">유아동</option>
-											<option value="6">생활/가공식품</option>
-											<option value="7">유아도서</option>
-											<option value="8">스포츠/레저</option>
-											<option value="9">여성잡화</option>
-											<option value="10">여성의류</option>
-											<option value="11">남성패션/잡화</option>
-											<option value="12">게임/취미</option>
-											<option value="13">뷰티/미용</option>
-											<option value="14">반려동물용품</option>
-											<option value="15">도서/티켓/음반</option>
-											<option value="16">식물</option>
-											<option value="17">기타 중고물품</option>
-											<option value="18">삽니다</option>
+											<option value="2">생활가전</option>
+											<option value="3">가구/인테리어</option>
+											<option value="4">유아동</option>
+											<option value="5">생활/가공식품</option>
+											<option value="6">유아도서</option>
+											<option value="7">스포츠/레저</option>
+											<option value="8">여성잡화</option>
+											<option value="9">여성의류</option>
+											<option value="10">남성패션/잡화</option>
+											<option value="11">게임/취미</option>
+											<option value="12">뷰티/미용</option>
+											<option value="13">반려동물용품</option>
+											<option value="14">도서/티켓/음반</option>
+											<option value="15">식물</option>
+											<option value="16">기타 중고물품</option>
+											<option value="17">삽니다</option>
 										</select>
 									</div>
 									<!--end form-group-->
