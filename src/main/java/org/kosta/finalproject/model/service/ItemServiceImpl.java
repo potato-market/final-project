@@ -17,4 +17,9 @@ public class ItemServiceImpl implements ItemService {
 		itemMapper.registerItem(itemVO);
 	}
 
+	@Override
+	public ItemVO selectItemByItemId(int itemId) {
+		return itemMapper.selectItemByItemId(itemId);
+	}
+	
 }
