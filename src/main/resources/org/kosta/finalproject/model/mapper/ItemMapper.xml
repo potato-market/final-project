@@ -3,14 +3,46 @@
 <mapper
 	namespace="org.kosta.finalproject.model.mapper.ItemMapper">
 
-
-
 	<insert id="registerItem"
 		parameterType="org.kosta.finalproject.model.domain.ItemVO">
 		insert into ITEM(USER_ID,CATEGORY_ID,ITEM_TITLE,ITEM_PRICE,ITEM_CONTENT)
 		values
 		('potato',#{categoryVO.categoryId},#{itemTitle},#{itemPrice},#{itemContent})
 	</insert>
+	
+		<resultMap id="selectItemResultMap" type="ItemVO">
+		<id column="ITEM_ID" 					property="itemId" />
+		<result column="ITEM_TITLE" 		property="itemTitle" />
+		<result column="ITEM_PRICE" 			property="itemPrice" />
+		<result column="ITEM_HIT" 			property="itemHit" />
+		<result column="ITEM_CONTENT"		 property="itemContent" />
+		<result column="ITEM_STATUS" 		property="itemStatus" />
+		<result column="ITEM_CREATED_AT"			property="itemCreatedAt" />
+		<collection property="userVO" ofType="UserVO">
+			<id property="userId" column="USER_ID" />
+			<result property="userAddress" column="USER_ADDRESS" />
+			<result property="userTel" column="USER_TEL" />
+			<result property="userImage" column="USER_IMAGE" />
+		</collection>
+			<collection property="categoryVO" ofType="CategoryVO">
+			<id property="categoryId" column="CATEGORY_ID" />
+			<result property="categoryName" column="CATEGORY_NAME" />
+		</collection>
+	</resultMap>
+	<select id="selectItemByItemId" parameterType="int" resultMap="selectItemResultMap">
+		SELECT
+		I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT,
+		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, C.CATEGORY_NAME
+		FROM
+		ITEM I, USER U, CATEGORY C
+		WHERE
+		U.USER_ID = I.USER_ID
+		AND
+		I.CATEGORY_ID = C.CATEGORY_ID
+		AND I.ITEM_ID= #{itemId}
+	</select>
+	
+	
 
 
 </mapper>

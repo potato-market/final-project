@@ -6,5 +6,5 @@ import org.kosta.finalproject.model.domain.ItemVO;
 @Mapper
 public interface ItemMapper {
 	public void registerItem(ItemVO itemVO);
-
+	public ItemVO selectItemByItemId(int itemId);
 }

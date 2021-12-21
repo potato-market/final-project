@@ -4,6 +4,8 @@ import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,5 +35,13 @@ public class ItemController {
 		itemService.registerItem(itemVO);
 		return "main.tiles";
 	}
+	
+	// 역할 기능
+		@GetMapping("selectItemByItemId")
+		public String selectItemByItemId(int itemId, Model model) {
+			System.out.println(itemService.selectItemByItemId(itemId));
+			model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
+			return "item/item-detail.tiles";
+		}
 
 }
