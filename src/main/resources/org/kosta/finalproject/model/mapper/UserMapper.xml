@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.finalproject.model.mapper.UserMapper">
+<select id="getCountUser" resultType="int" >
+	select count(*) from user
+</select>
+
+<select id="getCountAutho" resultType="int" >
+	select count(*) from AUTHORITIES
+</select>
+
+<insert id="registerUser" parameterType="org.kosta.finalproject.model.domain.UserVO"> <!-- 이 경로 자동 설정하는 부분은 어디임?? -->
+insert into USER (USER_ID,USER_PASSWORD,USER_TEL,USER_ADDRESS,USER_EMAIL)
+VALUES (#{userId},#{userPassword},#{userTel},#{userAddress},#{userEmail})
+</insert>
+
+<select id="registerIdCheck" parameterType="String" resultType="int">
+select count(*) from user where user_id=#{userId};
+</select>
+
+<select id="findUserById" parameterType="String" resultType="org.kosta.finalproject.model.domain.UserVO">
+select * from USER
+where user_id=#{userId};
+</select>
+
+<select id="registerRole" parameterType="Authority">
+insert into AUTHORITIES (USERNAME,AUTHORITY)
+VALUES (#{username},#{authority})
+</select>
+
+<select id="findAuthorityByUsername" parameterType="String" resultType="authority">
+select USERNAME,AUTHORITY
+from AUTHORITIES
+where username=#{username}
+
+</select>
+
+</mapper>
+
+
