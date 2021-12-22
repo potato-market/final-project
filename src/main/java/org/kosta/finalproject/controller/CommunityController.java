@@ -1,21 +1,36 @@
 package org.kosta.finalproject.controller;
 
+import org.kosta.finalproject.model.domain.CommunityVO;
+import org.kosta.finalproject.model.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CommunityController {
-	//private CommunityMapper communityMapper;
-
 	@Autowired
-	public CommunityController() {
-		super();
-		// TODO Auto-generated constructor stub
+	private CommunityService communityService;
+
+	@RequestMapping("communityBoard")
+	public String communityList() {
+		return "community/community-board.tiles";
+	}
+
+	@RequestMapping("communityDetail")
+	public String communityDetail() {
+		return "community/community-detail.tiles";
+	}
+
+	@RequestMapping("communityWriteForm")
+	public String communityWriteForm() {
+		return "community/community-write-form.tiles";
+	}
+
+	@PostMapping("writeCommunity")
+	public String writeCommunity(CommunityVO communityVO) {
+		communityService.writeCommunity(communityVO);
+		return "community/community-board.tiles";
 	}
 	
-	@RequestMapping("communityList")
-	public String communityList() {
-		return "community/community.tiles";
-	}
 }
