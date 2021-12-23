@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal.userId" var="userId"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -67,11 +70,16 @@
 			<section class="block">
 				<div class="container">
 					<form class="form form-submit" action="registerItem" method="post">
+					<input type="hidden" name="userVO.userId" value="${userId }"> 
+					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="submit-category" class="col-form-label">Category</label>
+										
+										<!-- 1. CATEGORY -->
+										
 										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId" id="submit_category" data-placeholder="Select Category" required="required">
 											<option value="">Select Category</option>
 											<option value="1">디지털기기</option>
@@ -104,7 +112,7 @@
 								
 								<div class="col-md-8">
 								
-								<!-- TITLE -->
+								<!-- 2. TITLE -->
 								
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
@@ -115,7 +123,8 @@
 								</div>
 								<!--end col-md-8-->
 								<div class="col-md-4">
-								<!-- PRICE -->
+								
+								<!-- 3. PRICE -->
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
 										<input name="itemPrice" type="text" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
@@ -126,7 +135,8 @@
 						</section>
 						<!--end basic information-->
 						<section style="margin-bottom: 0px">
-						<!-- ADDITIONAL DETAILS -->
+						
+						<!-- 4. Item Content-->
 							<div class="form-group">
 								<label for="itemContent" class="col-form-label">Additional Details</label>
 								<textarea name="itemContent" id="itemContent" class="form-control" rows="4"></textarea>
@@ -134,7 +144,8 @@
 							<!--end form-group-->
 						</section>
 						<section>
-						
+						   
+						  <!-- 5. Item Image -->
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
 								<input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
@@ -156,36 +167,5 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<!--<script src="assets/js/jquery.validate.min.js"></script>-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/jquery-validate.bootstrap-tooltip.min.js"></script>
-	<script src="assets/js/jQuery.MultiFile.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-submit";
-		var markerDrag = true;
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement,
-				markerDrag);
-		
-		
-	</script>
-
 </body>
 </html>

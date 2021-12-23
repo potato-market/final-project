@@ -14,7 +14,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/main")
+	@RequestMapping("main")
 	public String home() {
 		System.out.println("homeCont2");
 		return "main.tiles";
