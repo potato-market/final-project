@@ -106,7 +106,7 @@
 					//alert("아이디찾기결과:"+result);
 					$("#findIdByTelResult").html("아이디는"+"&nbsp;"+result+"입니다"+"<hr>").css("color", "green");
 					//$("#countView").html(result + "명");    
-				}
+				}  
 		}); //ajax
 		}); //click
 	}); //ready
