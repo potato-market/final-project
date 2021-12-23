@@ -5,6 +5,7 @@ import org.kosta.finalproject.model.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,4 +39,21 @@ public class CommunityController {
 		return "redirect:communityBoard";
 	}
 	
+	@GetMapping("updateCommunityForm")
+	public String updateCommunityForm (Model model,int communityId) {
+		model.addAttribute("communityData", communityService.getCommunityById(communityId));
+		return "community/community-update-form.tiles";
+	}
+	
+	@PostMapping("updateCommunity")
+	public String updateCommunity(CommunityVO communityVO) {
+		communityService.updateCommunity(communityVO);
+		return "redirect:communityDetail";
+	}
+	
+	@PostMapping("deleteCommunity")
+	public String deleteCommunity(int communityId) {
+		communityService.deleteCommunity(communityId);
+		return "";
+	}
 }

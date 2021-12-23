@@ -79,7 +79,7 @@
 								<c:forEach var="l" items="${list }">
 								<div class="item">
 									<div class="wrapper"
-										onclick="location.href='communityDetail'">
+										onclick="location.href='communityDetail?communityId=${l.communityId}'">
 										<h3>
 											<a href="communityBoard" class="tag category">동네생활</a>
 										</h3>
@@ -97,7 +97,7 @@
 											</p>
 										</div>
 										<!--end description-->
-										<a href="communityDetail"
+										<a href="communityDetail?communityId=${l.communityId}"
 											class="detail text-caps underline">댓글쓰기</a>
 									</div>
 								</div>

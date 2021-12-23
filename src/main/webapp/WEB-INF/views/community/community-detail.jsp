@@ -121,6 +121,7 @@
 		<!--*********************************************************************************************************-->
 		<section class="content">
 			<section class="block" style="background-color: #f2f2f2f2;">
+			<form method="get" action="updateCommunityForm?communityId=${communityData.communityId }">
 				<div class="container">
 					<!--Author-->
 					<section id="article-profile">
@@ -132,8 +133,8 @@
 											src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
 									</div>
 									<div id="article-profile-left">
-										<div id="nickname">이름</div>
-										<div id="region-name">주소</div>
+										<div id="nickname">${communityData.userVO.userId }</div>
+										<div id="region-name">${communityData.userVO.userAddress }</div>
 									</div>
 								</a>
 							</div>
@@ -143,13 +144,13 @@
 					<!--description-->
 					<div class="col-md-12"
 						style="border-bottom: 1px solid #e9ecef; padding-bottom: 23px;">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-							nec tincidunt arcu, sit amet fermentum sem. Class aptent taciti
-							sociosqu ad litora torquent per conubia nostra, per inceptos
-							himenaeos.</p>
+						<p>${communityData.communityContent  }</p>
 					</div>
+					<button type="button" onclick="location.href='deleteCommunity'">삭제</button>
+					<button type="submit"> 수정</button>
 					<!--end description-->
 				</div>
+				</form>
 				<div class="background">
 					<div class="background-image original-size background-repeat-x">
 						<img src="assets/img/gradient-background.png" alt="">

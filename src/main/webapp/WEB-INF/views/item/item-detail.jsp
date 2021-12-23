@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -148,7 +149,18 @@
 							</section>
 							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 226</p> 
 							<button type="button">채팅하기</button>
-							<a href="updateForm">수정하기</a>
+							<!-- 수정하기 -->
+							<form action="updateForm">
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
+								<button type="submit">수정하기</button>
+							</form>
+							
+							<!-- 삭제하기 -->
+							<form action="deleteItem" method="post">
+							<sec:csrfInput/>
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
+								<button type="submit">삭제하기</button>
+							</form>
 							<!--end Description-->
 						</div>
 						<!--============ End Listing Detail =========================================================-->
@@ -271,27 +283,5 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-small";
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
-	</script>
-
 </body>
 </html>

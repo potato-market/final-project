@@ -12,4 +12,8 @@ public interface CommunityService {
 
 	CommunityVO getCommunityById(int communityId);
 
+	void updateCommunity(CommunityVO communityVO);
+
+	void deleteCommunity(int communityId);
+
 }

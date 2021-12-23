@@ -19,5 +19,17 @@ public class CommunityServiceImpl implements CommunityService{
 	public List<CommunityVO> getAllCommunityList() {
 		return communityMapper.getAllCommunityList();
 	}
+	@Override
+	public CommunityVO getCommunityById(int communityId) {
+		return communityMapper.getCommunityById(communityId);
+	}
+	@Override
+	public void updateCommunity(CommunityVO communityVO) {
+		communityMapper.updateCommunity(communityVO);
+	}
+	@Override
+	public void deleteCommunity(int communityId) {
+		communityMapper.deleteCommunity(communityId);
+	}
 
 }

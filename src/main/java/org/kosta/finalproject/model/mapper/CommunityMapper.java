@@ -12,4 +12,10 @@ public interface CommunityMapper {
 
 	List<CommunityVO> getAllCommunityList();
 
+	CommunityVO getCommunityById(int communityId);
+
+	void updateCommunity(CommunityVO communityVO);
+
+	void deleteCommunity(int communityId);
+
 }

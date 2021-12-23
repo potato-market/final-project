@@ -71,3 +71,22 @@ select count(*) from user;
 
 --아이디 중복체크
 select count(*) from user where user_id='spring';
+
+--회원 정보 수정 (전화번호, 이메일)
+update USER
+set USER_TEL=#{userTel},USER_EMAIL=#{userEmail} 
+WHERE USER_ID=#{userId}
+
+update USER
+set USER_TEL=7777,USER_EMAIL=7777
+WHERE USER_ID='security112'
+
+select * from USER;
+select*from ITEM;
+
+
+--userTel=#{userTel},userEmail=#{userEmail}
+
+
+
+

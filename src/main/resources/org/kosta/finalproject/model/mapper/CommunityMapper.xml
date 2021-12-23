@@ -21,11 +21,17 @@
 		SELECT C.COMMUNITY_ID,C.COMMUNITY_CONTENT, U.USER_ID,U.USER_ADDRESS
 		FROM COMMUNITY C, USER U
 		WHERE C.USER_ID=U.USER_ID
+		AND
+		C.COMMUNITY_ID=#{communityId}
 	</select>
 	
 	<insert id="writeCommunity" parameterType="CommunityVO">
 		INSERT INTO  COMMUNITY  (USER_ID, COMMUNITY_CONTENT) VALUES (#{userVO.userId},#{communityContent});
 	</insert>
+	
+	<update id="updateCommunity" parameterType="CommunityVO">
+		UPATE COMMUNITY SET COMMUNITY_CONTENT=#{communityContent} WHERE COMMUNITY_ID=#{communityId}
+	</update>
 	
 	
 </mapper>
