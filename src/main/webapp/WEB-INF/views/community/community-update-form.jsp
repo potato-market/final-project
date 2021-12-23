@@ -68,24 +68,13 @@
 
 			<section class="block">
 				<div class="container">
-				<!-- 
-				
-				누나 사랑해~~~
-				
-				
-				
-				
-				
-				
-				 -->
-					<form class="form form-submit" action="writeCommunity" method="post">
-					<input type="hidden" name="userVO.userId" value="${userId }">
+					<form class="form form-submit" action="updateCommunity" method="post">
 					 <sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<!-- ADDITIONAL DETAILS -->
 							<div class="form-group">
 								<textarea name="communityContent" id="communityContent"
-									class="form-control" rows="10"></textarea>
+									class="form-control" rows="10">#{communityData.communityContent }</textarea>
 							</div>
 							<!--end form-group-->
 						</section>

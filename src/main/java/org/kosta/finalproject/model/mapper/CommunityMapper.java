@@ -14,4 +14,6 @@ public interface CommunityMapper {
 
 	CommunityVO getCommunityById(int communityId);
 
+	void updateCommunity(CommunityVO communityVO);
+
 }

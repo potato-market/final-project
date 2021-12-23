@@ -29,5 +29,9 @@
 		INSERT INTO  COMMUNITY  (USER_ID, COMMUNITY_CONTENT) VALUES (#{userVO.userId},#{communityContent});
 	</insert>
 	
+	<update id="updateCommunity" parameterType="CommunityVO">
+		UPATE COMMUNITY SET COMMUNITY_CONTENT=#{communityContent} WHERE COMMUNITY_ID=#{communityId}
+	</update>
+	
 	
 </mapper>

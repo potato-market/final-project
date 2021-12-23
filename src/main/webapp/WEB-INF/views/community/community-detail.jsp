@@ -121,7 +121,7 @@
 		<!--*********************************************************************************************************-->
 		<section class="content">
 			<section class="block" style="background-color: #f2f2f2f2;">
-			<form method="post" action="updateCommunity">
+			<form method="get" action="updateCommunityForm?communityId=${communityData.communityId }">
 				<div class="container">
 					<!--Author-->
 					<section id="article-profile">
