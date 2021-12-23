@@ -23,8 +23,15 @@ public interface UserMapper {
 	int getCountAutho();
 
 	List<Authority> findAuthorityByUsername(String id);
-	
-	
+
+	void updateUserPhoneAndEmail(UserVO userVO);
+
+	void updateUserPassword(UserVO userVO);
+
+	void profileAddressUpdate(UserVO userVO);
+
+	String findIdByTel(String userTel);
+	//String[] findIdByTel(String userTel);
 	
 }
  

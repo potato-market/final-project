@@ -76,12 +76,12 @@
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="userTel" type="tel" placeholder="전화번호"
+								<input name="userTel" type="tel" placeholder="휴대폰번호(공백없이 숫자만 입력)"
 									class="form-control check" id="login_tel" required>
 							</div>
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="userAddress" type="text" value="여주" placeholder="주소"
+								<input name="userAddress" type="text" value="" placeholder="주소"
 									class="form-control check" id="login_address" readonly required />
 
 								<div id="map" style="width: 100%; height: 100px; display: none;"></div>

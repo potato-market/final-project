@@ -26,7 +26,7 @@ public class UserVO {
 		this.userCreatedAt = userCreatedAt;
 	}
 	
-	
+
 	public UserVO(String userId, String userPassword, String userTel, String userAddress, String userEmail) {
 		super();
 		this.userId = userId;
@@ -34,6 +34,39 @@ public class UserVO {
 		this.userTel = userTel;
 		this.userAddress = userAddress;
 		this.userEmail = userEmail;
+	}
+	
+	//회원정보수정 tel, Email
+	public UserVO(String userId, String userTel, String userEmail) {
+		super();
+		this.userId = userId;
+		this.userTel = userTel;
+		this.userEmail = userEmail;
+	}
+	//회원정보수정 password
+	
+	
+	
+	
+
+	/*
+	 * public UserVO(String userId, String userAddress) { super(); this.userId =
+	 * userId; this.userAddress = userAddress; }
+	 */
+	
+	public UserVO(String userId, String userPassword) {
+		super();
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
+	
+//address 수정을 위한 생성자,,, 생성자 오버로딩 규칙을위해 임의로 null이어도 되는 요소를 추가..
+	public UserVO(String userId, String userAddress, String userImage, String userCreatedAt) {
+		super();
+		this.userId = userId;
+		this.userAddress = userAddress;
+		this.userImage = userImage;
+		this.userCreatedAt = userCreatedAt;
 	}
 	public String getUserId() {
 		return userId;
@@ -88,6 +121,10 @@ public class UserVO {
 		return "UserVO [userId=" + userId + ", userPassword=" + userPassword + ", userTel=" + userTel + ", userAddress="
 				+ userAddress + ", userEmail=" + userEmail + ", userImage=" + userImage + ", userEnabled=" + userEnabled
 				+ ", userCreatedAt=" + userCreatedAt + "]";
+	}
+	public void setUserAddress(UserVO userVO) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 	

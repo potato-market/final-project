@@ -85,13 +85,13 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 		//Authentication auth = new UsernamePasswordAuthenticationToken(user, password);
 		Authentication auth = new UsernamePasswordAuthenticationToken(user, password, authorities);
 		System.out.println("MemberAuthenticationProvider 인증처리완료:"+auth);
-		return auth;		
+		return auth;
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
 		//현재 MemberAuthenticationProvider가  지정된 Authentication 객체가 id,password 인증방식이면 true를 반환한다 
-		//48 라인에서 인증로직 첫 시점에 비교한다 
+		//48 라인에서 인증로직 첫 시점에 비교한다
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}	
 }
