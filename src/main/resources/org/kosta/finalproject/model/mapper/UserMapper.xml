@@ -32,9 +32,31 @@ VALUES (#{username},#{authority})
 select USERNAME,AUTHORITY
 from AUTHORITIES
 where username=#{username}
-
 </select>
 
+<update id="updateUserPhoneAndEmail" parameterType="UserVO">
+update USER
+set USER_TEL=#{userTel},USER_EMAIL=#{userEmail} 
+WHERE USER_ID=#{userId}
+</update>
+
+<update id="updateUserPassword" parameterType="UserVO">
+update USER
+set USER_PASSWORD=#{userPassword} 
+WHERE USER_ID=#{userId}
+</update>
+
+<update id="profileAddressUpdate" parameterType="UserVO">
+update USER
+set USER_ADDRESS=#{userAddress} 
+WHERE USER_ID=#{userId}
+</update>
+
+<select id="findIdByTel" parameterType="String" resultType="String">
+select USER_ID
+from USER
+WHERE USER_TEL=#{userTel}
+</select>
 </mapper>
 
 
