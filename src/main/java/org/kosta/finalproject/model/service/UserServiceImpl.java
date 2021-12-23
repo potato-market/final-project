@@ -56,6 +56,33 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return  userMapper.findAuthorityByUsername(username);
 	}
+
+	@Override //회원정보수정 TEL, EMAIL 업데이트
+	public void updateUserPhoneAndEmail(UserVO userVO) {
+		userMapper.updateUserPhoneAndEmail(userVO);
+	}
+
+	@Override
+	public void updateUserPassword(UserVO userVO) {
+			//사용자가 업뎃폼에서 입력한 비밀번호를 받아와 암호화 처리를 한다
+			String encodePassword=passwordEncoder.encode(userVO.getUserPassword());
+			//암호화 처리 후 반환된 비밀번호를 다시 UserVO에 저장하고
+			userVO.setUserPassword(encodePassword);
+			//mapper를 통해 실제 db에 변경하도록 한다
+			userMapper.updateUserPassword(userVO);
+			}
+		
+	@Override
+	public void profileAddressUpdate(UserVO userVO) {
+		userMapper.profileAddressUpdate(userVO);
+		
+	}
+
+	@Override
+	//public String[] findIdByTel(String userTel) {
+		public String findIdByTel(String userTel) {
+		return userMapper.findIdByTel(userTel);
+	}
 	
 	/*
 	 * @Override public void updateMember(UserVO userVO) { // 변경할 비밀번호를 암호화한다 String
