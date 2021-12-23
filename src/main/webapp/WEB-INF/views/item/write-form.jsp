@@ -127,7 +127,7 @@
 								<!-- 3. PRICE -->
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
-										<input name="itemPrice" type="text" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
+										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
 									</div>
 									<!--end form-group-->
 								</div>

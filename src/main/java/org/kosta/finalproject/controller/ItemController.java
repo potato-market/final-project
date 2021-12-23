@@ -30,7 +30,7 @@ public class ItemController {
 	@PostMapping("registerItem")
 	public String registerItem(ItemVO itemVO) {
 		itemService.registerItem(itemVO);
-		return "main";
+		return "redirect:main";
 	}
 
 	// 중고물품 게시물 ItemId로 검색하기 -- 게시물 상세보기 페이지
@@ -40,6 +40,7 @@ public class ItemController {
 		return "item/item-detail.tiles";
 	}
 	
+	//중고물품 게시물 수정폼으로 이동
 	@RequestMapping("updateForm")
 	public String updateForm(int itemId, Model model) {
 		System.out.println("updateForm with: " + itemId);
@@ -54,4 +55,13 @@ public class ItemController {
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemVO.getItemId()));
 		return "item/item-detail.tiles";
 	}
+	
+	//중고물품 게시물 삭제하기
+	@PostMapping("deleteItem")
+	public String deleteItem(int itemId) {
+		itemService.deleteItem(itemId);
+		System.out.println("delete");
+		return "redirect:main";
+	}
+	
 }
