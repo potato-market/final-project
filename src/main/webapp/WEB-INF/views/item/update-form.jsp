@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<sec:authentication property="principal.userId" var="userId"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,7 +23,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/user.css">
 
-<title>Register Items</title>
+<title>Craigs - Easy Buy & Sell Listing HTML Template</title>
 
 </head>
 <body>
@@ -50,7 +49,7 @@
 				<!--============ Page Title =========================================================================-->
 				<div class="page-title">
 					<div class="container">
-						<h1>중고거래 글쓰기</h1>
+						<h1>중고거래 글 수정</h1>
 					</div>
 					<!--end container-->
 				</div>
@@ -69,18 +68,20 @@
 
 			<section class="block">
 				<div class="container">
-					<form class="form form-submit" action="registerItem" method="post">
-					<input type="hidden" name="userVO.userId" value="${userId }"> 
+					<form class="form form-submit" action="updateItem" method="post">
 					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="submit-category" class="col-form-label">Category</label>
-										
+
 										<!-- 1. CATEGORY -->
-										
-										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId" id="submit_category" data-placeholder="Select Category" required="required">
+
+										<label for="submit-category" class="col-form-label">Category</label>
+										<select class="change-tab"
+											data-change-tab-target="category-tabs"
+											name="categoryVO.categoryId" id="submit-category"
+											data-placeholder="Select Category" required="required">
 											<option value="">Select Category</option>
 											<option value="1">디지털기기</option>
 											<option value="2">생활가전</option>
@@ -104,30 +105,40 @@
 									<!--end form-group-->
 								</div>
 								<!--end col-md-4-->
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="submit-atcegory" class="col-form-label">작성자</label>
+										<input readonly name="userId" type="text" class="form-control"
+											id="userId" value="${itemDetail.userVO.userId}">
+									</div>
+									<!--end form-group-->
+								</div>
+								<!--end col-md-4-->
 							</div>
 							<!--end row-->
 						</section>
 						<section style="margin-bottom: 0px">
 							<div class="row">
-								
 								<div class="col-md-8">
-								
-								<!-- 2. TITLE -->
-								
+
+									<!-- 2.TITLE -->
+
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
-										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" required>
+										<input name="itemTitle" type="text" class="form-control"
+											id="itemTitle" placeholder="Title" required="required"  value="${itemDetail.itemTitle}">
 									</div>
-									
 									<!--end form-group-->
 								</div>
 								<!--end col-md-8-->
 								<div class="col-md-4">
 								
-								<!-- 3. PRICE -->
+								<!--3. PRICE -->
+								
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
-										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
+										<input name="itemPrice" type="text" class="form-control"
+											id="itemPrice" required="required" value="${itemDetail.itemPrice}"> <span class="input-group-addon">원</span>
 									</div>
 									<!--end form-group-->
 								</div>
@@ -136,27 +147,35 @@
 						<!--end basic information-->
 						<section style="margin-bottom: 0px">
 						
-						<!-- 4. Item Content-->
+						<!-- 4.ADDITIONAL DETAILS -->
+						
 							<div class="form-group">
-								<label for="itemContent" class="col-form-label">Additional Details</label>
-								<textarea name="itemContent" id="itemContent" class="form-control" rows="4"></textarea>
+								<label for="itemContent" class="col-form-label">Additional
+									Details</label>
+								<textarea name="itemContent" id="itemContent"
+									class="form-control" rows="4" >${itemDetail.itemContent}</textarea>
 							</div>
 							<!--end form-group-->
 						</section>
 						<section>
-						   
-						  <!-- 5. Item Image -->
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
-								<input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-								<span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
+								<input type="file" name="files[]"
+									class="file-upload-input with-preview" multiple
+									title="Click to add files" maxlength="10" accept="gif|jpg|png">
+								<span><i class="fa fa-plus-circle"></i>Click or drag
+									images here</span>
 							</div>
 						</section>
-						 <section class="clearfix">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary large icon float-right">완료<i class="fa fa-chevron-right"></i></button>
-                            </div>
-                        </section>
+						<section class="clearfix">
+							<div class="form-group">
+							<input type="hidden" name="itemId" value="${itemDetail.itemId}"> 
+								<button type="submit" 
+									class="btn btn-primary large icon float-right">
+									완료<i class="fa fa-chevron-right"></i>
+								</button>
+							</div>
+						</section>
 					</form>
 					<!--end form-submit-->
 				</div>
