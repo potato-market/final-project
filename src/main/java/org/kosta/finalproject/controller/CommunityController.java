@@ -50,4 +50,10 @@ public class CommunityController {
 		communityService.updateCommunity(communityVO);
 		return "redirect:communityDetail";
 	}
+	
+	@PostMapping("deleteCommunity")
+	public String deleteCommunity(int communityId) {
+		communityService.deleteCommunity(communityId);
+		return "";
+	}
 }
