@@ -35,4 +35,8 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.getAllItemList();
 	}
 
+	@Override
+	public void deleteItem(int itemId) {
+		itemMapper.deleteItem(itemId);
+	}
 }

@@ -69,4 +69,12 @@
 		I.CATEGORY_ID = C.CATEGORY_ID
 		ORDER BY I.ITEM_CREATED_AT DESC
 	</select>
+	
+		<!-- 중고물품 삭제하기 -->
+    <delete id="deleteItem" parameterType="int">
+    	DELETE FROM ITEM 
+    	WHERE  
+		ITEM_ID= #{itemId}
+ 	</delete>
+ 	
 </mapper>
