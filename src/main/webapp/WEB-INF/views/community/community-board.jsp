@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -75,6 +76,7 @@
 							<!--============ Items ==========================================================================-->
 							<div
 								class="items list compact grid-xl-3-items grid-lg-3-items grid-md-2-items">
+								<c:forEach var="l" items="${list }">
 								<div class="item">
 									<div class="wrapper"
 										onclick="location.href='communityDetail'">
@@ -84,15 +86,14 @@
 										<!--end image-->
 										<div class="meta2">
 											<figure>
-												<i class="fa fa-user"> Jane Doe</i>&nbsp
-												<i class="fa fa-map-marker"> 삼성동</i>&nbsp
-												<i class="fa fa-clock-o"> 16분전</i>
+												<i class="fa fa-user"> ${l.userVO.userId }</i>&nbsp
+												<i class="fa fa-map-marker"> ${l.userVO.userAddress }</i>&nbsp
 											</figure>
 										</div>
 										<!--end meta-->
 										<div class="description" style="height: 9rem;">
 											<p style="width: 100%;">
-												<i class="fa fa-question"></i> 내용
+												<i class="fa fa-question"></i> ${l.communityContent }
 											</p>
 										</div>
 										<!--end description-->
@@ -101,6 +102,7 @@
 									</div>
 								</div>
 								<!--end item-->
+								</c:forEach>
 							</div>
 							<!--============ End Items ==============================================================-->
 							<div class="page-pagination">
