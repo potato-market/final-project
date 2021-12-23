@@ -16,4 +16,6 @@ public interface CommunityMapper {
 
 	void updateCommunity(CommunityVO communityVO);
 
+	void deleteCommunity(int communityId);
+
 }
