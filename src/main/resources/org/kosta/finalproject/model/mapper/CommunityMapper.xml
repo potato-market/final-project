@@ -21,6 +21,8 @@
 		SELECT C.COMMUNITY_ID,C.COMMUNITY_CONTENT, U.USER_ID,U.USER_ADDRESS
 		FROM COMMUNITY C, USER U
 		WHERE C.USER_ID=U.USER_ID
+		AND
+		C.COMMUNITY_ID=#{communityId}
 	</select>
 	
 	<insert id="writeCommunity" parameterType="CommunityVO">

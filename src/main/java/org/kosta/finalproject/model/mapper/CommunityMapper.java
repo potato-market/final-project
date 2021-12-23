@@ -12,4 +12,6 @@ public interface CommunityMapper {
 
 	List<CommunityVO> getAllCommunityList();
 
+	CommunityVO getCommunityById(int communityId);
+
 }
