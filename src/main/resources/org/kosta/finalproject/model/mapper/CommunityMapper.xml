@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="org.kosta.finalproject.model.mapper.CommunityMapper">
+	
+	<select id="getAllCommunityList" resultMap="AllCommunityList">
+		SELECT C.COMMUNITY_ID, U.USER_ID, U.USER_ADDRESS, C.COMMUNITY_CONTENT 
+		FROM COMMUNITY C, USER U
+		WHERE C.USER_ID=U.USER_ID
+		ORDER BY COMMUNITY_ID DESC;
+	</select>
+	
+	<resultMap type="CommunityVO" id="AllCommunityList" autoMapping="true">
+		<id property="communityId" column="COMMUNITY_ID"/>
+		<association property="userVO" javaType="UserVO" autoMapping="true">
+			<id property="userId" column="USER_ID"/>
+		</association> 
+	</resultMap>
+	
+	<select id="getCommunityById" parameterType="int" resultMap="AllCommunityList">
+		SELECT C.COMMUNITY_ID,C.COMMUNITY_CONTENT, U.USER_ID,U.USER_ADDRESS
+		FROM COMMUNITY C, USER U
+		WHERE C.USER_ID=U.USER_ID
+		AND
+		C.COMMUNITY_ID=#{communityId}
+	</select>
+	
+	<insert id="writeCommunity" parameterType="CommunityVO">
+		INSERT INTO  COMMUNITY  (USER_ID, COMMUNITY_CONTENT) VALUES (#{userVO.userId},#{communityContent});
+	</insert>
+	
+	<update id="updateCommunity" parameterType="CommunityVO">
+		UPATE COMMUNITY SET COMMUNITY_CONTENT=#{communityContent} WHERE COMMUNITY_ID=#{communityId}
+	</update>
+	
+	
+</mapper>

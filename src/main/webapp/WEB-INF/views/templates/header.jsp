@@ -50,7 +50,7 @@
                                         <a class="nav-link" href="main">홈</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a class="nav-link" href="communityList">동네생활</a>
+                                        <a class="nav-link" href="communityBoard">동네생활</a>
                                     </li>
                                      <li class="nav-item">
                                         <a class="nav-link" href="chattingForm" >채팅</a>
