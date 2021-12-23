@@ -25,23 +25,33 @@ public class ItemController {
 		return "item/write-form.tiles";
 	}
 
-	@RequestMapping("updateForm")
-	public String updateForm() {
-		return "item/update-form.tiles";
-	}
 
+	// 중고물품 게시물 등록하기
 	@PostMapping("registerItem")
 	public String registerItem(ItemVO itemVO) {
 		itemService.registerItem(itemVO);
-		return "main.tiles";
+		return "main";
+	}
+
+	// 중고물품 게시물 ItemId로 검색하기 -- 게시물 상세보기 페이지
+	@GetMapping("selectItemByItemId")
+	public String selectItemByItemId(int itemId, Model model) {
+		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
+		return "item/item-detail.tiles";
 	}
 	
-	// 역할 기능
-		@GetMapping("selectItemByItemId")
-		public String selectItemByItemId(int itemId, Model model) {
-			System.out.println(itemService.selectItemByItemId(itemId));
-			model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
-			return "item/item-detail.tiles";
-		}
+	@RequestMapping("updateForm")
+	public String updateForm(int itemId, Model model) {
+		System.out.println("updateForm with: " + itemId);
+		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
+		return "item/update-form.tiles";
+	}
 
+	// 중고물품 게시물 수정하기
+	@PostMapping("updateItem")
+	public String updateItem(ItemVO itemVO, Model model) {
+		itemService.updateItem(itemVO);
+		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemVO.getItemId()));
+		return "item/item-detail.tiles";
+	}
 }
