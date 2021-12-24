@@ -39,7 +39,7 @@ public class CommunityController {
 		return "redirect:communityBoard";
 	}
 	
-	@GetMapping("updateCommunityForm")
+	@RequestMapping("updateCommunityForm")
 	public String updateCommunityForm (Model model,int communityId) {
 		model.addAttribute("communityData", communityService.getCommunityById(communityId));
 		return "community/community-update-form.tiles";
@@ -48,12 +48,12 @@ public class CommunityController {
 	@PostMapping("updateCommunity")
 	public String updateCommunity(CommunityVO communityVO) {
 		communityService.updateCommunity(communityVO);
-		return "redirect:communityDetail";
+		return "redirect:communityDetail?communityId="+communityVO.getCommunityId();
 	}
 	
 	@PostMapping("deleteCommunity")
 	public String deleteCommunity(int communityId) {
 		communityService.deleteCommunity(communityId);
-		return "";
+		return "redirect:communityBoard";
 	}
 }

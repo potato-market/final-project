@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
 <title>Craigs - Easy Buy & Sell Listing HTML Template</title>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<script>
+<!-- <script>
 	var IDX = getQueryStringObject().idx;
 	 function getQueryStringObject() {
 	    var a = window.location.search.substr(1).split('&');
@@ -79,7 +80,7 @@
 		  drawReply(replys)
 	   }});
 	  
-	</script>
+	</script> -->
 </head>
 <body>
 	<div class="page sub-page">
@@ -121,7 +122,9 @@
 		<!--*********************************************************************************************************-->
 		<section class="content">
 			<section class="block" style="background-color: #f2f2f2f2;">
-			<form method="get" action="updateCommunityForm?communityId=${communityData.communityId }">
+			<form method="post" action="deleteCommunity">
+			<sec:csrfInput/>
+			<input type="hidden" name="communityId" value="${communityData.communityId }">
 				<div class="container">
 					<!--Author-->
 					<section id="article-profile">
@@ -129,7 +132,7 @@
 							<div class="col-md-12">
 								<a id="article-profile-link" href="#">
 									<div id="article-profile-image">
-										<img alt="이름"
+										<img alt="${communityData.userVO.userId }"
 											src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
 									</div>
 									<div id="article-profile-left">
@@ -146,8 +149,8 @@
 						style="border-bottom: 1px solid #e9ecef; padding-bottom: 23px;">
 						<p>${communityData.communityContent  }</p>
 					</div>
-					<button type="button" onclick="location.href='deleteCommunity'">삭제</button>
-					<button type="submit"> 수정</button>
+					<button type="submit">삭제</button>
+					<button type="button" onclick="location.href='updateCommunityForm?communityId='+${communityData.communityId}"> 수정</button>
 					<!--end description-->
 				</div>
 				</form>
