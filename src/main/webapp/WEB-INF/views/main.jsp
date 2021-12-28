@@ -223,7 +223,7 @@
 					<!--============ Items ==========================================================================-->
 					<div
 						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
-						<c:forEach items="${itemList}" var="itemList">
+						<c:forEach items="${itemList}" var="itemList" varStatus="status">
 							<div class="item">
 								<div class="ribbon-featured">${itemList.itemStatus }</div>
 								<!--end ribbon-->
@@ -239,7 +239,7 @@
 										<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
 										<a href="selectItemByItemId?itemId=${itemList.itemId}"
 											class="image-wrapper background-image"> <img
-											src="assets/img/image-01.jpg" alt="">
+											src="assets/upload/${imageList[status].imageName }" alt="">
 										</a>
 									</div>
 									<!--end image-->

@@ -78,12 +78,9 @@
                             <!--Gallery Carousel-->
                             <section>
                                 <div class="gallery-carousel owl-carousel">
-                                    <img src="assets/img/image-20.jpg" alt="" data-hash="1">
-                                    <img src="assets/img/image-01.jpg" alt="" data-hash="2">
-                                    <img src="assets/img/image-21.jpg" alt="" data-hash="3">
-                                    <img src="assets/img/image-22.jpg" alt="" data-hash="4">
-                                    <img src="assets/img/image-23.jpg" alt="" data-hash="5">
-                                    <img src="assets/img/image-14.jpg" alt="" data-hash="6">
+                                <c:forEach var="kwon" items="${imageList }" varStatus="status">
+                                    <img src="assets/upload/${kwon.imageName}" alt="" data-hash="${status.index}">                                     
+                                </c:forEach>
                                 </div>
                                 <div class="gallery-carousel-thumbs owl-carousel">
                                     <a href="#1" class="owl-thumb active-thumb background-image">
@@ -117,8 +114,9 @@
 												<div>
 													<div id="article-profile-image">
 														<img alt="${itemDetail.userVO.userId}"
-															src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
-													</div>
+														src="assets/upload/${itemDetail.userVO.userImage }"
+														>
+														</div>
 													<div id="article-profile-left">
 														<div id="nickname">${itemDetail.userVO.userId}</div>
 														<div id="region-name">${itemDetail.userVO.userAddress}</div>

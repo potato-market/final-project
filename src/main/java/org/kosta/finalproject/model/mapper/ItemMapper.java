@@ -3,13 +3,17 @@ package org.kosta.finalproject.model.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.kosta.finalproject.model.domain.ImageVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 
 @Mapper
 public interface ItemMapper {
-	public void registerItem(ItemVO itemVO);
+	public int registerItem(ItemVO itemVO);
 	public ItemVO selectItemByItemId(int itemId);
 	public void updateItem(ItemVO itemVO);
 	public List<ItemVO> getAllItemList();
 	public void deleteItem(int itemId);
+	public void uploadMultiImage(ImageVO imageVO);
+	public List<ImageVO> findItemImageListByItemId(int itemId);
+	public void deleteImage(int imageId);
 }

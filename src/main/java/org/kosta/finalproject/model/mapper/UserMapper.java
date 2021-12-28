@@ -24,7 +24,7 @@ public interface UserMapper {
 
 	List<Authority> findAuthorityByUsername(String id);
 
-	void updateUserPhoneAndEmail(UserVO userVO);
+	void updateUserPET(UserVO userVO);
 
 	void updateUserPassword(UserVO userVO);
 
@@ -32,6 +32,8 @@ public interface UserMapper {
 
 	String findIdByTel(String userTel);
 	//String[] findIdByTel(String userTel);
+	
+	void updateUserImage(UserVO userVO);
 	
 }
  

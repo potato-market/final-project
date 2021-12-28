@@ -1,7 +1,9 @@
 package org.kosta.finalproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.kosta.finalproject.model.domain.ImageVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,14 @@ public class HomeController {
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();
 		System.out.println(list);
+		
+		List<ImageVO>imageList =new ArrayList<ImageVO>();
+		for(int i=0;i<list.size();i++) {
+			imageList.add(
+			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
+		}
 		model.addAttribute("itemList",list);
+		model.addAttribute("imageList",imageList);
 		return "main.tiles";
 	}
 	@RequestMapping("login_success")

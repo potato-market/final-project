@@ -69,7 +69,7 @@
 
 			<section class="block">
 				<div class="container">
-					<form class="form form-submit" action="registerItem" method="post">
+					<form class="form form-submit" action="registerItem" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="userVO.userId" value="${userId }"> 
 					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
@@ -148,9 +148,13 @@
 						  <!-- 5. Item Image -->
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
-								<input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-								<span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
-							</div>
+								<input type="file" name="item_Images"
+									class="file-upload-input with-preview"
+									  maxlength="100" accept="gif|jpg|png"
+									multiple								
+									>
+									<span><i class="fa fa-plus-circle"></i>Click or drag
+									images here</span>
 						</section>
 						 <section class="clearfix">
                             <div class="form-group">
