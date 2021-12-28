@@ -239,7 +239,7 @@
 										<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
 										<a href="selectItemByItemId?itemId=${itemList.itemId}"
 											class="image-wrapper background-image"> <img
-											src="assets/upload/${imageList[status].imageName }" alt="">
+											src="assets/upload/${imageList[status.index].imageName}" alt="">
 										</a>
 									</div>
 									<!--end image-->

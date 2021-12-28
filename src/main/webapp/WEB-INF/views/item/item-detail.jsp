@@ -80,28 +80,16 @@
                                 <div class="gallery-carousel owl-carousel">
                                 <c:forEach var="kwon" items="${imageList }" varStatus="status">
                                     <img src="assets/upload/${kwon.imageName}" alt="" data-hash="${status.index}">                                     
-                                </c:forEach>
+                           
                                 </div>
                                 <div class="gallery-carousel-thumbs owl-carousel">
-                                    <a href="#1" class="owl-thumb active-thumb background-image">
-                                        <img src="assets/img/image-20.jpg" alt="">
+                                    <a href="#${status.index }" class="owl-thumb active-thumb background-image">
+                                        <img src="assets/upload/${kwon.imageName}" alt="">
                                     </a>
-                                    <a href="#2" class="owl-thumb background-image">
-                                        <img src="assets/img/image-01.jpg" alt="">
-                                    </a>
-                                    <a href="#3" class="owl-thumb background-image">
-                                        <img src="assets/img/image-21.jpg" alt="">
-                                    </a>
-                                    <a href="#4" class="owl-thumb background-image">
-                                        <img src="assets/img/image-22.jpg" alt="">
-                                    </a>
-                                    <a href="#5" class="owl-thumb background-image">
-                                        <img src="assets/img/image-23.jpg" alt="">
-                                    </a>
-                                    <a href="#6" class="owl-thumb background-image">
-                                        <img src="assets/img/image-14.jpg" alt="">
-                                    </a>
-                                </div>
+                                    
+                                 </div>
+                                </c:forEach>
+                                    
                             </section>
                             <!--end Gallery Carousel-->
 
