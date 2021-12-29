@@ -107,5 +107,14 @@
 		SELECT CATEGORY_ID , CATEGORY_NAME FROM CATEGORY
 	</select>
 	
+	 <!-- 조회수 증가시키기 -->
+   <update id="itemHitUpdate" parameterType="int" >
+ 		UPDATE ITEM
+ 		SET 
+ 		ITEM_HIT = ITEM_HIT+1
+ 		WHERE 
+		ITEM_ID = #{itemId}
+  </update>
+	
  	
 </mapper>

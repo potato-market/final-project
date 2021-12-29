@@ -23,6 +23,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public ItemVO selectItemByItemId(int itemId) {
+		 itemMapper.itemHitUpdate(itemId);
 		return itemMapper.selectItemByItemId(itemId);
 	}
 
