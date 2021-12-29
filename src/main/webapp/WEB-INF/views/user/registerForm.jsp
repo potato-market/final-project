@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -35,7 +36,8 @@
 						<!-- form strat -->
 						<form method="post" class="form clearfix" id="registerForm"
 							action="/guest/registerUser">
-							<sec:csrfInput/><%-- csrf 토큰 --%>
+							<sec:csrfInput />
+							<%-- csrf 토큰 --%>
 							<div class="profile-image" id="register-image">
 								<div class="image background-image">
 									<img src="/assets/img/루피감자.png" alt="">
@@ -51,34 +53,59 @@
 							<!--  user css id 셀렉터 형식이 login_id login_password 형식이므로 id 형식을 맞추도록 한다 -->
 							<!--  컨트롤러로 넘겨주는 방식이 name값과 vo필드 변수명과 일치시켜줘야 한다-->
 							<div class="form-group">
-								<input name="userId" type="text" placeholder="아이디"
-									class="form-control check" id="login_id" placeholder="Your Name"
-									required onkeyup="IdCheckResult()">
+								<input name="userId" type="text" placeholder="아이디를 입력하세요"
+									class="form-control check" id="login_id"
+									placeholder="Your Name" required onkeyup="IdCheckResult()">
 							</div>
 							<span id="IdCheckResult"></span>
 							<!--end form-group-->
+							
+							
 							<!--  패스워드 -->
 							<div class="form-group">
 								<input name="userPassword" id="login_password" type="password"
-									placeholder="비밀번호" class="form-control check" required>
+									placeholder="비밀번호를 입력하세요" class="form-control check" required
+									onkeyup="passwordChek1()">
 							</div>
+							<span id="passwordResult1"></span>
 							<div class="form-group">
 								<input name="login_password_check" id="login_password_check"
-									type="password" placeholder="비밀번호 확인" class="form-control check"
-									required onkeyup="passwordResult()">
+									type="password" placeholder="비밀번호 확인"
+									class="form-control check" required onkeyup="passwordChek2()">
 							</div>
-							<span id="passwordResult"></span>
+							<span id="passwordResult2"></span>
 							<!-- /패스워드 -->
+							
+							
+							<!-- 이메일 -->
 							<div class="form-group">
-								<input name="userEmail" type="text" placeholder="이메일"
-									class="form-control check" id="login_email" placeholder="Your Name"
-									required>
+								<input type="text" id="email_id" name="userEmail"
+									class="form-control" value="" placeholder="이메일" maxlength="18">
+								@ <input type="text" id="email_domain" name="email_domain"
+									class="form-control" value="" placeholder="이메일 도메인"
+									maxlength="18"> <select class="" id="emailSelect"
+									onchange="setEmailDomain(this.value)">
+									<option value="">-선택-</option>
+									<option value="1">직접입력</option>
+									<option value="naver.com">naver.com</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="hanmail.net">hanmail.net</option>
+									<option value="hotmail.com">hotmail.com</option>
+									<option value="korea.com">korea.com</option>
+									<option value="nate.com">nate.com</option>
+									<option value="yahoo.com">yahoo.com</option>
+								</select>
 							</div>
+							<!-- /이메일 -->
+
 							<!--end form-group-->
 							<div class="form-group">
-								<input name="userTel" type="tel" placeholder="휴대폰번호(공백없이 숫자만 입력)"
-									class="form-control check" id="login_tel" required>
+								<input name="userTel" type="text"
+									placeholder="휴대폰번호(공백없이 숫자만 입력)" class="form-control check"
+									maxlength="13" id="login_tel" required
+									onkeyup="EmailheckResult()">
 							</div>
+							<span id="telCheckResult"></span>
 							<!--end form-group-->
 							<div class="form-group">
 								<input name="userAddress" type="text" value="" placeholder="주소"
