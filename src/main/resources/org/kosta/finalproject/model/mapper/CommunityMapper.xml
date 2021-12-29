@@ -30,8 +30,10 @@
 	</insert>
 	
 	<update id="updateCommunity" parameterType="CommunityVO">
-		UPATE COMMUNITY SET COMMUNITY_CONTENT=#{communityContent} WHERE COMMUNITY_ID=#{communityId}
+		UPDATE COMMUNITY SET COMMUNITY_CONTENT=#{communityContent} WHERE COMMUNITY_ID=#{communityId}
 	</update>
 	
-	
+	<delete id="deleteCommunity" parameterType="int">
+	DELETE FROM COMMUNITY WHERE COMMUNITY_ID=#{communityId}
+	</delete>
 </mapper>

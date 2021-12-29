@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
 <html lang="en">
 <head>
+<meta name="csrf-token" content="principal.">
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,65 +25,21 @@
 <link rel="stylesheet" href="assets/css/user.css">
 
 <title>Craigs - Easy Buy & Sell Listing HTML Template</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<script>
-	var IDX = getQueryStringObject().idx;
-	 function getQueryStringObject() {
-	    var a = window.location.search.substr(1).split('&');
-	    if (a == "") return {};
-	    var b = {};
-	    for (var i = 0; i < a.length; ++i) {
-	        var p = a[i].split('=', 2);
-	        if (p.length == 1)
-	            b[p[0]] = "";
-	        else
-	            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-	    }
-	    return b;
-	}
-	function drawReply(replys) {
-		$("#cnt").text("등록된 댓글 - " + replys.length)
-		var html = '';
-		html += '<form class="form-inline" action="writeReply" method="post"><input type="hidden" name="idx" value = "' + IDX + '"><input type="hidden" name="replyIdx" value = "0"><input type="text" class="form-control mb-2 mr-sm-2" id="contents" placeholder="답글" name="contents"><button type="submit" class="btn btn-primary mb-2">등록</button></form>';
-		replys.forEach(function(reply){ 
-			if (reply.replyIdx == 0) {
-				var rc = 0;
-				replys.forEach(function(i){
-					if (reply.idx == i.replyIdx) rc++;
-				})
-				html += '<div class="row"><div class="col-sm-12">';
-				html += '<form class="form-inline" action="writeReply" method="post"><label for="pwd" class="mr-sm-2">' + reply.contents + '(' + rc + ')' + '</label>'
-				html += '<input type="hidden" name="idx" value = "' + IDX + '"><input type="hidden" name="replyIdx" value = "' + reply.idx + '"><input type="text" class="form-control mb-2 mr-sm-2" id="contents" placeholder="답글" name="contents"><button type="submit" class="btn btn-primary mb-2">등록</button></form>';
-				html += '<div class="row"><div class="col-sm-12 sub' + reply.idx + '"></div></div></div></div>';
-			}
-		})
-		$("#replyArea").append(html);
-		replys.forEach(function(reply){ 
-			if (reply.replyIdx != 0) {
-				var rc = 0;
-				replys.forEach(function(i){
-					if (reply.idx == i.replyIdx) rc++;
-				})
-				var subHtml = '';
-				subHtml = '<div class="row"><div class="col-sm-12 subReply">';
-				subHtml += '<form class="form-inline" action="writeReply" method="post"><label for="pwd" class="mr-sm-2">' + reply.contents + '(' + rc + ')' + '</label>'
-				subHtml += '<input type="hidden" name="idx" value = "' + IDX + '"><input type="hidden" name="replyIdx" value = "' + reply.idx + '"><input type="text" class="form-control mb-2 mr-sm-2" id="contents" placeholder="답글" name="contents"><button type="submit" class="btn btn-primary mb-2">등록</button></form>';
-				subHtml += '<div class="row"><div class="col-sm-12 sub' + reply.idx + '"></div></div></div></div>';
-				$(".sub" + reply.replyIdx).append(subHtml);
-			}
-		})
-	}
-	  $.ajax({url: "boardView?idx="+IDX, success: function(result){
-		  $("#image").append('<img src="resources/'+ result.image + '" style="width: 100%;">');
-		  $("#title").text(result.title);
-		  $("#contents").text(result.contents);
-	   }});
-	  $.ajax({url: "replyList?idx="+IDX, success: function(replys){
-		  drawReply(replys)
-	   }});
-	  
-	</script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<style>
+#deleteAtag:hover {
+	color: red;
+	cursor: pointer;
+}
+#deleteCommentAtag:hover {
+	color: red;
+	cursor: pointer;
+}
+</style>
+
 </head>
 <body>
 	<div class="page sub-page">
@@ -104,7 +64,7 @@
 				<!--============ Page Title =========================================================================-->
 				<div class="page-title">
 					<div class="container">
-						<h1>Frequently Asked Questions</h1>
+						<h1>동네생활 글 상세보기</h1>
 					</div>
 					<!--end container-->
 				</div>
@@ -121,82 +81,258 @@
 		<!--*********************************************************************************************************-->
 		<section class="content">
 			<section class="block" style="background-color: #f2f2f2f2;">
-			<form method="get" action="updateCommunityForm?communityId=${communityData.communityId }">
-				<div class="container">
-					<!--Author-->
-					<section id="article-profile">
-						<div class="row">
-							<div class="col-md-12">
-								<a id="article-profile-link" href="#">
-									<div id="article-profile-image">
-										<img alt="이름"
-											src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
-									</div>
-									<div id="article-profile-left">
-										<div id="nickname">${communityData.userVO.userId }</div>
-										<div id="region-name">${communityData.userVO.userAddress }</div>
-									</div>
-								</a>
+				<form method="post" action="deleteCommunity" id="communityForm">
+					<sec:csrfInput />
+					<input type="hidden" name="communityId"
+						value="${communityData.communityId }">
+					<div class="container">
+						<!--Author-->
+						<section id="article-profile">
+							<div class="row">
+								<div class="col-md-12">
+									<a id="article-profile-link" href="#">
+										<div id="article-profile-image">
+											<img alt="${communityData.userVO.userId }"
+												src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
+										</div>
+										<div id="article-profile-left">
+											<div id="nickname">${communityData.userVO.userId }</div>
+											<div id="region-name">${communityData.userVO.userAddress }</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</section>
+						<!-- End Author -->
+						<!--description-->
+						<div class="col-md-12"
+							style="border-bottom: 1px solid #e9ecef; padding-bottom: 23px;">
+							<p>${communityData.communityContent  }</p>
+							<div class="float-right float-xs-none d-xs-none">
+								<a href="updateCommunityForm?communityId=${communityData.communityId}">수정</a>&nbsp
+								<a onclick="return deleteCommunity()" id="deleteAtag">삭제</a>
+								<!-- <button type="submit">삭제</button> -->
 							</div>
 						</div>
-					</section>
-					<!-- End Author -->
-					<!--description-->
-					<div class="col-md-12"
-						style="border-bottom: 1px solid #e9ecef; padding-bottom: 23px;">
-						<p>${communityData.communityContent  }</p>
+						<!--end description-->
 					</div>
-					<button type="button" onclick="location.href='deleteCommunity'">삭제</button>
-					<button type="submit"> 수정</button>
-					<!--end description-->
-				</div>
 				</form>
-				<div class="background">
-					<div class="background-image original-size background-repeat-x">
-						<img src="assets/img/gradient-background.png" alt="">
-					</div>
-					<!--end background-image-->
-				</div>
-				<!--end background-->
-				
-				 <h2 id = "cnt"></h2>
+				<!-- end form -->
 				<div class="container">
-					<div class="col-12">
-						<section
-							style="padding-top: 23px; border-bottom: 1px solid #e9ecef; padding-bottom: 23px;">
-							<div id = "replyArea"></div>
-							
-							<!-- <form class="form" action="writeComment">
-								<div class="row">
-									<div class="col-10">
-										<div class="form-group">
-											<input name="subject" type="text" class="form-control"
-												id="subject" placeholder="댓글을 입력해주세요.">
+					<div class="row">
+						<div class="col-12">
+						<!-- comment form section -->
+							<section style="padding-top: 15px; border-bottom: 1px solid #e9ecef;margin-bottom: 3rem">
+									<!-- 댓글 작성 -->
+									<div class="row ">
+										<div class="col-10">
+											<div class="form-group" class="input_reply_div">
+												<input type="hidden" id="userId" value="${userId }"> 
+												<input type="hidden" id="communityId" value="${communityData.communityId }">
+												<input name=communityContent type="text" class="form-control" id="commentContent" placeholder="댓글을 입력해주세요."  autofocus="autofocus">
+											</div>
+											<!-- end form-group -->
 										</div>
-										end form-group
-									</div>
-									end col-md-8
-									<div class="col-2">
-										<div class="form-group">
-											<button class="btn btn-primary" type="submit">댓글 등록</button>
+										<div class="col-2">
+											<div class="form-group">
+												<button class="btn btn-primary" id="writeCommentBtn" type="button">댓글 등록</button>
+											</div>
+											<!-- end form-group -->
 										</div>
-										end form-group
 									</div>
-									end col-md-4
+									<!-- end row -->
+							</section>
+							<!-- end comment form section -->
+							<!-- comment list section -->
+							<section>
+								<div class="comments"  id="commentList">
+									<c:forEach items="${commemtList}" var="commemtList">
+										<form method="post" action="deleteComment" id="commentForm">
+										<sec:csrfInput />
+											<input type="hidden" name="commentId" value="${commemtList.commentId }" id="commentId${commentId }">
+											<div class="comment">
+												<div class="author">
+													<a href="#" class="author-image"
+														style="width: 40px; height: 40px;">
+														<div class="background-image">
+															<img src="assets/img/author-09.jpg" alt="">
+														</div>
+													</a>
+													<div class="author-description"
+														style="margin-left: 0rem; padding-top: 0rem; margin-left: 6rem; padding-bottom: 1rem;">
+														<div class="meta">
+															<h5>
+																<a href="#">${commemtList.userVO.userId }</a>
+																<a href="#">${commemtList.commentId } </a>
+															</h5>
+															<span>${commemtList.commentCreatedAt }</span>
+															<div class="float-right float-xs-none d-xs-none">
+																<a href="#">수정</a>&nbsp 
+																<a id="deleteCommentAtag" class='deleteCommentAtag'>삭제</a>
+															</div>
+														</div>
+														<!--end meta-->
+														<p>${commemtList.commentContent }</p>
+													</div>
+													<!--end author-description-->
+												</div>
+												<!--end author-->
+											</div>
+											<!--end comment-->
+										</form>
+										<!--end form-->
+									</c:forEach>
+									<!--end c:forEach-->
 								</div>
-								end row
-							</form>
-							end form -->
-						</section>
+								<!--end comments-->
+								<div class="center">
+									<a href="#" class="btn btn-primary btn-rounded btn-framed">Load More</a>
+								</div>
+							</section>
+							<!-- end comment list section -->
+						</div>
+						<!--end col-12-->
 					</div>
-					<!--end col-12-->
+					<!--end row-->
 				</div>
 				<!--end container-->
+				
+				
 			</section>
 			<!--end block-->
 		</section>
 		<!--end content-->
 	</div>
 	<!--end page-->
+	
+	<script>
+//a tag form 제출
+function deleteCommunity() {
+	if (!confirm("정말 삭제하시겠습니까?")) {
+		return false;
+	} else {
+		document.getElementById("communityForm").submit();
+	}
+}
+
+$(function(){
+	$("#writeCommentBtn").click(function() {
+		//$("#empList").empty();
+		let commentContent=$("#commentContent").val();
+		let communityId=$("#communityId").val();
+		let userId = $("#userId").val();
+			
+		if(commentContent==""){
+			alert("댓글 내용을 입력해주세요");
+			$('#commentContent').focus();
+		}else{
+			//ajax 전송시, 'x-csrf-token' 같은 헤더 정보를 추가해서 csrf 토큰값 전달
+			var csrfHeaderName = "${_csrf.headerName}";
+		   	 var csrfTokenValue = "${_csrf.token}";
+		   
+		  	//beforeSend는 시큐리티 적용시, 추가적인 헤더를 지정해서 ajax전송시 csrf를 토큰값 같이전송
+			$.ajax({
+				type:"post",
+				url:"writeComment",
+				data:"communityVO.communityId="+communityId+"&commentContent="+commentContent+"&userVO.userId="+userId,
+				beforeSend: function(xhr){
+	          		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+		        },
+				success:function(result){
+					$("#commentContent").val("");
+					let commentInfo="";
+					
+					commentInfo+="<form method='post' action='deleteComment' id='deleteComment'>";
+					commentInfo+="	<input type='hidden' name='commentId' value="+result.commentId +" id='commentId$'"+result.commentId+">";
+					commentInfo+="	<div class='comment'>";
+					commentInfo+="		<div class='author'>";
+					commentInfo+="			<a href='#' class='author-image' style='width: 40px; height: 40px;'>";
+					commentInfo+="				<div class='background-image'>";
+					commentInfo+="					<img src='assets/img/author-09.jpg' alt=''>";
+					commentInfo+="				</div>";
+					commentInfo+="			</a>";
+					commentInfo+="			<div class='author-description' style='margin-left: 0rem; padding-top: 0rem; margin-left: 6rem; padding-bottom: 1rem;'>";
+					commentInfo+="				<div class='meta'>";
+					commentInfo+="					<h5>";
+					commentInfo+="						<a href='#'>"+result.userVO.userId+"</a>";
+					commentInfo+="						<a href='#'>"+result.commentId +"</a>";
+					commentInfo+="					</h5>";
+					commentInfo+="					<span>"+result.commentCreatedAt+"</span>";
+					commentInfo+="					<div class='float-right float-xs-none d-xs-none' id='buttonDiv'>";
+					commentInfo+="						<a href='#'>수정</a>&nbsp <a id='deleteCommentAtag' class='deleteCommentAtag'>삭제</a>";
+					commentInfo+="					</div>";
+					commentInfo+="				</div>";
+					commentInfo+="				<p>"+result.commentContent+"</p>";
+					commentInfo+="			</div>";
+					commentInfo+="		</div>";
+					commentInfo+="	</div>";
+					commentInfo+="</form>";
+						
+					$("#commentList").append(commentInfo);
+					$("#buttonDiv").on("click",".deleteCommentAtag",function(){
+						let commentId=$("#commentId${commentId}").val();
+						alert(commentId)
+						if(!confirm("정말 삭제하시겠습니까?")){
+								return false;
+						}else{
+							//ajax 전송시, 'x-csrf-token' 같은 헤더 정보를 추가해서 csrf 토큰값 전달
+							var csrfHeaderName = "${_csrf.headerName}";
+						    var csrfTokenValue = "${_csrf.token}";
+						   
+						  //beforeSend는 시큐리티 적용시, 추가적인 헤더를 지정해서 ajax전송시 csrf를 토큰값 같이전송
+							$.ajax({
+								type:"post",
+								url:"deleteComment",
+								data:"commentId="+commentId,
+								beforeSend: function(xhr){
+						            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+						        },
+								success:function(result){
+									 alert("삭제되었습니다.");
+								}//success callback
+							});//ajax
+							}//if
+					});
+				}//success callback
+			});//ajax
+		}//if
+	});//click
+});//ready
+		
+		
+	/* function deleteComment() {
+		if (!confirm("정말 삭제하시겠습니까?")) {
+			return false;
+		} else {
+			document.getElementById("commentForm").submit();
+		}
+	}  */
+	$(function(){		
+		$(".deleteCommentAtag").click(function() {
+			let commentId=$("#commentId${commentId}").val();
+			alert(commentId)
+			if(!confirm("정말 삭제하시겠습니까?")){
+					return false;
+			}else{
+				//ajax 전송시, 'x-csrf-token' 같은 헤더 정보를 추가해서 csrf 토큰값 전달
+				var csrfHeaderName = "${_csrf.headerName}";
+			    var csrfTokenValue = "${_csrf.token}";
+			   
+			  //beforeSend는 시큐리티 적용시, 추가적인 헤더를 지정해서 ajax전송시 csrf를 토큰값 같이전송
+				$.ajax({
+					type:"post",
+					url:"deleteComment",
+					data:"commentId="+commentId,
+					beforeSend: function(xhr){
+			            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+			        },
+					success:function(result){
+						 alert("삭제되었습니다.");
+					}//success callback
+				});//ajax
+				}//if
+			});//click
+		});//ready
+</script>
 </body>
 </html>

@@ -46,7 +46,7 @@
 				<!--============ Page Title =========================================================================-->
 				<div class="page-title">
 					<div class="container">
-						<h1>Listing List Compact With Sidebar</h1>
+						<h1>동네생활</h1>
 					</div>
 					<!--end container-->
 				</div>
