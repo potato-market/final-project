@@ -220,8 +220,10 @@
 						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
 						
 						
-					<%-- 	<c:if test="${not empty itemList}">					
-					 --%>	
+				 
+					 	<c:choose>
+					 	<c:when test="${not empty itemList}">
+		
 						<c:forEach items="${itemList}" var="itemList" varStatus="status">
 							<div class="item">
 								<div class="ribbon-featured">${itemList.itemStatus }</div>
@@ -260,17 +262,17 @@
 											<div>조회수 ${itemList.itemHit}회</div>
 										</figure>
 										<figure>
-											<c:choose>
-												<c:when test="${userId ne itemList.userVO.userId}">
+										
+												<%-- <c:when test="${userId ne itemList.userVO.userId}"> --%>
 													<a
 														href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}">
 														<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
 													</a>
-												</c:when>
-												<c:otherwise>
-													<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-												</c:otherwise>
-											</c:choose>
+												<%-- </c:when>
+												<c:when test="${userId eq itemList.userVO.userId}">
+												 --%>	<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+												<%-- </c:when>
+										  --%>
 
 										</figure>
 									</div>
@@ -280,11 +282,13 @@
 							</div>
 							<!-- <div class="item"> -->
 						</c:forEach>
-						<%-- <c:otherwise>
-							찾으시는 상품이 없습니 
+						</c:when>
+						 <c:otherwise>
+							찾으시는 상품이 없습니 다.
 						</c:otherwise>
 						
-					 </c:if> --%>
+					 
+					 </c:choose>
 					</div>
 					<!--end item----------------------------------------------------------------------------------------------------------------------------->
 					<!--============ End Items ======================================================================-->
