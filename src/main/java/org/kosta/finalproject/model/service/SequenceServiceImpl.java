@@ -34,7 +34,7 @@ public class SequenceServiceImpl implements SequenceService {
 	  //this is the magic happened.
 	  SequenceIdInst seqId = 
             mongoOperation.findAndModify(query, update, options, SequenceIdInst.class);
-	  System.out.println(seqId.toString());
+	  
 	  //if no id, throws SequenceException
           //optional, just a way to tell user when the sequence id is failed to generate.
 	  if (seqId == null) {
