@@ -27,8 +27,10 @@ public class HomeController {
 	@RequestMapping("main")
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();
+
 		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
 		model.addAttribute("categoryList", categoryList);
+
 		model.addAttribute("itemList",list);
 		return "main.tiles";
 	}
