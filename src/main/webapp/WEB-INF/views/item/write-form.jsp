@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal.userId" var="userId"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/user.css">
 
-<title>Craigs - Easy Buy & Sell Listing HTML Template</title>
+<title>Register Items</title>
 
 </head>
 <body>
@@ -66,20 +69,22 @@
 
 			<section class="block">
 				<div class="container">
-					<form class="form form-submit">
+					<form class="form form-submit" action="registerItem" method="post">
+					<input type="hidden" name="userVO.userId" value="${userId}"> 
+					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="submit-category" class="col-form-label">Category</label>
-										<select class="change-tab"
-											data-change-tab-target="category-tabs" name="submit_category"
-											id="submit-category" data-placeholder="Select Category">
+										
+										<!-- 1. CATEGORY -->
+										
+										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId" id="submit_category" data-placeholder="Select Category" required="required">
 											<option value="">Select Category</option>
-											<option value="computers">Computers</option>
-											<option value="real_estate">Real Estate</option>
-											<option value="cars_motorcycles">Cars & Motorcycles</option>
-											<option value="furniture">Furniture</option>
+												<c:forEach items="${categoryList}" var="category">
+												<option value="${category.categoryId}">${category.categoryName}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!--end form-group-->
@@ -90,43 +95,39 @@
 						</section>
 						<section style="margin-bottom: 0px">
 							<div class="row">
+								<!-- 2. TITLE -->
 								<div class="col-md-8">
 									<div class="form-group">
-										<label for="title" class="col-form-label required">Title</label>
-										<input name="title" type="text" class="form-control"
-											id="title" placeholder="Title" required>
+										<label for="itemTitle" class="col-form-label required">Title</label>
+										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="13" required>
 									</div>
-									<!--end form-group-->
 								</div>
-								<!--end col-md-8-->
+								<!-- 3. PRICE -->
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="price" class="col-form-label required">Price</label>
-										<input name="price" type="text" class="form-control"
-											id="price" required> <span class="input-group-addon">원</span>
+										<label for="itemPrice" class="col-form-label required">Price</label>
+										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
 									</div>
-									<!--end form-group-->
 								</div>
 							</div>
 						</section>
 						<!--end basic information-->
 						<section style="margin-bottom: 0px">
+						
+						<!-- 4. Item Content-->
 							<div class="form-group">
-								<label for="details" class="col-form-label">Additional
-									Details</label>
-								<textarea name="details" id="details" class="form-control"
-									rows="4"></textarea>
+								<label for="itemContent" class="col-form-label">Additional Details</label>
+								<textarea name="itemContent" id="itemContent" class="form-control" rows="4"></textarea>
 							</div>
 							<!--end form-group-->
 						</section>
 						<section>
+						   
+						  <!-- 5. Item Image -->
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
-								<input type="file" name="files[]"
-									class="file-upload-input with-preview" multiple
-									title="Click to add files" maxlength="10" accept="gif|jpg|png">
-								<span><i class="fa fa-plus-circle"></i>Click or drag
-									images here</span>
+								<input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
+								<span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
 							</div>
 						</section>
 						 <section class="clearfix">
@@ -144,34 +145,5 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<!--<script src="assets/js/jquery.validate.min.js"></script>-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/jquery-validate.bootstrap-tooltip.min.js"></script>
-	<script src="assets/js/jQuery.MultiFile.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-submit";
-		var markerDrag = true;
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement,
-				markerDrag);
-	</script>
-
 </body>
 </html>

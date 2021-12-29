@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/user.css">
 
-<title>Craigs - Easy Buy & Sell Listing HTML Template</title>
+<title>ItemDetail</title>
 
 </head>
 <body>
@@ -37,7 +39,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="#">Home</a></li>
 							<li class="breadcrumb-item"><a href="#">Item</a></li>
-							<li class="breadcrumb-item active"><a href="#">Home & Decor</a></li>
+							<li class="breadcrumb-item active"><a href="#">${itemDetail.categoryVO.categoryName}</a></li>
 						</ol>
 						<!--end breadcrumb-->
 					</div>
@@ -48,10 +50,10 @@
                 <div class="page-title">
                     <div class="container clearfix">
                         <div class="float-left float-xs-none">
-                           <h1>Furniture For Sale</h1>
+                           <h1>${itemDetail.itemTitle}</h1>
                         </div>
                         <div class="float-right float-xs-none price">
-                            <div class="number">$80</div>
+                            <div class="number">${itemDetail.itemPrice} 원</div>
                         </div>
                     </div>
                     <!--end container-->
@@ -114,12 +116,12 @@
 											<div class="space-between">
 												<div>
 													<div id="article-profile-image">
-														<img alt="권용은"
+														<img alt="${itemDetail.userVO.userId}"
 															src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
 													</div>
 													<div id="article-profile-left">
-														<div id="nickname">권용은</div>
-														<div id="region-name">서울시 강남구</div>
+														<div id="nickname">${itemDetail.userVO.userId}</div>
+														<div id="region-name">${itemDetail.userVO.userAddress}</div>
 													</div>
 												</div>
 												<div id="article-profile-right">
@@ -143,16 +145,26 @@
 
 							<!--Description-->
 							<section>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Ut nec tincidunt arcu, sit amet fermentum sem. Class aptent
-									taciti sociosqu ad litora torquent per conubia nostra, per
-									inceptos himenaeos. Vestibulum tincidunt, sapien sagittis
-									sollicitudin dapibus, risus mi euismod elit, in dictum justo
-									lacus sit amet dui. Sed faucibus vitae nisl at dignissim.</p>
+								<p>${itemDetail.itemContent}</p>
 							</section>
-							<p id="article-counts">관심 6 ∙채팅 11 ∙조회 226</p> 
+							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 ${itemDetail.itemHit}</p> 
 							<button type="button">채팅하기</button>
-							<!--end Description-->
+							
+							<sec:authentication var="user" property="principal" />
+							<!-- 수정하기 -->
+							<c:if test="${itemDetail.userVO.userId==user.userId}">
+							<form action="updateForm">
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
+								<button type="submit">수정하기</button>
+							</form>
+							<!-- 삭제하기 -->
+							<form action="deleteItem" method="post">
+							<sec:csrfInput/>
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
+								<button type="submit">삭제하기</button>
+							</form>
+							</c:if>
+							
 						</div>
 						<!--============ End Listing Detail =========================================================-->
 						<!--============ Sidebar ====================================================================-->
@@ -274,27 +286,5 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-small";
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement);
-	</script>
-
 </body>
 </html>

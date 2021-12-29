@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -195,7 +195,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-3">
-							<%@ include file="sidebar.jsp" %>
+							<%@ include file="sidebar.jsp"%>
 						</div>
 						<!--end col-md-3-->
 						<div class="col-md-9">
@@ -237,8 +237,8 @@
 									<div class="wrapper">
 										<div class="image">
 											<h3>
-												<a href="item-detail.html" class="title">Furniture
-													for sale</a>
+												<a href="item-detail.html" class="title">Furniture for
+													sale</a>
 											</h3>
 											<a href="single-listing-1.html"
 												class="image-wrapper background-image"> <img
@@ -261,8 +261,8 @@
 											</figure>
 										</div>
 										<!--end meta-->
-										<a href="item-review.html"
-											class="detail text-caps underline">작성한 후기 보기</a>
+										<a href="item-review.html" class="detail text-caps underline">작성한
+											후기 보기</a>
 									</div>
 								</div>
 								<!--end item-->
@@ -352,18 +352,5 @@
 		<!--end footer-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58&libraries=places"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
 </body>
 </html>

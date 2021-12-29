@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.finalproject.model.mapper.FAQMapper">
+	<select id="getTotalFAQCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ;
+	</select>
+	
+	<select id="getAllFAQList" resultMap="AllFAQList">
+		SELECT F.FAQ_ID,F.FAQ_TITLE,F.FAQ_CONTENT,U.USER_ID 
+		FROM FAQ F, USER U
+		WHERE F.USER_ID= U.USER_ID;
+	</select>
+	
+	<resultMap type="FAQVO" id="AllFAQList" autoMapping="true">
+	<id property="faqId" column="FAQ_ID"/>
+		<association property="userVO" javaType="UserVO" autoMapping="true">
+			<id property="userId" column="user_id"/>
+		</association>
+	</resultMap>
+
+	<insert id="writeFAQ" parameterType="FAQVO">
+		INSERT INTO FAQ(FAQ_TITLE,FAQ_CONTENT,USER_ID) VALUES(#{faqTitle}, #{faqContent},#{userVO.userId});
+	</insert>
+	
+	<select id="getFAQByNo" parameterType="int" resultMap="AllFAQList">
+		SELECT FAQ_ID,FAQ_TITLE,FAQ_CONTENT,USER_ID FROM FAQ WHERE FAQ_ID=#{faqId};
+	</select>
+	
+	<update id="updateFAQ" parameterType="FAQVO" >
+		UPDATE FAQ SET FAQ_TITLE= #{faqTitle},FAQ_CONTENT= #{faqContent} WHERE FAQ_ID=#{faqId};
+	</update>
+	
+	<delete id="deleteFAQ" parameterType="int">
+		DELETE FROM FAQ WHERE FAQ_ID=#{faq_ID}
+	</delete>
+</mapper>
