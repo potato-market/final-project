@@ -49,7 +49,7 @@
 				<!--============ Page Title =========================================================================-->
 				<div class="page-title">
 					<div class="container">
-						<h1>동네생활 글쓰기</h1>
+						<h1>동네생활 글 수정</h1>
 					</div>
 					<!--end container-->
 				</div>
@@ -69,12 +69,13 @@
 			<section class="block">
 				<div class="container">
 					<form class="form form-submit" action="updateCommunity" method="post">
+					<input type="hidden" name="communityId" value="${communityData.communityId }">
 					 <sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<!-- ADDITIONAL DETAILS -->
 							<div class="form-group">
 								<textarea name="communityContent" id="communityContent"
-									class="form-control" rows="10">#{communityData.communityContent }</textarea>
+									class="form-control" rows="10">${communityData.communityContent }</textarea>
 							</div>
 							<!--end form-group-->
 						</section>
@@ -96,32 +97,5 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
-
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript"
-		src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/js/selectize.min.js"></script>
-	<script src="assets/js/masonry.pkgd.min.js"></script>
-	<script src="assets/js/icheck.min.js"></script>
-	<!--<script src="assets/js/jquery.validate.min.js"></script>-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/jquery-validate.bootstrap-tooltip.min.js"></script>
-	<script src="assets/js/jQuery.MultiFile.min.js"></script>
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<script src="assets/js/custom.js"></script>
-
-	<script>
-		var latitude = 51.511971;
-		var longitude = -0.137597;
-		var markerImage = "assets/img/map-marker.png";
-		var mapTheme = "light";
-		var mapElement = "map-submit";
-		var markerDrag = true;
-		simpleMap(latitude, longitude, markerImage, mapTheme, mapElement,
-				markerDrag);
-	</script>
-
 </body>
 </html>

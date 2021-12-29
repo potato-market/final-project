@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -82,6 +83,7 @@
 								<div class="answer">
 									<div class="box">
 									<form method="post" action="deleteFAQ">
+										<sec:csrfInput />
 										<h3>${l.faqTitle } ${l.userVO.userId }</h3>
 										<p>${l.faqContent }</p>
 										<input type="hidden" value="${l.faqId }" name="faqId">

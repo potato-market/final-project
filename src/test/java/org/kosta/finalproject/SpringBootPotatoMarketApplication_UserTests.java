@@ -83,13 +83,20 @@ class SpringBootPotatoMarketApplication_UserTests {
 		//System.out.println(userMapper.findUserById("java"));
 		//	}
 		
-	@Test
-	void findIdByTel() {
+	//@Test 
+	//void findIdByTel() {
 		//String[] idResult=userMapper.findIdByTel("1234");
-		String idResult=userMapper.findIdByTel("222");
-		System.out.println(idResult);
+		//String idResult=userMapper.findIdByTel("222");
+		//System.out.println(idResult);
 		//System.out.println(Arrays.toString(idResult	));
-	}
+	//}
+		
+		@Test
+		void registerTelCheck() {
+		 int count=userMapper.registerTelCheck("010-1234-5678");
+			System.out.println(count);
+		}
+		
 }
 
 
