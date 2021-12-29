@@ -15,5 +15,5 @@ public interface ItemMapper {
 	public List<CategoryVO> getAllCategoryList();
 	public void deleteItem(int itemId);
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
-	
+	public int itemHitUpdate(int itemId);
 }
