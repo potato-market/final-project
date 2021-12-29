@@ -1,7 +1,6 @@
 package org.kosta.finalproject.controller;
 
 import org.kosta.finalproject.model.domain.UserVO;
-import org.kosta.finalproject.model.mapper.UserMapper;
 import org.kosta.finalproject.model.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -13,26 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
-	private UserMapper userMapper;
+	@Autowired
 	private UserService userService;
 
-	@Autowired
-	public UserController(UserMapper userMapper, UserService userService) {
-		super();
-		this.userMapper = userMapper;
-		this.userService = userService;
-	}
-
-	//@Autowired
-	//public UserController(UserMapper userMapper) {
-	//	super();
-	//	this.userMapper = userMapper;
-	//}
-
-	/*
-	 * @Autowired public UserController() { super(); // TODO Auto-generated
-	 * constructor stub }
-	 */
 	@RequestMapping("guest/registerForm")
 	public String registerForm() {
 		return "user/registerForm";
