@@ -1,5 +1,8 @@
 package org.kosta.finalproject.controller;
 
+import java.util.List;
+
+import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,9 @@ public class ItemController {
 	}
 
 	@RequestMapping("writeForm")
-	public String writeForm() {
+	public String writeForm(Model model) {
+		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+		model.addAttribute("categoryList", categoryList);
 		return "item/write-form.tiles";
 	}
 
@@ -44,6 +49,8 @@ public class ItemController {
 	@RequestMapping("updateForm")
 	public String updateForm(int itemId, Model model) {
 		System.out.println("updateForm with: " + itemId);
+		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
 		return "item/update-form.tiles";
 	}
@@ -62,6 +69,19 @@ public class ItemController {
 		itemService.deleteItem(itemId);
 		System.out.println("delete");
 		return "redirect:main";
+	}
+	
+
+	// 중고물품 게시물 ItemTitle + UserAddress + CategoryId로 검색하기
+	@GetMapping("selectAllItemListByCondition")
+	public String selectAllItemListByCondition(ItemVO itemVO, Model model) {
+		List<ItemVO> listByCondition = itemService.selectAllItemListByCondition(itemVO);
+		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+		model.addAttribute("categoryList", categoryList);
+		System.out.println(listByCondition);
+		//model.addAttribute("selectAllItemListByCondition", listByCondition);
+		model.addAttribute("itemList", listByCondition);
+		return "main.tiles";
 	}
 	
 }

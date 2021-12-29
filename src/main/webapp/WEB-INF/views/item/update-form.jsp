@@ -72,39 +72,41 @@
 					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<div class="row">
+							<!-- 1. CATEGORY -->
 								<div class="col-md-4">
 									<div class="form-group">
-
-										<!-- 1. CATEGORY -->
-
 										<label for="submit-category" class="col-form-label">Category</label>
-										<select class="change-tab"
-											data-change-tab-target="category-tabs"
-											name="categoryVO.categoryId" id="submit-category"
-											data-placeholder="Select Category" required="required">
+										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId"  id="submit_category" data-placeholder="Select Category" required="required">
 											<option value="">Select Category</option>
-											<option value="1">디지털기기</option>
-											<option value="2">생활가전</option>
-											<option value="3">가구/인테리어</option>
-											<option value="4">유아동</option>
-											<option value="5">생활/가공식품</option>
-											<option value="6">유아도서</option>
-											<option value="7">스포츠/레저</option>
-											<option value="8">여성잡화</option>
-											<option value="9">여성의류</option>
-											<option value="10">남성패션/잡화</option>
-											<option value="11">게임/취미</option>
-											<option value="12">뷰티/미용</option>
-											<option value="13">반려동물용품</option>
-											<option value="14">도서/티켓/음반</option>
-											<option value="15">식물</option>
-											<option value="16">기타 중고물품</option>
-											<option value="17">삽니다</option>
+												<c:forEach items="${categoryList}" var="category">
+												<option value="${category.categoryId}">${category.categoryName}</option>
+											</c:forEach>
 										</select>
+									</div>
+								</div>
+							    <!-- 2. Change Item Status -->
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="submit-category" class="col-form-label">Category</label>
+										<select class="change-tab" data-change-tab-target="category-tabs" name="itemStatus"  id="submit_category" data-placeholder="Select Category" required="required">
+											<option value="">Change Item Status</option>
+												<option value="SELLING">SELLING</option>
+												<option value="RESERVED">RESERVED</option>
+												<option value="SOLD">SOLD</option>
+										</select>
+											<%-- <c:when test="${itemDetail.itemStatus=='SELLING'}">
+												<option value="${itemDetail.itemStatus}">${itemDetail.itemStatus}</option>
+												<option value="SOLD">SOLD</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${itemDetail.itemStatus}">${itemDetail.itemStatus}</option>
+												<option value="SELLING">SELLING</option>
+											</c:otherwise> --%>
 									</div>
 									<!--end form-group-->
 								</div>
 								<!--end col-md-4-->
+								<!-- 3. 작성자 -->
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="submit-atcegory" class="col-form-label">작성자</label>
@@ -119,10 +121,8 @@
 						</section>
 						<section style="margin-bottom: 0px">
 							<div class="row">
+							<!-- 4.TITLE -->
 								<div class="col-md-8">
-
-									<!-- 2.TITLE -->
-
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
 										<input name="itemTitle" type="text" class="form-control"
@@ -131,10 +131,8 @@
 									<!--end form-group-->
 								</div>
 								<!--end col-md-8-->
+					        <!--5. PRICE -->
 								<div class="col-md-4">
-								
-								<!--3. PRICE -->
-								
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
 										<input name="itemPrice" type="text" class="form-control"
@@ -146,9 +144,7 @@
 						</section>
 						<!--end basic information-->
 						<section style="margin-bottom: 0px">
-						
-						<!-- 4.ADDITIONAL DETAILS -->
-						
+						<!-- 6.ADDITIONAL DETAILS -->
 							<div class="form-group">
 								<label for="itemContent" class="col-form-label">Additional
 									Details</label>
@@ -157,6 +153,7 @@
 							</div>
 							<!--end form-group-->
 						</section>
+						<!-- 7.file-upload-previews -->
 						<section>
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
