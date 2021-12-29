@@ -109,6 +109,15 @@ public class UserController {
 	public String profileUpdateForm() {
 		return "user/profile-updateForm.tiles";
 	}
+	
+	@RequestMapping("passwordUpdateForm")
+	public String passwordUpdateForm() {
+		return "user/password-updateForm.tiles";
+	}
+	@RequestMapping("addressUpdateForm")
+	public String addressUpdateForm() {
+		return "user/address-updateForm.tiles";
+	}
 		@PostMapping("profileUpdate")
 		public String profileUpdate(Authentication authentication,UserVO userVO) {
 			//System.out.println(userVO); 
