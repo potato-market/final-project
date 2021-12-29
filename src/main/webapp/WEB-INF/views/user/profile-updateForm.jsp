@@ -136,7 +136,8 @@
 												<img src="assets/img/author-09.jpg" alt="">
 											</div>
 											<div class="single-file-input">
-												<input type="file" id="user_image" name="user_image">
+												<input type="file" id="user_image" name="update_user_image">
+												
 												<div class="btn btn-framed btn-primary small">Upload a
 													picture</div>
 											</div>

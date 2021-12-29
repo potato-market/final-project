@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,67 +47,53 @@
 					<!--end container-->
 				</div>
 				<!--============ End Main Navigation ================================================================-->
-			  <!--============ Page Title =========================================================================-->
-                <div class="page-title">
-                    <div class="container clearfix">
-                        <div class="float-left float-xs-none">
-                           <h1>${itemDetail.itemTitle}</h1>
-                        </div>
-                        <div class="float-right float-xs-none price">
-                            <div class="number">${itemDetail.itemPrice} 원</div>
-                        </div>
-                    </div>
-                    <!--end container-->
-                </div>
-                <!--============ End Page Title =====================================================================-->
-                <div class="background"></div>
-                <!--end background-->
-            </div>
-            <!--end hero-wrapper-->
-        </section>
-        <!--end hero-->
+				<!--============ Page Title =========================================================================-->
+				<div class="page-title">
+					<div class="container clearfix">
+						<div class="float-left float-xs-none">
+							<h1>${itemDetail.itemTitle}</h1>
+						</div>
+						<div class="float-right float-xs-none price">
+							<div class="number">${itemDetail.itemPrice}원</div>
+						</div>
+					</div>
+					<!--end container-->
+				</div>
+				<!--============ End Page Title =====================================================================-->
+				<div class="background"></div>
+				<!--end background-->
+			</div>
+			<!--end hero-wrapper-->
+		</section>
+		<!--end hero-->
 
-        <!--*********************************************************************************************************-->
-        <!--************ CONTENT ************************************************************************************-->
-        <!--*********************************************************************************************************-->
-        <section class="content">
-            <section class="block">
-                <div class="container">
-                    <div class="row">
-                        <!--============ Listing Detail =============================================================-->
-                        <div class="col-md-9">
-                            <!--Gallery Carousel-->
-                            <section>
-                                <div class="gallery-carousel owl-carousel">
-                                    <img src="assets/img/image-20.jpg" alt="" data-hash="1">
-                                    <img src="assets/img/image-01.jpg" alt="" data-hash="2">
-                                    <img src="assets/img/image-21.jpg" alt="" data-hash="3">
-                                    <img src="assets/img/image-22.jpg" alt="" data-hash="4">
-                                    <img src="assets/img/image-23.jpg" alt="" data-hash="5">
-                                    <img src="assets/img/image-14.jpg" alt="" data-hash="6">
-                                </div>
-                                <div class="gallery-carousel-thumbs owl-carousel">
-                                    <a href="#1" class="owl-thumb active-thumb background-image">
-                                        <img src="assets/img/image-20.jpg" alt="">
-                                    </a>
-                                    <a href="#2" class="owl-thumb background-image">
-                                        <img src="assets/img/image-01.jpg" alt="">
-                                    </a>
-                                    <a href="#3" class="owl-thumb background-image">
-                                        <img src="assets/img/image-21.jpg" alt="">
-                                    </a>
-                                    <a href="#4" class="owl-thumb background-image">
-                                        <img src="assets/img/image-22.jpg" alt="">
-                                    </a>
-                                    <a href="#5" class="owl-thumb background-image">
-                                        <img src="assets/img/image-23.jpg" alt="">
-                                    </a>
-                                    <a href="#6" class="owl-thumb background-image">
-                                        <img src="assets/img/image-14.jpg" alt="">
-                                    </a>
-                                </div>
-                            </section>
-                            <!--end Gallery Carousel-->
+		<!--*********************************************************************************************************-->
+		<!--************ CONTENT ************************************************************************************-->
+		<!--*********************************************************************************************************-->
+		<section class="content">
+			<section class="block">
+				<div class="container">
+					<div class="row">
+						<!--============ Listing Detail =============================================================-->
+						<div class="col-md-9">
+							<!--Gallery Carousel-->
+							<section>
+								<div class="gallery-carousel owl-carousel">
+									<c:forEach var="kwon" items="${imageList }" varStatus="status"> 
+												<img src="assets/upload/${kwon.imageName}" alt=""
+											data-hash="${status.index}">
+									</div>
+										<div class="gallery-carousel-thumbs owl-carousel">
+										<a href="#${status.index }"
+											class="owl-thumb active-thumb background-image"> <img
+										src="assets/upload/${kwon.imageName}" alt="">
+									</a>
+
+								</div>
+								</c:forEach>
+
+							</section>
+							<!--end Gallery Carousel-->
 
 							<!--Author-->
 							<section id="article-profile">
@@ -116,8 +103,9 @@
 											<div class="space-between">
 												<div>
 													<div id="article-profile-image">
-														<img alt="${itemDetail.userVO.userId}"
-															src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
+														<img alt=""
+															src="assets/upload/${itemDetail.userVO.userImage}">
+														
 													</div>
 													<div id="article-profile-left">
 														<div id="nickname">${itemDetail.userVO.userId}</div>
@@ -147,23 +135,33 @@
 							<section>
 								<p>${itemDetail.itemContent}</p>
 							</section>
-							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 ${itemDetail.itemHit}</p> 
-							<button type="button">채팅하기</button>
-							
-							<sec:authentication var="user" property="principal" />
+						<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 
+								∙채팅 ${crnum} ∙조회  ${itemDetail.itemHit}</p> 
+							<c:choose>
+							<c:when test="${userId ne itemDetail.userVO.userId}">
+							<form action="chatForm">
+								<input type="hidden" name="userId" value="${userId}" > 								 
+								<input type="hidden" name="sellerId" value="${itemDetail.userVO.userId }" > 
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}" >
+								<button type="submit" class="btn btn-primary width-100">채팅하기</button>
+							</form>
+							</c:when>
+							<c:otherwise>
 							<!-- 수정하기 -->
-							<c:if test="${itemDetail.userVO.userId==user.userId}">
 							<form action="updateForm">
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
-								<button type="submit">수정하기</button>
+								<button type="submit" class="btn btn-primary width-100">수정하기</button>
 							</form>
+							<br />
 							<!-- 삭제하기 -->
 							<form action="deleteItem" method="post">
-							<sec:csrfInput/>
+								<sec:csrfInput />
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
-								<button type="submit">삭제하기</button>
+								<button type="submit" class="btn btn-primary width-100">삭제하기</button>
 							</form>
-							</c:if>
+							</c:otherwise>
+							</c:choose>
+							<!--end Description-->
 							
 						</div>
 						<!--============ End Listing Detail =========================================================-->

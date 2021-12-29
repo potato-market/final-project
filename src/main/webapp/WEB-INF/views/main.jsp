@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authentication property="principal.userAddress"  var="userAddress"/>
-
+<sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -212,32 +212,29 @@
 						</div>
 					</div>
 					<!--============ Items ==========================================================================-->
-				 <div
-                  class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
-                  <c:choose>
-                  <c:when test="${not empty itemList}">
-                  <c:forEach items="${itemList}" var="itemList">
-                     <div class="item">
-                        <div class="ribbon-featured">${itemList.itemStatus }</div>
-                        <!--end ribbon-->
-                        <div class="wrapper">
+					<div
+						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
+						<c:forEach items="${itemList}" var="itemList" varStatus="status">
+							<div class="item">
+								<div class="ribbon-featured">${itemList.itemStatus }</div>
+								<!--end ribbon-->
+								<div class="wrapper">
 
-                           <div class="image">
-                              <h3>
-                                 <a href="#" class="tag category">${itemList.categoryVO.categoryName}</a>
-                                 <!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
-													<a href="selectItemByItemId?itemId=${itemList.itemId}"
-														class="title"> ${itemList.itemTitle}
-														 <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
-													</a>
-												</h3>
-                              <!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
-                              <a href="selectItemByItemId?itemId=${itemList.itemId}"
-                                 class="image-wrapper background-image"> <img
-                                 src="assets/img/image-01.jpg" alt="">
-                              </a>
-                           </div>
-                           <!--end image-->
+									<div class="image">
+										<h3>
+											<a href="#" class="tag category">${itemList.categoryVO.categoryName}</a>
+											<!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
+											<a href="selectItemByItemId?itemId=${itemList.itemId}"
+												class="title">${itemList.itemTitle}</a>
+										</h3>
+										<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
+										<a href="selectItemByItemId?itemId=${itemList.itemId}"
+											class="image-wrapper background-image"> <img
+											src="assets/upload/${imageList[status.index].imageName}" alt="">
+										</a>
+									</div>
+									<!--end image-->
+
 
                            <h4 class="location">
                               <a href="#">${itemList.userVO.userAddress}</a>
@@ -245,30 +242,41 @@
 
                            <div class="price">${itemList.itemPrice}원</div>
 
-                           <div class="meta">
-                              <figure>
+									<div class="meta">
+										<figure>
+											<i class="fa fa-calendar-o"></i>관심 17
+										</figure>
+                   <figure>
                                  <i class="fa fa-calendar-o"></i>
                                  <div>조회수 ${itemList.itemHit}회</div>
-                              </figure>
-                              <figure>
-                                 <a href="#"> <i class="fa fa-user"></i>채팅 14
-                                 </a>
-                              </figure>
-                           </div>
-                           <!--end meta-->
-                        </div>
-                        <!-- <div class="wrapper"> -->
-                     </div>
-                     <!-- <div class="item"> -->
-                  </c:forEach>
-               </c:when>
-               <c:otherwise>
-               찾으시는 상품이 없습니다.
-               </c:otherwise>
-               </c:choose>
-            </div>
-               <!--end item----------------------------------------------------------------------------------------------------------------------------->
-               <!--============ End Items ======================================================================-->
+                    </figure>
+										<figure>
+										<c:choose>
+											<c:when test="${userId ne itemList.userVO.userId}">
+											<a href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}"> <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+											</a>
+											</c:when>
+											<c:otherwise>
+											<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+											</c:otherwise>
+										</c:choose>
+                      
+										</figure>
+									</div>
+									<!--end meta-->
+								</div>
+								<!-- <div class="wrapper"> -->
+							</div>
+							<!-- <div class="item"> -->
+						</c:forEach>
+           //</c:when>
+              // <c:otherwise>
+             //  찾으시는 상품이 없습니다.
+              // </c:otherwise>
+             //  </c:choose>
+					</div>
+					<!--end item----------------------------------------------------------------------------------------------------------------------------->
+					<!--============ End Items ======================================================================-->
 					<div class="center">
 						<a href="#" class="btn btn-primary btn-framed btn-rounded">Load
 							More</a>

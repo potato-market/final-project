@@ -6,9 +6,17 @@
 	<!-- 중고물품 등록하기 -->
 	<insert id="registerItem"
 		parameterType="org.kosta.finalproject.model.domain.ItemVO">
+		
+		
+		
 		insert into ITEM(USER_ID,CATEGORY_ID,ITEM_TITLE,ITEM_PRICE,ITEM_CONTENT)
 		values
 		(#{userVO.userId},#{categoryVO.categoryId},#{itemTitle},#{itemPrice},#{itemContent})
+		<!-- #{userVO.userId} -->
+		<selectKey  keyColumn="ITEM_ID" keyProperty="itemId" resultType="int" order="AFTER">  
+       			 SELECT LAST_INSERT_ID()
+    	 </selectKey>
+		
 	</insert>
 	
 	<!-- 중고물품 itemId로 검색하기 -->
@@ -34,7 +42,7 @@
 	<select id="selectItemByItemId" parameterType="int" resultMap="selectItemResultMap">
 		SELECT
 		I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT,
-		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, C.CATEGORY_NAME
+		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, U.USER_IMAGE,C.CATEGORY_NAME
 		FROM
 		ITEM I, USER U, CATEGORY C
 		WHERE
@@ -98,6 +106,40 @@
 		ITEM_ID= #{itemId}
  	</delete>
  	
+ 	
+	<insert id="uploadMultiImage" parameterType="org.kosta.finalproject.model.domain.ImageVO">
+		insert into IMAGE(ITEM_ID,IMAGE_NAME) VALUES(
+			#{itemId},#{imageName}
+		)
+		
+	
+	</insert>
+	
+	<select id="findItemImageListByItemId" resultType="org.kosta.finalproject.model.domain.ImageVO">
+		SELECT * 
+		FROM IMAGE
+		WHERE ITEM_ID=#{itemId}
+		
+	</select>
+	
+	 <delete id="deleteImage" parameterType="int">
+    	DELETE FROM IMAGE 
+    	WHERE  
+		IMAGE_ID= #{imageId}
+ 	</delete>
+ 	
+ 	<!--  chatting 용 -->
+ 	<select id="selectItemByUserId" parameterType="String" resultMap="selectItemResultMap">
+		SELECT
+		I.ITEM_ID,U.USER_ADDRESS , U.USER_ID
+		FROM
+		ITEM I, USER U
+		WHERE
+		U.USER_ID = I.USER_ID
+		AND
+		I.USER_ID= #{userId} 
+	</select>
+	
  	     <!-- 카테고리 목록 가지고오기-->
 	<resultMap id="selectCategoryResultMap" type="org.kosta.finalproject.model.domain.CategoryVO">
 		<id column="CATEGORY_ID"              property="categoryId" />

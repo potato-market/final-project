@@ -34,9 +34,16 @@ from AUTHORITIES
 where username=#{username}
 </select>
 
-<update id="updateUserPhoneAndEmail" parameterType="UserVO">
+<update id="updateUserPET" parameterType="UserVO">
 update USER
-set USER_TEL=#{userTel},USER_EMAIL=#{userEmail} 
+set USER_TEL=#{userTel},USER_EMAIL=#{userEmail}
+WHERE USER_ID=#{userId}
+</update>
+
+
+<update id="updateUserImage" parameterType="UserVO">
+update USER
+set USER_IMAGE=#{userImage}
 WHERE USER_ID=#{userId}
 </update>
 

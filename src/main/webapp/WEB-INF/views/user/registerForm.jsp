@@ -35,9 +35,9 @@
 						style="background-color: #f7fcf9; padding-bottom: 10px;">
 						<!-- form strat -->
 						<form method="post" class="form clearfix" id="registerForm"
-							action="/guest/registerUser">
-							<sec:csrfInput />
-							<%-- csrf 토큰 --%>
+							action="/guest/registerUser" enctype="Multipart/form-data">
+							<sec:csrfInput/>
+              <%-- csrf 토큰 --%>
 							<div class="profile-image" id="register-image">
 								<div class="image background-image">
 									<img src="/assets/img/루피감자.png" alt="">

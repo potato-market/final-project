@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
-<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -19,389 +22,198 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/user.css">
 
-<title>Craigs - Easy Buy & Sell Listing HTML Template</title>
+
+<title>Chatting</title>
 
 </head>
 <body>
-	<div class="page sub-page">
-		<!--*********************************************************************************************************-->
-		<!--************ HERO ***************************************************************************************-->
-		<!--*********************************************************************************************************-->
-		<header class="hero">
-			<div class="hero-wrapper">
-				<!--============ Main Navigation ====================================================================-->
-				<div class="main-navigation">
-					<div class="container">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="#">Home</a></li>
-							<li class="breadcrumb-item"><a href="#">Library</a></li>
-							<li class="breadcrumb-item active">Data</li>
-						</ol>
-						<!--end breadcrumb-->
-					</div>
-					<!--end container-->
-				</div>
-				<!--============ End Main Navigation ================================================================-->
-				<!--============ Hero Form ==========================================================================-->
-				<div class="collapse" id="collapseMainSearchForm">
-					<form class="hero-form form">
-						<div class="container">
-							<!--Main Form-->
-							<div class="main-search-form">
-								<div class="form-row">
-									<div class="col-md-3 col-sm-3">
-										<div class="form-group">
-											<label for="what" class="col-form-label">What?</label> <input
-												name="keyword" type="text" class="form-control small"
-												id="what" placeholder="What are you looking for?">
-										</div>
-										<!--end form-group-->
-									</div>
-									<!--end col-md-3-->
-									<div class="col-md-3 col-sm-3">
-										<div class="form-group">
-											<label for="input-location" class="col-form-label">Where?</label>
-											<input name="location" type="text" class="form-control small"
-												id="input-location" placeholder="Enter Location"> <span
-												class="geo-location input-group-addon" data-toggle="tooltip"
-												data-placement="top" title="Find My Position"><i
-												class="fa fa-map-marker"></i></span>
-										</div>
-										<!--end form-group-->
-									</div>
-									<!--end col-md-3-->
-									<div class="col-md-3 col-sm-3">
-										<div class="form-group">
-											<label for="category" class="col-form-label">Category?</label>
-											<select name="category" id="category" class="small"
-												data-placeholder="Select Category">
-												<option value="">Select Category</option>
-												<option value="1">Computers</option>
-												<option value="2">Real Estate</option>
-												<option value="3">Cars & Motorcycles</option>
-												<option value="4">Furniture</option>
-												<option value="5">Pets & Animals</option>
-											</select>
-										</div>
-										<!--end form-group-->
-									</div>
-									<!--end col-md-3-->
-									<div class="col-md-3 col-sm-3">
-										<button type="submit" class="btn btn-primary width-100 small">Search</button>
-									</div>
-									<!--end col-md-3-->
-								</div>
-								<!--end form-row-->
-							</div>
-							<!--end main-search-form-->
-							<!--Alternative Form-->
-							<div class="alternative-search-form">
-								<a href="#collapseAlternativeSearchForm" class="icon"
-									data-toggle="collapse" aria-expanded="false"
-									aria-controls="collapseAlternativeSearchForm"><i
-									class="fa fa-plus"></i>More Options</a>
-								<div class="collapse" id="collapseAlternativeSearchForm">
-									<div class="wrapper">
-										<div class="form-row">
-											<div
-												class="col-xl-6 col-lg-12 col-md-12 col-sm-12 d-xs-grid d-flex align-items-center justify-content-between">
-												<label> <input type="checkbox" name="new">
-													New
-												</label> <label> <input type="checkbox" name="used">
-													Used
-												</label> <label> <input type="checkbox" name="with_photo">
-													With Photo
-												</label> <label> <input type="checkbox" name="featured">
-													Featured
-												</label>
-											</div>
-											<!--end col-xl-6-->
-											<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-												<div class="form-row">
-													<div class="col-md-4 col-sm-4">
-														<div class="form-group">
-															<input name="min_price" type="text"
-																class="form-control small" id="min-price"
-																placeholder="Minimal Price"> <span
-																class="input-group-addon small">$</span>
-														</div>
-														<!--end form-group-->
-													</div>
-													<!--end col-md-4-->
-													<div class="col-md-4 col-sm-4">
-														<div class="form-group">
-															<input name="max_price" type="text"
-																class="form-control small" id="max-price"
-																placeholder="Maximal Price"> <span
-																class="input-group-addon small">$</span>
-														</div>
-														<!--end form-group-->
-													</div>
-													<!--end col-md-4-->
-													<div class="col-md-4 col-sm-4">
-														<div class="form-group">
-															<select name="distance" id="distance" class="small"
-																data-placeholder="Distance">
-																<option value="">Distance</option>
-																<option value="1">1km</option>
-																<option value="2">5km</option>
-																<option value="3">10km</option>
-																<option value="4">50km</option>
-																<option value="5">100km</option>
-															</select>
-														</div>
-														<!--end form-group-->
-													</div>
-													<!--end col-md-3-->
-												</div>
-												<!--end form-row-->
-											</div>
-											<!--end col-xl-6-->
-										</div>
-										<!--end row-->
-									</div>
-									<!--end wrapper-->
-								</div>
-								<!--end collapse-->
-							</div>
-							<!--end alternative-search-form-->
+<a href="/">home</a>
+	<noscript>
+		<h2>Sorry! Your browser doesn't support Javascript</h2>
+	</noscript>
+	<section class="content">
+		<section class="block">
+
+			<div id="username-page">
+				<div class="username-page-container">
+					<form id="usernameForm" name="usernameForm" style="display: none;">
+						<div class="form-group">
+							<!-- <input type="text" id="name" placeholder="Username"
+						autocomplete="off" class="form-control" /> -->
+							<input type="hidden" id="name" name="name" value=${userId } /> <input
+								type="hidden" id="chatRoomId" name="chatRoomId"
+								value=${chatRoomId } class=chatRoomId /> <input type="hidden"
+								name="itemId" value="${itemId }" />
 						</div>
-						<!--end container-->
+						<div class="form-group">
+							<button type="submit" id="userFormAutoClick"
+								class="accent username-submit">button</button>
+						</div>
 					</form>
-					<!--end hero-form-->
 				</div>
-				<!--end collapse-->
-				<!--============ End Hero Form ======================================================================-->
-				<!--============ Page Title =========================================================================-->
-				<div class="page-title">
-					<div class="container">
-						<h1>Messages</h1>
-					</div>
-					<!--end container-->
-				</div>
-				<!--============ End Page Title =====================================================================-->
-				<div class="background"></div>
-				<!--end background-->
 			</div>
-			<!--end hero-wrapper-->
-		</header>
-		<!--end hero-->
 
-		<!--*********************************************************************************************************-->
-		<!--************ CONTENT ************************************************************************************-->
-		<!--*********************************************************************************************************-->
-		<section class="content">
-			<section class="block">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-lg-6 col-xl-5">
-							<!--============ Section Title===========================================================-->
-							<div class="section-title clearfix">
-								<h3>People</h3>
-							</div>
-							<div id="messaging__chat-list" class="messaging__box">
-								<div class="messaging__header">
-									<ul class="nav nav-pills">
-										<li class="nav-item"><a class="nav-link active" href="#">All</a>
-										</li>
-										<li class="nav-item"><a class="nav-link" href="#">Buyers</a>
-										</li>
-										<li class="nav-item"><a class="nav-link" href="#">Sellers</a>
-										</li>
-										<li class="nav-item"><a class="nav-link" href="#">Blocked</a>
-										</li>
-									</ul>
-								</div>
-								<div class="messaging__content">
-									<ul class="messaging__persons-list">
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-										<li><a href="#" class="messaging__person">
-												<figure class="messaging__image-person"
-													data-background-image="assets/img/author-01.jpg"></figure>
-												<figure class="content">
-													<h5>
-														Jane Brown &nbsp&nbsp&nbsp<small>대치동</small>
-														&nbsp&nbsp&nbsp<small>24 Hour Ago</small>
-													</h5>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-														elit. Ut</p>
-												</figure>
-												<figure class="messaging__image-item"
-													data-background-image="assets/img/image-01.jpg"></figure>
-										</a> <!--messaging__person--></li>
-									</ul>
-									<!--end messaging__persons-list-->
-								</div>
-								<!--messaging__content-->
-							</div>
-							<!--end section-title-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-6 col-xl-5">
+						<!--============ Section Title===========================================================-->
+						<div class="section-title clearfix">
+							<h3>People</h3>
 						</div>
-						<!--end col-md-3-->
-						<div class="col-md-6 col-lg-6 col-xl-7">
-							<!--============ Section Title===========================================================-->
-							<div class="section-title clearfix">
-								<h3>Message Window</h3>
+						<div id="messaging__chat-list" class="messaging__box">
+							<div class="messaging__header">
+								<ul class="nav nav-pills">
+									<li class="nav-item"><a class="nav-link active" href="#">All</a>
+									</li>
+								</ul>
 							</div>
-							<!--end section-title-->
-							<div id="messaging__chat-window" class="messaging__box">
-								<div class="messaging__header">
-									<div class="float-left flex-row-reverse messaging__person">
-										<h5 class="font-weight-bold">Rosina Warner</h5>
-										<figure class="mr-4 messaging__image-person"
-											data-background-image="assets/img/author-02.jpg"></figure>
-									</div>
-								</div>
-								<div class="messaging__content"
-									data-background-color="rgba(0,0,0,.05)">
-									<div class="messaging__main-chat">
+							<!-- 작업드가자~ -->
+							<div class="messaging__content">
+								<ul class="messaging__persons-list">
 
-										<div class="messaging__main-chat__bubble">
-											<p>
-												Curabitur vel venenatis sem. Fusce suscipit pharetra nisl,
-												sit amet blandit sem sollicitudin ac. <small>24 hour
-													ago</small>
-											</p>
-										</div>
-										<div class="messaging__main-chat__bubble">
-											<p>
-												Vivamus laoreet nisl a odio commodo varius. Donec arcu
-												mauris, molestie a euismod at, mattis eu arcu. Cras
-												volutpat, velit sit amet cursus molestie, ex ipsum sagittis
-												urna, vitae auctor augue erat eget justo. Sed dignissim
-												lacus risus, ut blandit nunc volutpat quis. Fusce porta
-												semper nisi, quis lobortis nulla ultricies ac. <small>24
-													hour ago</small>
-											</p>
-										</div>
-										<div class="messaging__main-chat__bubble user">
-											<p>
-												Cras volutpat, velit sit amet cursus molestie, ex ipsum
-												sagittis urna, vitae auctor augue erat eget justo. Sed
-												dignissim lacus risus, ut blandit nunc <small>24
-													hour ago</small>
-											</p>
-										</div>
-										<div class="messaging__main-chat__bubble user">
-											<p>
-												Sed dignissim lacus risus, ut blandit nunc <small>24
-													hour ago</small>
-											</p>
-										</div>
-										<div class="messaging__main-chat__bubble">
-											<p>
-												Donec consequat lobortis erat non tempus. Quisque id
-												accumsan velit. Nullam mollis bibendum ex. Integer egestas
-												nisi nulla, ut tempus mi euismod in <small>24 hour
-													ago</small>
-											</p>
-										</div>
-										<div class="messaging__main-chat__bubble user">
-											<p>
-												Quisque id accumsan velit. Nullam mollis bibendum ex.
-												Integer egestas nisi nulla, ut tempus mi euismod in <small>24
-													hour ago</small>
-											</p>
-										</div>
-									</div>
+									<c:forEach var="item" items="${itemchatlist}"
+										varStatus="status">
+					 
+										<li><a href="chatForm?userId=${userId}&selleId=${item.userVO.userId}&itemId=${item.itemId}" class="messaging__person">
+												<figure class="messaging__image-person"
+												data-background-image="assets/upload/${itemimglist[status.index] }"
+													>
+											
+												</figure>
+												<figure class="content">
+													<h5>
+
+														<!-- 이름 -->
+														<small> ${item.userVO.userId} <!-- 장소 -->
+														</small> &nbsp&nbsp&nbsp ${item.userVO.userAddress} <small>
+															<!-- 시간 --> ${chatmessagelist[status.index].updateAt}
+														</small>
+													</h5>
+													<p>
+														<!-- 
+															채팅 내용		
+												 													
+													 -->
+														${chatmessagelist[status.index].content}
+													</p>
+												</figure>
+												<figure class="messaging__image-item" 
+												data-background-image="assets/upload/${userimglist[status.index] }"
+												>
+											    </figure>
+
+										</a> <!--messaging__person--></li>
+									</c:forEach>
+
+								</ul>
+								<!--end messaging__persons-list-->
+							</div>
+
+
+							<!--messaging__content-->
+						</div>
+						<!--end section-title-->
+					</div>
+					<!--end col-md-3-->
+					<div class="col-md-6 col-lg-6 col-xl-7">
+						<!--============ Section Title===========================================================-->
+						<div class="section-title clearfix">
+							<h3>Message Window</h3>
+						</div>
+						<!--end section-title-->
+						<div id="messaging__chat-window" class="messaging__box">
+							<!-- 메세지 창 머리 -->
+							<div class="messaging__header">
+								<div class="float-left flex-row-reverse messaging__person">
+									<h5 class="font-weight-bold">Rosina Warner</h5>
+									<figure class="mr-4 messaging__image-person"
+										data-background-image="assets/img/author-02.jpg"></figure>
 								</div>
-								<div class="messaging__footer">
-									<form class="form">
-										<div class="input-group">
-											<input type="text" class="form-control mr-4"
-												placeholder="Your Message">
+							</div>
+
+							<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+							<div id="chat-page" class="messaging__content"
+								data-background-color="rgba(0,0,0,.05)">
+								<div class="messaging__main-chat">
+
+									<c:forEach var="l" items="${chatHistory}" varStatus="listatus">
+										<c:choose>
+
+											<c:when test="${l.sender eq userId}">
+												<div class="messaging__main-chat__bubble user">
+													<ul>
+														<p>${l.content}</p>
+													</ul>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="messaging__main-chat__bubble">
+													<ul>
+														<p>${l.content}</p>
+													</ul>
+												</div>
+											</c:otherwise>
+
+										</c:choose>
+
+									</c:forEach>
+									<div>
+										<ul id="messageArea">
+
+										</ul>
+									</div>
+ 
+								</div>
+							</div>
+
+							<div class="messaging__footer">
+								<form class="form" id="messageForm" name="messageForm"
+									nameForm="messageForm">
+									<div class="input-group">
+										<div class="input-group clearfix">
+											<input type="text" id="message"
+												placeholder="Type a message..." autocomplete="off"
+												class="form-control" />
 											<div class="input-group-append">
 												<button class="btn btn-primary" type="submit">
 													Send <i class="fa fa-send ml-3"></i>
 												</button>
 											</div>
 										</div>
-									</form>
-								</div>
-							</div>
+									</div>
+								</form>
+							</div><!-- end messaging__footer -->
 						</div>
-						<!--end col-md-9-->
 					</div>
-					<!--end row-->
+					<!--end col-md-9-->
 				</div>
-				<!--end container-->
-			</section>
-			<!--end block-->
+				<!--end row-->
+			</div>
+			<!--end container-->
 		</section>
-		<!--end content-->
-	</div>
-	<!--end page-->
-	<script>
-		$("#messaging__chat-window .messaging__content").scrollTop(
-				$(".messaging__content")[0].scrollHeight);
-	</script>
+		<!--end block-->
+	</section>
+
+
+
+
+
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="/assets/js/chatting.js"></script>
+
+	<script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/popper.min.js"></script>
+	<script type="text/javascript"
+		src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="assets/js/selectize.min.js"></script>
+	<script src="assets/js/masonry.pkgd.min.js"></script>
+	<script src="assets/js/icheck.min.js"></script>
+	<script src="assets/js/jquery.validate.min.js"></script>
+	<script src="assets/js/custom.js"></script>
 </body>
 </html>
