@@ -7,6 +7,9 @@
 		</a> <a class="nav-link icon" href="buyItems"> <i
 			class="fa fa-shopping-cart"></i>구매내역
 		</a> <a class="nav-link icon" href="bookmarks"> <i class="fa fa-heart"></i>관심목록
-		</a> <a class="nav-link icon" href="profileUpdateForm"> <i
-			class="fa fa-child"></i>회원정보 변경 <a></a>
+		</a> <a class="nav-link icon" href="profileUpdateForm"> <i class="fa fa-child"></i>회원정보 변경
+		</a> <a class="nav-link icon" href="addressUpdateForm"> <i
+			class="fa fa-child"></i>내 동네 설정
+		</a> <a class="nav-link icon" href="passwordUpdateForm"> <i
+			class="fa fa-child"></i>비밀번호 변경 <a></a>
 	</nav>
