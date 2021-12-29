@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<sec:authentication property="principal.userAddress"  var="userAddress"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userAddress" var="userAddress" />
 <sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
 <html lang="en">
@@ -45,54 +46,57 @@
 				</div>
 				<!--============ End Page Title =====================================================================-->
 				<!--============ Hero Form ==========================================================================-->
-				 <form action="selectAllItemListByCondition" class="hero-form form">
+				<form action="selectAllItemListByCondition" class="hero-form form">
 					<div class="container">
 						<!--Main Form-->
 						<div class="main-search-form">
 							<div class="form-row">
-                        <div class="col-md-3 col-sm-3">
-                        <!-- 1. WHAT -->
-                           <div class="form-group">
-                              <label for="what" class="col-form-label">What?</label> 
-                              <input name="itemTitle" type="text" class="form-control" id="what" placeholder="What are you looking for?" required="required">
-                           </div>
-                           <!--end form-group-->
-                        </div>
-                        <!--end col-md-3-->
-                        <div class="col-md-3 col-sm-3">
-                        <!-- 2. WHERE -->
-                           <div class="form-group">
-                              <label for="input-location" class="col-form-label">Where?</label>
-                              <input readonly name="userVO.userAddress" type="text" class="form-control"  
-                                 id="location" value="${userAddress}">
-                              <%-- <input type="hidden" name="userVO.userAddress" value="${userAddress}">  --%>
-                               <sec:csrfInput/>
-                              <%-- <select id="location"  name="userVO.userAddress"  data-placeholder="Select Loction">
+								<div class="col-md-3 col-sm-3">
+									<!-- 1. WHAT -->
+									<div class="form-group">
+										<label for="what" class="col-form-label">What?</label> <input
+											name="itemTitle" type="text" class="form-control" id="what"
+											placeholder="What are you looking for?" required="required">
+									</div>
+									<!--end form-group-->
+								</div>
+								<!--end col-md-3-->
+								<div class="col-md-3 col-sm-3">
+									<!-- 2. WHERE -->
+									<div class="form-group">
+										<label for="input-location" class="col-form-label">Where?</label>
+										<input readonly name="userVO.userAddress" type="text"
+											class="form-control" id="location" value="${userAddress}">
+										<%-- <input type="hidden" name="userVO.userAddress" value="${userAddress}">  --%>
+										<sec:csrfInput />
+										<%-- <select id="location"  name="userVO.userAddress"  data-placeholder="Select Loction">
                                  <option value="">내 동네 설정</option>
                                  <option value="${userAddress}">${userAddress}</option>
                               </select> --%>
-                           </div>
-                           <!--end form-group-->
-                        </div>
-                        <!--end col-md-3-->
-                         <!-- 3. Category -->
-                        <div class="col-md-3 col-sm-3">
-                           <div class="form-group">
-                              <label for="category" class="col-form-label">Category?</label>
-                              <select name="categoryVO.categoryId" id="category" data-placeholder="Select Category" required="required">
-                                 <option value=""  autofocus="autofocus" draggable="false">Select Category</option>
-                                 <c:forEach items="${categoryList}" var="category">
-                                    <option value="${category.categoryId}">${category.categoryName}</option>
-                                 </c:forEach>
-                              </select> 
-                           </div>
-                        </div>
-                        <!--end col-md-3-->
-                        <div class="col-md-3 col-sm-3">
-                           <button type="submit" class="btn btn-primary width-100">Search</button>
-                        </div>
-                        <!--end col-md-3-->
-                     </div>
+									</div>
+									<!--end form-group-->
+								</div>
+								<!--end col-md-3-->
+								<!-- 3. Category -->
+								<div class="col-md-3 col-sm-3">
+									<div class="form-group">
+										<label for="category" class="col-form-label">Category?</label>
+										<select name="categoryVO.categoryId" id="category"
+											data-placeholder="Select Category" required="required">
+											<option value="" autofocus="autofocus" draggable="false">Select
+												Category</option>
+											<c:forEach items="${categoryList}" var="category">
+												<option value="${category.categoryId}">${category.categoryName}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<!--end col-md-3-->
+								<div class="col-md-3 col-sm-3">
+									<button type="submit" class="btn btn-primary width-100">Search</button>
+								</div>
+								<!--end col-md-3-->
+							</div>
 							<!--end form-row-->
 						</div>
 						<!--end main-search-form-->
@@ -214,6 +218,10 @@
 					<!--============ Items ==========================================================================-->
 					<div
 						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
+						
+						
+					<%-- 	<c:if test="${not empty itemList}">					
+					 --%>	
 						<c:forEach items="${itemList}" var="itemList" varStatus="status">
 							<div class="item">
 								<div class="ribbon-featured">${itemList.itemStatus }</div>
@@ -230,37 +238,40 @@
 										<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
 										<a href="selectItemByItemId?itemId=${itemList.itemId}"
 											class="image-wrapper background-image"> <img
-											src="assets/upload/${imageList[status.index].imageName}" alt="">
+											src="assets/upload/${imageList[status.index].imageName}"
+											alt="">
 										</a>
 									</div>
 									<!--end image-->
 
 
-                           <h4 class="location">
-                              <a href="#">${itemList.userVO.userAddress}</a>
-                           </h4>
+									<h4 class="location">
+										<a href="#">${itemList.userVO.userAddress}</a>
+									</h4>
 
-                           <div class="price">${itemList.itemPrice}원</div>
+									<div class="price">${itemList.itemPrice}원</div>
 
 									<div class="meta">
 										<figure>
 											<i class="fa fa-calendar-o"></i>관심 17
 										</figure>
-                   <figure>
-                                 <i class="fa fa-calendar-o"></i>
-                                 <div>조회수 ${itemList.itemHit}회</div>
-                    </figure>
 										<figure>
-										<c:choose>
-											<c:when test="${userId ne itemList.userVO.userId}">
-											<a href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}"> <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-											</a>
-											</c:when>
-											<c:otherwise>
-											<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-											</c:otherwise>
-										</c:choose>
-                      
+											<i class="fa fa-calendar-o"></i>
+											<div>조회수 ${itemList.itemHit}회</div>
+										</figure>
+										<figure>
+											<c:choose>
+												<c:when test="${userId ne itemList.userVO.userId}">
+													<a
+														href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}">
+														<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+													</a>
+												</c:when>
+												<c:otherwise>
+													<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+												</c:otherwise>
+											</c:choose>
+
 										</figure>
 									</div>
 									<!--end meta-->
@@ -269,11 +280,11 @@
 							</div>
 							<!-- <div class="item"> -->
 						</c:forEach>
-           //</c:when>
-              // <c:otherwise>
-             //  찾으시는 상품이 없습니다.
-              // </c:otherwise>
-             //  </c:choose>
+						<%-- <c:otherwise>
+							찾으시는 상품이 없습니 
+						</c:otherwise>
+						
+					 </c:if> --%>
 					</div>
 					<!--end item----------------------------------------------------------------------------------------------------------------------------->
 					<!--============ End Items ======================================================================-->

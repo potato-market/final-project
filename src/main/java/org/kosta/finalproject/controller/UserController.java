@@ -34,14 +34,15 @@ public class UserController {
 		return count;
 
 	}
+
 	@RequestMapping("guest/registerTelCheck")
 	@ResponseBody
 	public int registerTelCheck(String userTel) {
-		int count=userService.registerTelCheck(userTel);
+		int count = userService.registerTelCheck(userTel);
 		return count;
 	}
-	
-	//forward 값을 가지고 넘어갈때 redirect 값을 가지지 않고 넘어갈 때
+
+	// forward 값을 가지고 넘어갈때 redirect 값을 가지지 않고 넘어갈 때
 	@PostMapping("guest/registerUser")
 	public String register(UserVO userVO, HttpServletRequest request, @RequestParam("user_image") MultipartFile imgfile)
 			throws IllegalStateException, IOException {
@@ -55,7 +56,7 @@ public class UserController {
 
 	@RequestMapping("login_form")
 	public String login() {
-		//System.out.println("userContoller");
+		// System.out.println("userContoller");
 		return "user/login_form";
 	}
 
@@ -68,15 +69,15 @@ public class UserController {
 
 	@RequestMapping("guest/findIdByTel")
 	@ResponseBody
-		public String findIdByTel(String userTel) {
-			 String idResult=userService.findIdByTel(userTel);
-			 if(idResult!=null) {
-				 return idResult;
-			 }else {
-				 return "존재하지 않는 아이디";
-			 }
+	public String findIdByTel(String userTel) {
+		String idResult = userService.findIdByTel(userTel);
+		if (idResult != null) {
+			return idResult;
+		} else {
+			return "존재하지 않는 아이디";
 		}
-	
+	}
+
 	@RequestMapping("login_fail")
 	public String loginFail() {
 		return "user/login_fail";
@@ -107,58 +108,32 @@ public class UserController {
 		return "user/profile-updateForm.tiles";
 	}
 
-
-	 
-	
 	@RequestMapping("passwordUpdateForm")
 	public String passwordUpdateForm() {
 		return "user/password-updateForm.tiles";
 	}
+
 	@RequestMapping("addressUpdateForm")
 	public String addressUpdateForm() {
 		return "user/address-updateForm.tiles";
 	}
-  
+
 	@PostMapping("profileUpdate")
-	public String profileUpdate(Authentication authentication,UserVO userVO,HttpServletRequest request, @RequestParam("user_image") MultipartFile imgfile) throws IllegalStateException, IOException {
-			//System.out.println(userVO); 
-			UserVO uvo=(UserVO)authentication.getPrincipal(); //현재 인증객체를 받아와 uvo 사용하기 위해 저장한다
-			//사용자의 수정정보를 받아와 DB에 업데이트한다(tel,mail만수정<<후에 Password까지 변환시 service계층에서 암호화처리추가)
-			uvo.setUserTel(userVO.getUserTel()); //업데이트 된 정보를 현재 인증객체에 저장해준다!
-			uvo.setUserEmail(userVO.getUserEmail());
-			userService.updateUserPhoneAndEmail(userVO);
-    
-    if(!imgfile.isEmpty()) {
-			  userService.updateUploadSingleImage(userVO, request, imgfile);
-			}
-     // userService.updateUserPartPET(userVO);
-			return "user/update_result";
-	}	
-  
-		//회원정보수정- 비밀번호를 입력하고 암호화하여 다시 db에 저장한다
-		@PostMapping("PasswordUpdate")
-			public String userPasswordUpdate(Authentication authentication,UserVO userVO) {
-				UserVO uvo=(UserVO)authentication.getPrincipal();
-				userService.updateUserPassword(userVO);
-				uvo.setUserPassword(userVO.getUserPassword());
-        
-				return "user/update_result";
-			}
-		
-		//회원정보수정 - 현재위치를 받아와서 수정할 수 있도록 한다
-		@PostMapping("profileAddressUpdate")
-		public String profileAddressUpdate(Authentication authentication,UserVO userVO) {
-			UserVO uvo=(UserVO)authentication.getPrincipal(); //현재 인증객체를 받아와 uvo 사용하기 위해 저장한다
-			userService.profileAddressUpdate(userVO);
-			uvo.setUserAddress(userVO.getUserAddress());//업데이트 된 정보를 현재 인증객체에 저장해준다!
-			 System.out.println(userVO);
-			return "user/update_result";
-	}	
-		@RequestMapping("adminHome")
-		@Secured("ROLE_ADMIN")
-		public String adminHome() {
-			return "admin/adminHome";
+	public String profileUpdate(Authentication authentication, UserVO userVO, HttpServletRequest request,
+			@RequestParam("user_image") MultipartFile imgfile) throws IllegalStateException, IOException {
+		// System.out.println(userVO);
+		UserVO uvo = (UserVO) authentication.getPrincipal(); // 현재 인증객체를 받아와 uvo 사용하기 위해 저장한다
+		// 사용자의 수정정보를 받아와 DB에 업데이트한다(tel,mail만수정<<후에 Password까지 변환시 service계층에서 암호화처리추가)
+		uvo.setUserTel(userVO.getUserTel()); // 업데이트 된 정보를 현재 인증객체에 저장해준다!
+		uvo.setUserEmail(userVO.getUserEmail());
+		userService.updateUserPartPET(userVO);
+
+		if (!imgfile.isEmpty()) {
+			userService.updateUploadSingleImage(userVO, request, imgfile);
 		}
+		// userService.updateUserPartPET(userVO);
+		return "user/update_result";
+	}
 
 	// 회원정보수정- 비밀번호를 입력하고 암호화하여 다시 db에 저장한다
 	@PostMapping("PasswordUpdate")
@@ -166,7 +141,14 @@ public class UserController {
 		UserVO uvo = (UserVO) authentication.getPrincipal();
 		userService.updateUserPassword(userVO);
 		uvo.setUserPassword(userVO.getUserPassword());
+
 		return "user/update_result";
+	}
+
+	@RequestMapping("adminHome")
+	@Secured("ROLE_ADMIN")
+	public String adminHome() {
+		return "admin/adminHome";
 	}
 
 	// 회원정보수정 - 현재위치를 받아와서 수정할 수 있도록 한다
