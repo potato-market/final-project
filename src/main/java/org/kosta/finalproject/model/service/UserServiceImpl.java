@@ -85,9 +85,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	//public String[] findIdByTel(String userTel) {
+	//전화번호로 아이디 찾기
 		public String findIdByTel(String userTel) {
 		return userMapper.findIdByTel(userTel);
+	}
+
+	@Override
+	//회원가입시 전화번호 중복체크
+	public int registerTelCheck(String userTel) {
+		return userMapper.registerTelCheck(userTel);
 	}
 	
 	/*

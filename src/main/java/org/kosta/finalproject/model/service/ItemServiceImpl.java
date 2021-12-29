@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.kosta.finalproject.model.domain.ImageVO;
+import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.mapper.ItemMapper;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public ItemVO selectItemByItemId(int itemId) {
+		 itemMapper.itemHitUpdate(itemId);
 		return itemMapper.selectItemByItemId(itemId);
 	}
 
@@ -116,4 +118,15 @@ public class ItemServiceImpl implements ItemService {
 	
 
 
+	
+	@Override
+	public List<CategoryVO> getAllCategoryList() {
+		return itemMapper.getAllCategoryList();
+	}
+	
+	@Override
+	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO) {
+		return itemMapper.selectAllItemListByCondition(itemVO);
+	}
+	
 }

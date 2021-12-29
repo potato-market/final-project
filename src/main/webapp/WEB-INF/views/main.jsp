@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authentication property="principal.userAddress"  var="userAddress"/>
 <sec:authentication property="principal.userId" var="userId" />
 <!doctype html>
 <html lang="en">
@@ -43,66 +45,54 @@
 				</div>
 				<!--============ End Page Title =====================================================================-->
 				<!--============ Hero Form ==========================================================================-->
-				<form class="hero-form form">
+				 <form action="selectAllItemListByCondition" class="hero-form form">
 					<div class="container">
 						<!--Main Form-->
 						<div class="main-search-form">
 							<div class="form-row">
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label for="what" class="col-form-label">What?</label> <input
-											name="keyword" type="text" class="form-control" id="what"
-											placeholder="What are you looking for?">
-									</div>
-									<!--end form-group-->
-								</div>
-								<!--end col-md-3-->
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label for="input-location" class="col-form-label">Where?</label>
-										<select name="location" id="location"
-											data-placeholder="Select Loction">
-											<option value="">내 동네 설정</option>
-											<option value="1">삼성동</option>
-											<option value="2">개포동</option>
-										</select>
-									</div>
-									<!--end form-group-->
-								</div>
-								<!--end col-md-3-->
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<label for="category" class="col-form-label">Category?</label>
-										<select name="category" id="category"
-											data-placeholder="Select Category">
-											<option value="">Select Category</option>
-											<option value="1">디지털기기</option>
-											<option value="2">생활가전</option>
-											<option value="3">가구/인테리어</option>
-											<option value="4">유아동</option>
-											<option value="5">생활/가공식품</option>
-											<option value="6">유아도서</option>
-											<option value="7">스포츠/레저</option>
-											<option value="8">여성잡화</option>
-											<option value="9">여성의류</option>
-											<option value="10">남성패션/잡화</option>
-											<option value="11">게임/취미</option>
-											<option value="12">뷰티/미용</option>
-											<option value="13">반려동물용품</option>
-											<option value="14">도서/티켓/음반</option>
-											<option value="15">식물</option>
-											<option value="16">기타 중고물품</option>
-											<option value="17">삽니다</option>
-										</select>
-									</div>
-									<!--end form-group-->
-								</div>
-								<!--end col-md-3-->
-								<div class="col-md-3 col-sm-3">
-									<button type="submit" class="btn btn-primary width-100">Search</button>
-								</div>
-								<!--end col-md-3-->
-							</div>
+                        <div class="col-md-3 col-sm-3">
+                        <!-- 1. WHAT -->
+                           <div class="form-group">
+                              <label for="what" class="col-form-label">What?</label> 
+                              <input name="itemTitle" type="text" class="form-control" id="what" placeholder="What are you looking for?" required="required">
+                           </div>
+                           <!--end form-group-->
+                        </div>
+                        <!--end col-md-3-->
+                        <div class="col-md-3 col-sm-3">
+                        <!-- 2. WHERE -->
+                           <div class="form-group">
+                              <label for="input-location" class="col-form-label">Where?</label>
+                              <input readonly name="userVO.userAddress" type="text" class="form-control"  
+                                 id="location" value="${userAddress}">
+                              <%-- <input type="hidden" name="userVO.userAddress" value="${userAddress}">  --%>
+                               <sec:csrfInput/>
+                              <%-- <select id="location"  name="userVO.userAddress"  data-placeholder="Select Loction">
+                                 <option value="">내 동네 설정</option>
+                                 <option value="${userAddress}">${userAddress}</option>
+                              </select> --%>
+                           </div>
+                           <!--end form-group-->
+                        </div>
+                        <!--end col-md-3-->
+                         <!-- 3. Category -->
+                        <div class="col-md-3 col-sm-3">
+                           <div class="form-group">
+                              <label for="category" class="col-form-label">Category?</label>
+                              <select name="categoryVO.categoryId" id="category" data-placeholder="Select Category" required="required">
+                                 <option value=""  autofocus="autofocus" draggable="false">Select Category</option>
+                                 <c:forEach items="${categoryList}" var="category">
+                                    <option value="${category.categoryId}">${category.categoryName}</option>
+                                 </c:forEach>
+                              </select> 
+                           </div>
+                        </div>
+                        <!--end col-md-3-->
+                        <div class="col-md-3 col-sm-3">
+                           <button type="submit" class="btn btn-primary width-100">Search</button>
+                        </div>
+                        <!--end col-md-3-->
+                     </div>
 							<!--end form-row-->
 						</div>
 						<!--end main-search-form-->
@@ -245,16 +235,21 @@
 									</div>
 									<!--end image-->
 
-									<h4 class="location">
-										<a href="#">${itemList.userVO.userAddress}</a>
-									</h4>
 
-									<div class="price">${itemList.itemPrice}원</div>
+                           <h4 class="location">
+                              <a href="#">${itemList.userVO.userAddress}</a>
+                           </h4>
+
+                           <div class="price">${itemList.itemPrice}원</div>
 
 									<div class="meta">
 										<figure>
 											<i class="fa fa-calendar-o"></i>관심 17
 										</figure>
+                   <figure>
+                                 <i class="fa fa-calendar-o"></i>
+                                 <div>조회수 ${itemList.itemHit}회</div>
+                    </figure>
 										<figure>
 										<c:choose>
 											<c:when test="${userId ne itemList.userVO.userId}">
@@ -265,6 +260,7 @@
 											<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
 											</c:otherwise>
 										</c:choose>
+                      
 										</figure>
 									</div>
 									<!--end meta-->
@@ -273,6 +269,11 @@
 							</div>
 							<!-- <div class="item"> -->
 						</c:forEach>
+           //</c:when>
+              // <c:otherwise>
+             //  찾으시는 상품이 없습니다.
+              // </c:otherwise>
+             //  </c:choose>
 					</div>
 					<!--end item----------------------------------------------------------------------------------------------------------------------------->
 					<!--============ End Items ======================================================================-->

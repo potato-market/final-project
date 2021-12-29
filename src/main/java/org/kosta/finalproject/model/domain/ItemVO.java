@@ -3,7 +3,7 @@ package org.kosta.finalproject.model.domain;
 public class ItemVO {
 	private int itemId;
 	private String itemTitle;
-	private int itemPrice;
+	private long itemPrice;
 	private int itemHit;
 	private String itemContent;
 	private String itemStatus;
@@ -15,7 +15,7 @@ public class ItemVO {
 		super();
 	}
 
-	public ItemVO(int itemId, String itemTitle, int itemPrice, int itemHit, String itemContent, String itemStatus,
+	public ItemVO(int itemId, String itemTitle, long itemPrice, int itemHit, String itemContent, String itemStatus,
 			String itemCreatedAt, CategoryVO categoryVO, UserVO userVO) {
 		super();
 		this.itemId = itemId;
@@ -45,11 +45,11 @@ public class ItemVO {
 		this.itemTitle = itemTitle;
 	}
 
-	public int getItemPrice() {
+	public long getItemPrice() {
 		return itemPrice;
 	}
 
-	public void setItemPrice(int itemPrice) {
+	public void setItemPrice(long itemPrice) {
 		this.itemPrice = itemPrice;
 	}
 

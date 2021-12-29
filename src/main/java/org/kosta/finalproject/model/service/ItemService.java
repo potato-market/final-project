@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.kosta.finalproject.model.domain.ImageVO;
+import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -21,4 +22,6 @@ public interface ItemService {
 	public List<ImageVO> findItemImageListByItemId(int itemId);
 	public void delCheckedImg(List<Integer> list);
 	List<ItemVO> selectItemByUserId(String userId);
+	public List<CategoryVO> getAllCategoryList();
+	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
 }

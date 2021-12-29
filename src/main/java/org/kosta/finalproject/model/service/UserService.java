@@ -36,6 +36,7 @@ MultipartFile imgfile) throws IllegalStateException, IOException;
 void updateUploadSingleImage(UserVO userVO,HttpServletRequest request,
 		MultipartFile imgfile) throws IllegalStateException, IOException;
 
+int registerTelCheck(String userTel);
 
 	
 }

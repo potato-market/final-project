@@ -4,14 +4,19 @@
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <sec:authentication property="principal.userId" var="headeruserId" />
+	 
  <header class="hero" style="content:none;">
             <div class="hero-wrapper">
 		<!--============ Secondary Navigation ===============================================================-->
 		<div class="secondary-navigation">
 			<div class="container">
 				<ul class="right">
-					<li><a href="admin"> <i class="fa fa-wrench"></i>관리자 페이지</a></li>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a href="adminHome"> <i class="fa fa-wrench"></i>관리자 페이지</a></li>
+				</sec:authorize>
+				 <sec:authorize access="hasRole('ROLE_MEMBER')">
 					<li><a href="profile"> <i class="fa fa-heart"></i>내 감자</a></li>
+					</sec:authorize>
 			<script type="text/javascript">
 					$(document).ready(function() {
 					$("#logoutAction").click(function() {
@@ -20,7 +25,6 @@
 						}else{
 							$("#logoutForm").submit();
 						}
-					
 			});
 		});
 		</script>

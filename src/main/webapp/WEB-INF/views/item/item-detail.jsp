@@ -135,8 +135,8 @@
 							<section>
 								<p>${itemDetail.itemContent}</p>
 							</section>
-							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt } ∙관심 6
-								∙채팅 ${crnum} ∙조회 226</p>
+						<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 
+								∙채팅 ${crnum} ∙조회  ${itemDetail.itemHit}</p> 
 							<c:choose>
 							<c:when test="${userId ne itemDetail.userVO.userId}">
 							<form action="chatForm">
@@ -153,7 +153,6 @@
 								<button type="submit" class="btn btn-primary width-100">수정하기</button>
 							</form>
 							<br />
-					
 							<!-- 삭제하기 -->
 							<form action="deleteItem" method="post">
 								<sec:csrfInput />
@@ -163,6 +162,7 @@
 							</c:otherwise>
 							</c:choose>
 							<!--end Description-->
+							
 						</div>
 						<!--============ End Listing Detail =========================================================-->
 						<!--============ Sidebar ====================================================================-->

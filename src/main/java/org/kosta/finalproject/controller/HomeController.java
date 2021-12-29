@@ -2,8 +2,8 @@ package org.kosta.finalproject.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.kosta.finalproject.model.domain.ImageVO;
+import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ChattingService;
 import org.kosta.finalproject.model.service.ItemService;
@@ -34,23 +34,21 @@ public class HomeController {
 		List<ItemVO> list = itemService.getAllItemList();
 		System.out.println(list);
 		List<ImageVO>imageList =new ArrayList<ImageVO>();
-		List <Integer> crnumlist= new ArrayList<Integer>();
-		
-		
+		List <Integer> crnumlist= new ArrayList<Integer>();		
 		for(int i=0;i<list.size();i++) {
 			imageList.add(
 			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
-			crnumlist.add(chattingService.getChatCount(list.get(i).getItemId()));
-			
-		}
-		
-		
-		
-		model.addAttribute("crnum",crnumlist);
+			crnumlist.add(chattingService.getChatCount(list.get(i).getItemId()));			
+		}		
+		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+    
+		model.addAttribute("crnum",crnumlist);	
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("itemList",list);
 		model.addAttribute("imageList",imageList);
 		return "main.tiles";
 	}
+  
 	@RequestMapping("login_success")
 	public String login_success() {
 		System.out.println("login_success");
@@ -67,7 +65,6 @@ public class HomeController {
 			System.out.println("start application runner ");
 		 
 		};
-		
 	
 	}
 }

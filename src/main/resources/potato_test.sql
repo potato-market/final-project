@@ -55,7 +55,7 @@ create table AUTHORITIES
 insert into user (USER_ID,USER_PASSWORD,USER_TEL,USER_ADDRESS,USER_EMAIl)
 VALUES ('security10','1234','01012341234','여주','a@naver.com');
 
-insert into AUTHORITIES(USERNAME,AUTHORITIY) values ('spring1','User');
+insert into AUTHORITIES(USERNAME,AUTHORITY) values ('spring1','User');
 
 select * from USER;
 select* from AUTHORITIES;
@@ -114,7 +114,13 @@ UPDATE USER SET USER_IMAGE='루피감자.png'
 WHERE USER_ID='1234';
 
 --userTel=#{userTel},userEmail=#{userEmail}
+delete from USER
+where USER_ID='ADMIN'
 
 select * from USER;
 
+delete from FAQ
+where USER_ID='ADMIN'
+
+insert into AUTHORITIES(USERNAME,AUTHORITY) values ('admin444','ROLE_ADMIN');
 

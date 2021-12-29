@@ -32,6 +32,8 @@ public interface UserMapper {
 
 	String findIdByTel(String userTel);
 	//String[] findIdByTel(String userTel);
+
+	int registerTelCheck(String userTel);
 	
 	void updateUserImage(UserVO userVO);
 	

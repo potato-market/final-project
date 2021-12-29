@@ -53,19 +53,8 @@
 		I.ITEM_ID= #{itemId}
 	</select>
 	
-	<!-- 중고물품 수정하기 -->
-	<update id="updateItem"
-		parameterType="org.kosta.finalproject.model.domain.ItemVO">
-		UPDATE ITEM I, USER U, CATEGORY C set I.CATEGORY_ID = #{categoryVO.categoryId}, I.ITEM_TITLE = #{itemTitle}, I.ITEM_PRICE = #{itemPrice}, I.ITEM_CONTENT = #{itemContent}
-		WHERE
-		U.USER_ID = I.USER_ID
-		AND
-		I.CATEGORY_ID = C.CATEGORY_ID
-		AND 
-		I.ITEM_ID= #{itemId}
-	  </update>
-
-<select id="getAllItemList" resultMap="selectItemResultMap">
+	 <!-- item 목록 가지고오기-->
+	<select id="getAllItemList" resultMap="selectItemResultMap">
 		SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
 		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
 		FROM
@@ -77,6 +66,39 @@
 		ORDER BY I.ITEM_CREATED_AT DESC
 	</select>
 	
+	 <!-- 검색한 Category + ItemTitle + Location 목록 가지고오기-->
+       <select id="selectAllItemListByCondition"  parameterType="org.kosta.finalproject.model.domain.ItemVO"  resultMap="selectItemResultMap" >
+		SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
+		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
+		FROM
+		ITEM I, USER U, CATEGORY C
+		WHERE
+		I.USER_ID = U.USER_ID 
+		AND
+		I.CATEGORY_ID = C.CATEGORY_ID
+	    AND
+		I.ITEM_TITLE LIKE CONCAT('%', #{itemTitle},'%')
+	   AND
+       I.CATEGORY_ID = #{categoryVO.categoryId}
+        AND
+       U.USER_ADDRESS = #{userVO.userAddress}
+	   ORDER BY I.ITEM_CREATED_AT DESC
+	</select> 
+	
+	<!-- 중고물품 수정하기 -->
+	<update id="updateItem"
+		parameterType="org.kosta.finalproject.model.domain.ItemVO">
+		UPDATE ITEM I, USER U, CATEGORY C set I.CATEGORY_ID = #{categoryVO.categoryId}, I.ITEM_STATUS = #{itemStatus},I.ITEM_TITLE = #{itemTitle}, 
+		I.ITEM_PRICE = #{itemPrice}, I.ITEM_CONTENT = #{itemContent}
+		WHERE
+		U.USER_ID = I.USER_ID
+		AND
+		I.CATEGORY_ID = C.CATEGORY_ID
+		AND 
+		I.ITEM_ID= #{itemId}
+	  </update>
+
+
 		<!-- 중고물품 삭제하기 -->
     <delete id="deleteItem" parameterType="int">
     	DELETE FROM ITEM 
@@ -118,7 +140,23 @@
 		I.USER_ID= #{userId} 
 	</select>
 	
+ 	     <!-- 카테고리 목록 가지고오기-->
+	<resultMap id="selectCategoryResultMap" type="org.kosta.finalproject.model.domain.CategoryVO">
+		<id column="CATEGORY_ID"              property="categoryId" />
+		<result column="CATEGORY_NAME"  property="categoryName" />
+	</resultMap>   
+	<select id="getAllCategoryList" resultMap="selectCategoryResultMap" >
+		SELECT CATEGORY_ID , CATEGORY_NAME FROM CATEGORY
+	</select>
 	
+	 <!-- 조회수 증가시키기 -->
+   <update id="itemHitUpdate" parameterType="int" >
+ 		UPDATE ITEM
+ 		SET 
+ 		ITEM_HIT = ITEM_HIT+1
+ 		WHERE 
+		ITEM_ID = #{itemId}
+  </update>
 	
  	
 </mapper>

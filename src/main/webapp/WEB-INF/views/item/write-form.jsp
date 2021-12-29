@@ -82,23 +82,9 @@
 										
 										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId" id="submit_category" data-placeholder="Select Category" required="required">
 											<option value="">Select Category</option>
-											<option value="1">디지털기기</option>
-											<option value="2">생활가전</option>
-											<option value="3">가구/인테리어</option>
-											<option value="4">유아동</option>
-											<option value="5">생활/가공식품</option>
-											<option value="6">유아도서</option>
-											<option value="7">스포츠/레저</option>
-											<option value="8">여성잡화</option>
-											<option value="9">여성의류</option>
-											<option value="10">남성패션/잡화</option>
-											<option value="11">게임/취미</option>
-											<option value="12">뷰티/미용</option>
-											<option value="13">반려동물용품</option>
-											<option value="14">도서/티켓/음반</option>
-											<option value="15">식물</option>
-											<option value="16">기타 중고물품</option>
-											<option value="17">삽니다</option>
+												<c:forEach items="${categoryList}" var="category">
+												<option value="${category.categoryId}">${category.categoryName}</option>
+											</c:forEach>
 										</select>
 									</div>
 									<!--end form-group-->
@@ -109,27 +95,19 @@
 						</section>
 						<section style="margin-bottom: 0px">
 							<div class="row">
-								
-								<div class="col-md-8">
-								
 								<!-- 2. TITLE -->
-								
+								<div class="col-md-8">
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
-										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" required>
+										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="13" required>
 									</div>
-									
-									<!--end form-group-->
 								</div>
-								<!--end col-md-8-->
-								<div class="col-md-4">
-								
 								<!-- 3. PRICE -->
+								<div class="col-md-4">
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
 										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
 									</div>
-									<!--end form-group-->
 								</div>
 							</div>
 						</section>
