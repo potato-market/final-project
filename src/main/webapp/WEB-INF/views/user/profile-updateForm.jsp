@@ -137,7 +137,7 @@
 												Changes</button>
 										</section>
 										<!-- <section class="clearfix">
-										</section> -->
+										</section> -->	
 									</div>
 									<!--end col-md-8-->
 									<div class="col-md-4">
@@ -195,8 +195,7 @@
 							<!--end col-md-8-->
 					</form>
 				</div>
-
-
+					
 				<div class="col-md-12" style="margin-top: 20px;">
 					<!-- *************************************************************************************** -->
 					<!-- 비밀번호 변경 -->
@@ -222,7 +221,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="new_current_password"
+											<label for="new_password"
 												class="col-form-label required">New Password</label> <input
 												name="userPassword" type="password" class="form-control"
 												id="userPassword" placeholder="New Password" required>
@@ -231,7 +230,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="repeat_new_current_password"
+											<label for="repeat_new_password"
 												class="col-form-label required">Repeat Password</label> <input
 												type="password" class="form-control"
 												id="repeat_new_current_password"
@@ -297,7 +296,7 @@
 		//가입하기 누를 때 발생하는 이벤트 
 		$(document).ready(function() {
 			$("#passwordUpdateForm").submit(function() {
-				alert("떠라제발");
+				//alert("떠라제발");
 				//아래 코드는 passwordResult()와 중복되는데 리팩토링 필요할 듯
 				let password = document.forms["passwordUpdateForm"];
 				// let password = document.forms[0];
@@ -319,6 +318,22 @@
 				}
 			});
 		});
+		 
+		 $(function(){ 
+			   $('#phone').keydown(function(event) { 
+			      var key = event.charCode || event.keyCode || 0; 
+			      $text = $(this); 
+			      if (key !== 8 && key !== 9) { 
+			         if ($text.val().length === 3) { 
+			            $text.val($text.val() + '-'); 
+			         } 
+			         if ($text.val().length === 8) { 
+			            $text.val($text.val() + '-'); 
+			         } 
+			      } 
+			   return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)); 
+			   }); 
+			});
 	</script>
 
 	<!--*********************************************************************************************************-->

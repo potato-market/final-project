@@ -10,4 +10,4 @@
  location.href="profile";
  </script>
  </body>
-</html>
+</html>	
