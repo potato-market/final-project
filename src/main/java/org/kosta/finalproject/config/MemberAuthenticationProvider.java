@@ -73,9 +73,12 @@ public class MemberAuthenticationProvider implements AuthenticationProvider{
 			throw new UsernameNotFoundException("권한이 없습니다.");
 		}
 		
+		//<SimpleGrantedAuthority>  권한을 담는 string형태 저장소인듯.
 		List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();		
 		for(Authority au : list){ // ROLE_ 형식의 db 정보가 아니라면 이 시점에 ROLE_ 를 접두어로 추가한다
-		authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
+			//현재 계정의 권한을 모두 리스트로 받아와서 권한을 add해준다
+		authorities.add(new SimpleGrantedAuthority(au.getAuthority()));
+		//authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
 		}
 		
 		/****************************************

@@ -26,7 +26,7 @@ public class HomeController {
 	@RequestMapping("main")
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();
-		System.out.println(list);
+		//System.out.println(list);
 		model.addAttribute("itemList",list);
 		return "main.tiles";
 	}
