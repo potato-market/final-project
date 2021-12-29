@@ -369,7 +369,7 @@ element.style {
 }
 
 /*------ Meta ------*/
-/* .items:not(.selectize-input).list .item .meta2 {
+ /* .items:not(.selectize-input).list .item .meta2 {
     position: absolute;
     padding: 3rem 2rem 0 0;
     right: 0;
@@ -396,14 +396,14 @@ element.style {
     height: inherit;
     padding: 1rem;
     
-}
+} */
 .items:not(.selectize-input).list .item .meta2 figure {
     display: block;
     margin-right: 0;
 }
-.items:not(.selectize-input).list .item .meta2:before {
+ .items:not(.selectize-input).list .item .meta2:before {
     display: none;
-} */
+} 
 
 #container_border{
 	border-style: ridge;
@@ -841,3 +841,14 @@ element.style {
 	color:red;
 	cursor:pointer;
 } */
+
+
+/* community meta2*/
+#community_figure{
+	position: absolute;
+    margin-top: 145px;
+    margin-left: 20px;
+    width: auto;
+    font-size: 1.1rem;
+    background-color: transparent;
+}
