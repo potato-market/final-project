@@ -79,18 +79,21 @@
 							<!--Gallery Carousel-->
 							<section>
 								<div class="gallery-carousel owl-carousel">
-									<c:forEach var="kwon" items="${imageList }" varStatus="status"> 
-												<img src="assets/upload/${kwon.imageName}" alt=""
-											data-hash="${status.index}">
+								<c:forEach var="kwon" items="${imageList }" varStatus="status"> 
+									 			<img src="assets/upload/${kwon.imageName}" alt=""
+											data-hash="${status.index} style="width:510px; height:390px;" >
+								</c:forEach>
 									</div>
+									 
 										<div class="gallery-carousel-thumbs owl-carousel">
-										<a href="#${status.index }"
+									<c:forEach var="kwon" items="${imageList }" varStatus="status">
+										<a href="#"+"${status.index }"
 											class="owl-thumb active-thumb background-image"> <img
 										src="assets/upload/${kwon.imageName}" alt="">
 									</a>
-
-								</div>
 								</c:forEach>
+							</div>
+								
 
 							</section>
 							<!--end Gallery Carousel-->

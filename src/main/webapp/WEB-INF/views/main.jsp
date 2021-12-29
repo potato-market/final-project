@@ -219,9 +219,72 @@
 					<div
 						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
 						
-						
+						  <c:choose>
+                  <c:when test="${not empty itemList}">
+                  <c:forEach items="${itemList}" var="itemList" varStatus="status">
+                     <div class="item">
+                        <div class="ribbon-featured">${itemList.itemStatus }</div>
+                        <!--end ribbon-->
+                        <div class="wrapper">
+
+                           <div class="image">
+                              <h3>
+                                 <a href="#" class="tag category">${itemList.categoryVO.categoryName}</a>
+                                 <!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
+                                       <a href="selectItemByItemId?itemId=${itemList.itemId}"
+                                          class="title"> ${itemList.itemTitle}
+                                           <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
+                                       </a>
+                                    </h3>
+                              <!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
+                              <a href="selectItemByItemId?itemId=${itemList.itemId}"
+                                 class="image-wrapper background-image"> <img
+											src="assets/upload/${imageList[status.index].imageName}"
+											alt="">
+                              </a>
+                           </div>
+                           <!--end image-->
+
+                           <h4 class="location">
+                              <a href="#">${itemList.userVO.userAddress}</a>
+                           </h4>
+
+                           <div class="price">${itemList.itemPrice}원</div>
+
+                           <div class="meta">
+                              <figure>
+                                 
+                                 <div>조회수 ${itemList.itemHit}회</div>
+                              </figure>
+                              <c:choose>
+                              <c:when test="${userId ne itemList.userVO.userId}">
+                              <figure>
+                                 <a href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}"> <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+                                 </a>
+                              </figure>
+                              </c:when>
+                              <c:when test="${userId eq itemList.userVO.userId}">
+                              <figure>
+                                  <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
+                                 
+                              </figure>
+                              </c:when>
+                              </c:choose>
+                              
+                           </div>
+                           <!--end meta-->
+                        </div>
+                        <!-- <div class="wrapper"> -->
+                     </div>
+                     <!-- <div class="item"> -->
+                  </c:forEach>
+               </c:when>
+               <c:otherwise>
+               찾으시는 상품이 없습니다.
+               </c:otherwise>
+               </c:choose>
 				 
-					 	<c:choose>
+					 	<%-- <c:choose>
 					 	<c:when test="${not empty itemList}">
 		
 						<c:forEach items="${itemList}" var="itemList" varStatus="status">
@@ -250,29 +313,23 @@
 									<h4 class="location">
 										<a href="#">${itemList.userVO.userAddress}</a>
 									</h4>
-
 									<div class="price">${itemList.itemPrice}원</div>
-
 									<div class="meta">
-										<figure>
-											<i class="fa fa-calendar-o"></i>관심 17
-										</figure>
-										<figure>
-											<i class="fa fa-calendar-o"></i>
-											<div>조회수 ${itemList.itemHit}회</div>
-										</figure>
-										<figure>
+									<figure>
+									<i class="fa fa-calendar-o"></i>관심 17
+									</figure>
+									<figure>
+									<i class="fa fa-calendar-o"></i>조회수 ${itemList.itemHit}회
+									</figure>
+									<figure>
 										
-												<%-- <c:when test="${userId ne itemList.userVO.userId}"> --%>
+												<c:when test="${userId ne itemList.userVO.userId}">
 													<a
 														href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}">
 														<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
 													</a>
-												<%-- </c:when>
-												<c:when test="${userId eq itemList.userVO.userId}">
-												 --%>	<i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-												<%-- </c:when>
-										  --%>
+												</c:when>
+															 
 
 										</figure>
 									</div>
@@ -288,7 +345,7 @@
 						</c:otherwise>
 						
 					 
-					 </c:choose>
+					 </c:choose> --%>
 					</div>
 					<!--end item----------------------------------------------------------------------------------------------------------------------------->
 					<!--============ End Items ======================================================================-->
