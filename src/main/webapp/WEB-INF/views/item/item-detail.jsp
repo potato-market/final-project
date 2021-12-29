@@ -147,21 +147,24 @@
 							<section>
 								<p>${itemDetail.itemContent}</p>
 							</section>
-							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 226</p> 
+							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 ${itemDetail.itemHit}</p> 
 							<button type="button">채팅하기</button>
+							
+							<sec:authentication var="user" property="principal" />
 							<!-- 수정하기 -->
+							<c:if test="${itemDetail.userVO.userId==user.userId}">
 							<form action="updateForm">
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
 								<button type="submit">수정하기</button>
 							</form>
-							
 							<!-- 삭제하기 -->
 							<form action="deleteItem" method="post">
 							<sec:csrfInput/>
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
 								<button type="submit">삭제하기</button>
 							</form>
-							<!--end Description-->
+							</c:if>
+							
 						</div>
 						<!--============ End Listing Detail =========================================================-->
 						<!--============ Sidebar ====================================================================-->
