@@ -2,6 +2,7 @@ package org.kosta.finalproject.controller;
 
 import java.util.List;
 
+import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class HomeController {
 	@RequestMapping("main")
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();
-		System.out.println(list);
+		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("itemList",list);
 		return "main.tiles";
 	}
