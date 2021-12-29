@@ -38,7 +38,7 @@
 							</div>
 							<div class="form-group">
 								<input name="userTel" type="text"
-									placeholder="전화번호(공백없이숫자만입력)" class="form-control"
+									placeholder="전화번호(공백없이숫자만입력)" class="form-control" maxlength="13"
 									id="userTel" required>
 							</div>
 							<!--end form-group-->
@@ -104,12 +104,35 @@
 				url : "findIdByTel",
 				success : function(result) {
 					//alert("아이디찾기결과:"+result);
-					$("#findIdByTelResult").html("아이디는"+"&nbsp;"+result+"입니다"+"<hr>").css("color", "green");
+					 if(result.indexOf('존재')==-1){
+						 $("#findIdByTelResult").html("회원님의 아이디는"+"&nbsp;"+result+"&nbsp;"+"입니다"+"<hr>").css("color", "green");
+					}else{
+						 $("#findIdByTelResult").html("해당번호에 아이디가 존재하지 않습니다"+"<hr>").css("color", "red");
+					} 
+					
+					//$("#findIdByTelResult").html("해당 아이디는"+"&nbsp;"+result+"입니다"+"<hr>").css("color", "green");
 					//$("#countView").html(result + "명");    
 				}  
 		}); //ajax
 		}); //click
 	}); //ready
+	
+	$(function(){ 
+		   $('#userTel').keydown(function(event) { 
+		      var key = event.charCode || event.keyCode || 0; 
+		      $text = $(this); 
+		      if (key !== 8 && key !== 9) { 
+		         if ($text.val().length === 3) { 
+		            $text.val($text.val() + '-'); 
+		         } 
+		         if ($text.val().length === 8) { 
+		            $text.val($text.val() + '-'); 
+		         } 
+		      } 
+		   return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105)); 
+		   }); 
+		});
+	
 	</script>
 	
 	

@@ -369,10 +369,10 @@ element.style {
 }
 
 /*------ Meta ------*/
-.items:not(.selectize-input).list .item .meta2 {
+/* .items:not(.selectize-input).list .item .meta2 {
     position: absolute;
     padding: 3rem 2rem 0 0;
-    /* right: 0; */
+    right: 0;
     margin-top: 115px;
     margin-left: 20px;
     width: auto;
@@ -381,14 +381,29 @@ element.style {
     text-align: right;
     top: 0;
     z-index: 1;
+    
+     box-shadow: inset 0 0 1rem 0 rgba(0,0,0, .1);
+    border: .1rem solid rgba(0,0,0, .15);
+    border-radius: .3rem;
+    color: #363636;
+    transition: .3s;
+    transform-style: preserve-3d;
+    -webkit-appearance: none;
+    background-color: #fff;
+    font-size: 1rem;
+    outline: none !important;
+    width: 100%;
+    height: inherit;
+    padding: 1rem;
+    
 }
 .items:not(.selectize-input).list .item .meta2 figure {
-    /* display: block; */
-    /* margin-right: 0; */
+    display: block;
+    margin-right: 0;
 }
 .items:not(.selectize-input).list .item .meta2:before {
     display: none;
-}
+} */
 
 #container_border{
 	border-style: ridge;
@@ -410,7 +425,7 @@ element.style {
     /* cursor: pointer;*/
 }
 
-#login_password, #login_id, #login_tel,#login_address, #login_password_check,#login_email{
+#login_password, #login_id, #login_tel,#login_address, #login_password_check,#login_email,#email_id,#email_domain,#emailSelect{
     box-shadow: inset 0 0 1rem 0 rgba(0,0,0, .1);
     border: .1rem solid rgba(0,0,0, .15);
     border-radius: .3rem;

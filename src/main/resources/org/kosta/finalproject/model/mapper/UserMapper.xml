@@ -57,6 +57,52 @@ select USER_ID
 from USER
 WHERE USER_TEL=#{userTel}
 </select>
+
+<select id="registerTelCheck" parameterType="String" resultType="int">
+select count(*) from USER where USER_TEL=#{userTel};
+</select>
+
+<resultMap id="selectItemResultMap" type="ItemVO">
+      <id column="ITEM_ID"                property="itemId" />
+      <result column="ITEM_TITLE"       property="itemTitle" />
+      <result column="ITEM_PRICE"          property="itemPrice" />
+      <result column="ITEM_HIT"          property="itemHit" />
+      <result column="ITEM_CONTENT"       property="itemContent" />
+      <result column="ITEM_STATUS"       property="itemStatus" />
+      <result column="ITEM_CREATED_AT"         property="itemCreatedAt" />
+      <collection property="userVO" ofType="UserVO">
+         <id property="userId" column="USER_ID" />
+         <result property="userAddress" column="USER_ADDRESS" />
+         <result property="userTel" column="USER_TEL" />
+         <result property="userImage" column="USER_IMAGE" />
+      </collection>
+         <collection property="categoryVO" ofType="CategoryVO">
+         <id property="categoryId" column="CATEGORY_ID" />
+         <result property="categoryName" column="CATEGORY_NAME" />
+      </collection>
+   </resultMap>
+   
+    <!-- 검색한 Category + ItemTitle + Location 목록 가지고오기-->
+       <select id="selectAllItemListByCondition"  parameterType="org.kosta.finalproject.model.domain.ItemVO"  resultMap="selectItemResultMap" >
+      SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
+      I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
+      FROM
+      ITEM I, USER U, CATEGORY C
+      WHERE
+      I.USER_ID = U.USER_ID 
+      AND
+      I.CATEGORY_ID = C.CATEGORY_ID
+       AND
+      I.ITEM_TITLE LIKE CONCAT('%', #{itemTitle},'%')
+      AND
+       C.CATEGORY_ID = #{categoryVO.categoryId}
+        AND
+       U.USER_ID = #{userVO.userAddress}
+      ORDER BY I.ITEM_CREATED_AT DESC
+   </select> 
 </mapper>
+
+
+
 
 

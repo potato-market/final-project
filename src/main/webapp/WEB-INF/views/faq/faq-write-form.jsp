@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -67,6 +68,7 @@
 			<section class="block">
 				<div class="container">
 					<form class="form form-submit" method="post" action="writeFAQ">
+					<sec:csrfInput />
 						<section style="margin-bottom: 0px">
 							<div class="row">
 								<div class="col-md-8">
