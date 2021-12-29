@@ -106,4 +106,14 @@ public class ItemServiceImpl implements ItemService {
 		for(int i=0;i<list.size();i++)itemMapper.deleteImage(list.get(i));
 		
 		
-	}}
+	}
+	@Override
+	public List<ItemVO> selectItemByUserId(String userId) {
+		// TODO Auto-generated method stub
+		
+		return itemMapper.selectItemByUserId(userId);
+	}
+	
+
+
+}

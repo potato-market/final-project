@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.kosta.finalproject.model.domain.ImageVO;
 import org.kosta.finalproject.model.domain.ItemVO;
+import org.kosta.finalproject.model.service.ChattingService;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -19,6 +20,9 @@ public class HomeController {
 	@Autowired
 	private ItemService itemService;
 	
+	@Autowired
+	private ChattingService chattingService;
+	
 	@RequestMapping(value={"/","home"})
 	public String index(Authentication a) {
 		System.out.println("homecont1 "+a);
@@ -29,12 +33,20 @@ public class HomeController {
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();
 		System.out.println(list);
-		
 		List<ImageVO>imageList =new ArrayList<ImageVO>();
+		List <Integer> crnumlist= new ArrayList<Integer>();
+		
+		
 		for(int i=0;i<list.size();i++) {
 			imageList.add(
 			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
+			crnumlist.add(chattingService.getChatCount(list.get(i).getItemId()));
+			
 		}
+		
+		
+		
+		model.addAttribute("crnum",crnumlist);
 		model.addAttribute("itemList",list);
 		model.addAttribute("imageList",imageList);
 		return "main.tiles";

@@ -1,9 +1,10 @@
 package org.kosta.finalproject.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 
 import org.kosta.finalproject.model.domain.ItemVO;
+import org.kosta.finalproject.model.service.ChattingService;
 import org.kosta.finalproject.model.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -21,7 +22,9 @@ public class ItemController {
 
 	@Autowired
 	private ItemService itemService;
-
+	
+	@Autowired
+	private ChattingService chattingService;
 	@Autowired
 	public ItemController() {
 		super();
@@ -54,6 +57,8 @@ public class ItemController {
 	// 중고물품 게시물 ItemId로 검색하기 -- 게시물 상세보기 페이지
 	@GetMapping("selectItemByItemId")
 	public String selectItemByItemId(int itemId, Model model) {
+		 
+		model.addAttribute("crnum", chattingService.getChatCount(itemId));
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
 		model.addAttribute("imageList",itemService.findItemImageListByItemId(itemId));
 		return "item/item-detail.tiles";

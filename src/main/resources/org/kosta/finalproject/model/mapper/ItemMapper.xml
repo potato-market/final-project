@@ -42,7 +42,7 @@
 	<select id="selectItemByItemId" parameterType="int" resultMap="selectItemResultMap">
 		SELECT
 		I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT,
-		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, C.CATEGORY_NAME
+		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, U.USER_IMAGE,C.CATEGORY_NAME
 		FROM
 		ITEM I, USER U, CATEGORY C
 		WHERE
@@ -105,6 +105,18 @@
     	WHERE  
 		IMAGE_ID= #{imageId}
  	</delete>
+ 	
+ 	<!--  chatting 용 -->
+ 	<select id="selectItemByUserId" parameterType="String" resultMap="selectItemResultMap">
+		SELECT
+		I.ITEM_ID,U.USER_ADDRESS , U.USER_ID
+		FROM
+		ITEM I, USER U
+		WHERE
+		U.USER_ID = I.USER_ID
+		AND
+		I.USER_ID= #{userId} 
+	</select>
 	
 	
 	

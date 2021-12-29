@@ -20,4 +20,5 @@ public interface ItemService {
 	MultipartFile[] imgfile) throws IllegalStateException, IOException;
 	public List<ImageVO> findItemImageListByItemId(int itemId);
 	public void delCheckedImg(List<Integer> list);
+	List<ItemVO> selectItemByUserId(String userId);
 }

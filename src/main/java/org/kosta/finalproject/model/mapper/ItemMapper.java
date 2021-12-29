@@ -15,5 +15,8 @@ public interface ItemMapper {
 	public void deleteItem(int itemId);
 	public void uploadMultiImage(ImageVO imageVO);
 	public List<ImageVO> findItemImageListByItemId(int itemId);
-	public void deleteImage(int imageId);
+	public void deleteImage(int imageId);	 
+	public List<ItemVO> selectItemByUserId(String userId);
 }
+
+

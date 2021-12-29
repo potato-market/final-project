@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userId" var="headeruserId" />
  <header class="hero" style="content:none;">
             <div class="hero-wrapper">
 		<!--============ Secondary Navigation ===============================================================-->
@@ -53,7 +54,7 @@
                                         <a class="nav-link" href="communityBoard">동네생활</a>
                                     </li>
                                      <li class="nav-item">
-                                        <a class="nav-link" href="chattingForm" >채팅</a>
+                                        <a class="nav-link" href="headerChatForm?userId=${headeruserId}" >채팅</a>
                                     </li>
                                      <li class="nav-item">
                                         <a href="faqBoard" class="nav-link">FAQ</a>

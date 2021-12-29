@@ -18,16 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UserController {
-	private UserMapper userMapper;
-	private UserService userService;
-
 	@Autowired
-	public UserController(UserMapper userMapper, UserService userService) {
-		super();
-		this.userMapper = userMapper;
-		this.userService = userService;
-	}
-
+	private UserService userService;
+ 
 	// @Autowired
 	// public UserController(UserMapper userMapper) {
 	// super();
