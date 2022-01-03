@@ -69,8 +69,7 @@
 						<div class="col-md-12">
 							<section>
 								<form class="form inputs-underline">
-									<h3>Search in Answers  ${TotalFAQCount }</h3>
-									<a href="faq-write-form">글쓰기</a>
+									<h3>Search in Answers</h3>
 									<div class="form-group">
 										<input type="text" class="form-control" name="name" id="name"
 											placeholder="Enter your search">
@@ -84,12 +83,10 @@
 									<div class="box">
 									<form method="post" action="deleteFAQ">
 										<sec:csrfInput />
-										<h3>${l.faqTitle } ${l.userVO.userId }</h3>
+										<h3>${l.faqTitle }</h3>
 										<p>${l.faqContent }</p>
 										<input type="hidden" value="${l.faqId }" name="faqId">
-										<button class="btn btn-primary text-caps btn-framed">삭제</button>
 									</form>
-									<button class="btn btn-primary text-caps btn-framed" type="button" onclick="location.href='faq-update-form?faqId='+${l.faqId }">수정</button>
 									</div>
 								</div>
 								<!--end answer-->
