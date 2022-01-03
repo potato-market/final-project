@@ -29,6 +29,7 @@
 		<put-attribute name="title" value="{1}" />
 		<put-attribute name="main" value="/WEB-INF/views/{1}.jsp"/>
 	</definition>
+	
 	<!-- 
 			아래와 같이 하위 디렉토리 처리도 가능 
 			@RequestMapping("admin/main")
@@ -40,6 +41,7 @@
 		<put-attribute name="title" value="{2}" />
 		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
+	
  </tiles-definitions>   
  
  

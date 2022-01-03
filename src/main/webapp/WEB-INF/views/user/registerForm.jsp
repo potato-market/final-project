@@ -79,14 +79,11 @@
 							
 							<!-- 이메일 -->
 							<div class="form-group">
-								<input type="text" id="email_id" name="userEmail"
-									class="form-control" value="" placeholder="이메일" maxlength="18">
-								@ <input type="text" id="email_domain" name="email_domain"
-									class="form-control" value="" placeholder="이메일 도메인"
-									maxlength="18"> <select class="" id="emailSelect"
-									onchange="setEmailDomain(this.value)">
-									<option value="">-선택-</option>
-									<option value="1">직접입력</option>
+								<input type="text" id="email_id" name="userEmail" class="form-control" value="" placeholder="이메일" maxlength="18">
+								@ <input type="text" id="email_domain" name="email_domain" class="form-control" value="" placeholder="이메일 도메인" maxlength="18"> 
+							</div>
+								<select id="emailSelect" onchange="setEmailDomain(this.value)" >
+									<option value="">직접입력</option>
 									<option value="naver.com">naver.com</option>
 									<option value="gmail.com">gmail.com</option>
 									<option value="hanmail.net">hanmail.net</option>
@@ -95,7 +92,6 @@
 									<option value="nate.com">nate.com</option>
 									<option value="yahoo.com">yahoo.com</option>
 								</select>
-							</div>
 							<!-- /이메일 -->
 
 							<!--end form-group-->
@@ -134,7 +130,7 @@
 					</div>
 					<br>
 					<div style="text-align: center; font-size: 1.3rem;">
-						<a href="login">이미 계정이 있으신가요?</a>
+						<a href="/login_form">이미 계정이 있으신가요?</a>
 					</div>
 				</div>
 				<!--end col-md-6-->

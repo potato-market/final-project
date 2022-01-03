@@ -75,10 +75,20 @@ public class CommunityController {
 	@ResponseBody
 	public void deleteComment(int commentId) {
 		commentService.deleteComment(commentId);
+		/* return commentId; */
 	}
 	
-
+	@PostMapping("updateComment")
+	@ResponseBody
+	public String updateComment(CommentVO commentVO) {
+		commentService.updateComment(commentVO);
+		return "findCommentByCommentId";
+	}
 	
-	
+	@GetMapping("findCommentByCommentId")
+	@ResponseBody
+	public CommentVO findCommentByCommentId(int commentId) {
+		return commentService.findCommentByCommentId(commentId);
+	}
 	
 }

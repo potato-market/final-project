@@ -15,4 +15,6 @@ public interface CommentMapper {
 	CommentVO findCommentByCommentId(int commentId);
 
 	void deleteComment(int commentId);
+
+	void updateComment(CommentVO commentVO);
 }

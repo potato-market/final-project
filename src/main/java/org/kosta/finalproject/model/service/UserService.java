@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.finalproject.model.domain.Authority;
 import org.kosta.finalproject.model.domain.UserVO;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface UserService {
 
-  void registerUser(UserVO userVO);
+void registerUser(UserVO userVO);
 
 UserVO findUserById(String id);
 
@@ -39,5 +38,11 @@ void updateUploadSingleImage(UserVO userVO,HttpServletRequest request,
 
 int registerTelCheck(String userTel);
 
-	
+List<UserVO> findAdminUsers();
+
+UserVO findMemberUserById(String userId);
+
+void addAdmin(String userId);
+
+void deleteAdmin(String userName);	
 }
