@@ -2,6 +2,7 @@ package org.kosta.finalproject.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,15 +26,18 @@ public class ItemServiceImpl implements ItemService {
 	public int registerItem(ItemVO itemVO) {
 		int itemId=itemMapper.registerItem(itemVO);
 		System.out.println(itemId);
-		
 		System.out.println("registerServiceImpl");
 		return itemVO.getItemId();
 	}
 
 	@Override
 	public ItemVO selectItemByItemId(int itemId) {
-		 itemMapper.itemHitUpdate(itemId);
 		return itemMapper.selectItemByItemId(itemId);
+	}
+	
+	@Override
+	public void itemHitUpdate(int itemId) {
+		 itemMapper.itemHitUpdate(itemId);
 	}
 
 	@Override
@@ -46,6 +50,11 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.getAllItemList();
 	}
 
+	@Override
+	public List<ItemVO> getUserItemListByUserId(String userId, int itemId) {
+		return   itemMapper.getUserItemListByUserId(userId, itemId);
+	}
+	
 	@Override
 	public void deleteItem(int itemId) {
 		itemMapper.deleteItem(itemId);
@@ -109,14 +118,10 @@ public class ItemServiceImpl implements ItemService {
 		
 		
 	}
-	@Override
-	public List<ItemVO> selectItemByUserId(String userId) {
-		// TODO Auto-generated method stub
-		
-		return itemMapper.selectItemByUserId(userId);
-	}
 	
-
+	  @Override public List<ItemVO> selectItemByUserId(String userId) { return
+	  itemMapper.selectItemByUserId(userId); }
+	 
 
 	
 	@Override

@@ -42,7 +42,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 							<li class="breadcrumb-item"><a href="#">Pages</a></li>
-							<li class="breadcrumb-item active">Submit</li>
+							<li class="breadcrumb-item active">${itemDetail.categoryVO.categoryName}</li>
 						</ol>
 						<!--end breadcrumb-->
 					</div>
@@ -80,10 +80,13 @@
 									<div class="form-group">
 										<label for="submit-category" class="col-form-label">Category</label>
 										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId"  id="submit_category" data-placeholder="Select Category" required="required">
-											<option value="">Select Category</option>
+											<!-- <option value="">Select Category</option> -->
 												<c:forEach items="${categoryList}" var="category">
-												<option value="${category.categoryId}">${category.categoryName}</option>
-											</c:forEach>
+														<option value="${category.categoryId}">${category.categoryName}</option>
+												   <c:if test=" ${itemDetail.categoryVO.categoryId} eq ${category.categoryId} ">
+												  	  <option value="${itemDetail.categoryVO.categoryId}" selected>${itemDetail.categoryVO.categoryName}</option>
+												  </c:if>
+												</c:forEach>
 										</select>
 									</div>
 								</div>
@@ -129,7 +132,7 @@
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
 										<input name="itemTitle" type="text" class="form-control"
-											id="itemTitle" placeholder="Title" required="required"
+											id="itemTitle" placeholder="Title" maxlength="20"  required="required"
 											value="${itemDetail.itemTitle}">
 									</div>
 									<!--end form-group-->
@@ -143,7 +146,7 @@
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
 										<input name="itemPrice" type="text" class="form-control"
-											id="itemPrice" required="required"
+											id="itemPrice"  min="0" required="required"
 											value="${itemDetail.itemPrice}"> <span
 											class="input-group-addon">원</span>
 									</div>

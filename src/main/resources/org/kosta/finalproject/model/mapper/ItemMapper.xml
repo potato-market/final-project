@@ -6,9 +6,6 @@
 	<!-- 중고물품 등록하기 -->
 	<insert id="registerItem"
 		parameterType="org.kosta.finalproject.model.domain.ItemVO">
-		
-		
-		
 		insert into ITEM(USER_ID,CATEGORY_ID,ITEM_TITLE,ITEM_PRICE,ITEM_CONTENT)
 		values
 		(#{userVO.userId},#{categoryVO.categoryId},#{itemTitle},#{itemPrice},#{itemContent})
@@ -16,7 +13,6 @@
 		<selectKey  keyColumn="ITEM_ID" keyProperty="itemId" resultType="int" order="AFTER">  
        			 SELECT LAST_INSERT_ID()
     	 </selectKey>
-		
 	</insert>
 	
 	<!-- 중고물품 itemId로 검색하기 -->
@@ -64,6 +60,23 @@
 		AND
 		I.CATEGORY_ID = C.CATEGORY_ID
 		ORDER BY I.ITEM_CREATED_AT DESC
+	</select>
+	
+		 <!-- user의 item 목록 가지고오기-->
+	<select id="getUserItemListByUserId" resultMap="selectItemResultMap">
+		SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
+		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
+		FROM
+		ITEM I, USER U, CATEGORY C
+		WHERE
+		U.USER_ID = I.USER_ID
+		AND
+		I.CATEGORY_ID = C.CATEGORY_ID
+		AND 
+		I.USER_ID= #{userId}
+		AND
+		NOT I.ITEM_ID IN(#{itemId})
+		ORDER BY I.ITEM_CREATED_AT DESC LIMIT 3
 	</select>
 	
 	 <!-- 검색한 Category + ItemTitle + Location 목록 가지고오기-->
