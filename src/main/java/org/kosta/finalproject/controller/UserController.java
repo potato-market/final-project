@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class UserController {
@@ -46,8 +47,11 @@ public class UserController {
 	@PostMapping("guest/registerUser")
 	public String register(UserVO userVO, HttpServletRequest request, @RequestParam("user_image") MultipartFile imgfile)
 			throws IllegalStateException, IOException {
-		System.out.println(userVO);
-		String savedname = userService.uploadSingleImage(userVO, request, imgfile);
+//		System.out.println(imgfile.getSize());
+		String savedname=null;
+		if(imgfile.getSize()>1) {
+			savedname = userService.uploadSingleImage(userVO, request, imgfile);
+		}
 		userVO.setUserImage(savedname);
 		userService.registerUser(userVO);
 
@@ -120,7 +124,7 @@ public class UserController {
 
 	@PostMapping("profileUpdate")
 	public String profileUpdate(Authentication authentication, UserVO userVO, HttpServletRequest request,
-			@RequestParam("user_image") MultipartFile imgfile) throws IllegalStateException, IOException {
+			@RequestParam("update_user_image") MultipartFile imgfile) throws IllegalStateException, IOException {
 		// System.out.println(userVO);
 		UserVO uvo = (UserVO) authentication.getPrincipal(); // 현재 인증객체를 받아와 uvo 사용하기 위해 저장한다
 		// 사용자의 수정정보를 받아와 DB에 업데이트한다(tel,mail만수정<<후에 Password까지 변환시 service계층에서 암호화처리추가)
@@ -128,7 +132,8 @@ public class UserController {
 		uvo.setUserEmail(userVO.getUserEmail());
 		userService.updateUserPartPET(userVO);
 
-		if (!imgfile.isEmpty()) {
+		if (imgfile.getSize()>1) {
+//			System.out.println("img update");
 			userService.updateUploadSingleImage(userVO, request, imgfile);
 		}
 		// userService.updateUserPartPET(userVO);
@@ -154,7 +159,7 @@ public class UserController {
 		// 사용자의 수정정보를 받아와 DB에 업데이트한다(순수 수정>>후에 Password까지 변환시 service계층에서 암호화처리추가한다)
 		userService.profileAddressUpdate(userVO);
 		uvo.setUserAddress(userVO.getUserAddress());// 업데이트 된 정보를 현재 인증객체에 저장해준다!
-		System.out.println(userVO);
+//		System.out.println(userVO);
 		return "user/update_result";
 	}
 

@@ -17,10 +17,12 @@ public interface ItemMapper {
 	public void deleteItem(int itemId);
 	public void uploadMultiImage(ImageVO imageVO);
 	public List<ImageVO> findItemImageListByItemId(int itemId);
+	public ImageVO findItemImageVOByItemId(int itemId);
 	public void deleteImage(int imageId);	 
 	public List<ItemVO> selectItemByUserId(String userId);
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
 	public int itemHitUpdate(int itemId);
+	public List<ItemVO> getUserItemListByUserId(String userId, int itemId);
 }
 
 

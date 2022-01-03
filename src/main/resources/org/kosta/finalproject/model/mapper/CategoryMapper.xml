@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="org.kosta.finalproject.model.mapper.CategoryMapper">
+	
+	<select id="findCategory" resultMap="result">
+		SELECT * FROM CATEGORY;
+	</select>
+ 
+	<update id="updateCategory" parameterType="org.kosta.finalproject.model.domain.CategoryVO">
+		UPDATE CATEGORY SET CATEGORY_NAME=#{categoryName} WHERE CATEGORY_ID=#{categoryId}
+	</update>
+	
+	<delete id="deleteCategory" parameterType="int">
+	DELETE FROM CATEGORY WHERE CATEGORY_ID=#{categoryId}
+	</delete>
+	
+	<resultMap type="org.kosta.finalproject.model.domain.CategoryVO" id="result">
+      <id property="categoryId" column="CATEGORY_ID"/>
+      <result property="categoryName" column="CATEGORY_NAME"/>
+   </resultMap> 
+	
+</mapper>

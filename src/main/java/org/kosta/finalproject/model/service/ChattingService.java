@@ -12,8 +12,12 @@ public interface ChattingService {
 	Long createChatRoom(int itemId,String userId,String sellerId);
 	Map<String, List<ChatMessage>> findListByUserId(int itemId,String userId);
 	List<ChatMessage> chatSort(List<ChatMessage> chatmessagelist);
-	ChatRoomVO findItemIdByChatRoomId(Long chatRoomId); 
+	ChatRoomVO findChatRoomVOIdByChatRoomId(Long chatRoomId); 
 	Map<String, List<ChatMessage>> findListByUserIdHeader(String userId);
 	int getChatCount(int itemId);
+	ChatRoomVO findChatRoomVOBySellerIdAndItemId(int itemId,String sellerId);
+	ChatRoomVO findChatRoomVOByUserIdAndItemId(int itemId, String userId);
+	
+	
 	 
 }

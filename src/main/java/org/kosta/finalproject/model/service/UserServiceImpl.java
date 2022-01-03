@@ -115,18 +115,19 @@ public class UserServiceImpl implements UserService {
 	public String uploadSingleImage(UserVO userVO, HttpServletRequest request, MultipartFile imgfile) throws IllegalStateException, IOException {
 		// TODO Auto-generated method stub
 		 
-		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+//		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+		String filepath="E:/projectjava/potato_market/final-project/src/main/resources/static/assets/upload/";
+		 
 		//File OriginName
 		String originName=imgfile.getOriginalFilename();
 		//File extension
 		String fileExtension= originName.substring(originName.lastIndexOf("."));
 		//saved file Name
 		String savedname=UUID.randomUUID()+fileExtension;
-		System.out.println(savedname);
-		System.out.println(filepath);
+//		System.out.println(savedname);	
 		//file Object Create
 		File file = new File(filepath+savedname);
-		System.out.println("filePath ->"+file.getPath());
+//		System.out.println("filePath ->"+file.getPath());
 		
 		// save file
 		imgfile.transferTo(file); 
@@ -140,28 +141,24 @@ public class UserServiceImpl implements UserService {
 		DataFlow : Service ->DB Update set
 	*/
 	@Override
-	public void updateUploadSingleImage(UserVO userVO, HttpServletRequest request, MultipartFile imgfile)
+	public void updateUploadSingleImage(UserVO userVO,HttpServletRequest request, MultipartFile imgfile)
 			throws IllegalStateException, IOException {
 		// TODO Auto-generated method stub
-		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+//		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+		String filepath="E:/projectjava/potato_market/final-project/src/main/resources/static/assets/upload/";
 		//File OriginName
 		String originName=imgfile.getOriginalFilename();
 		//File extension
 		String fileExtension= originName.substring(originName.lastIndexOf("."));
 		//saved file Name
 		String savedname=UUID.randomUUID()+fileExtension;
-		System.out.println(savedname);
-		System.out.println(filepath);
 		//file Object Create
 		File file = new File(filepath+savedname);
-		System.out.println("filePath ->"+file.getPath());
+//		System.out.println("filePath ->"+file.getPath());
 		
 		// save file
 		imgfile.transferTo(file);
-		
-		//check value
-		System.out.println("ServiceImpl value check:"+userVO);
-		
+		userVO.setUserImage(savedname);
 		//Transfer to Database
 		userMapper.updateUserImage(userVO);
 		 

@@ -24,7 +24,7 @@ const colors = [
 function connect(event) {
 
 	username = document.querySelector('#name').value.trim();
-	alert(username);
+	//alert(username);
 	if (username) {
 		
 
@@ -41,7 +41,7 @@ function onConnected() {
 	// Subscribe to the Public Topic
 	stompClient.subscribe('/topic/public/' + chatRoomId + '/', onMessageReceived);
 	//stompClient.subscribe('/topic/public/', onMessageReceived);
-	stompClient.subscr
+	//stompClient.subscr
 	console.log(chatRoomId + "11");
 	// Tell your username to the server
 	stompClient.send('/app/chat.send.' + chatRoomId,
@@ -127,7 +127,8 @@ function getAvatarColor(messageSender) {
 }
 
 window.onload = () => {
-	alert("onload work on"); document.querySelector('#userFormAutoClick').click();
+	//alert("onload work on"); 
+	document.querySelector('#userFormAutoClick').click();
 
 
 }

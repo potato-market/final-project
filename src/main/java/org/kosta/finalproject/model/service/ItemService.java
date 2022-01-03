@@ -20,8 +20,11 @@ public interface ItemService {
 	public void uploadMultiImage(ItemVO itemVO,MultipartHttpServletRequest request,
 	MultipartFile[] imgfile) throws IllegalStateException, IOException;
 	public List<ImageVO> findItemImageListByItemId(int itemId);
+	public ImageVO findItemImageVOByItemId(int itemId);
 	public void delCheckedImg(List<Integer> list);
 	List<ItemVO> selectItemByUserId(String userId);
 	public List<CategoryVO> getAllCategoryList();
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
+	public void itemHitUpdate(int itemId);
+	public List<ItemVO> getUserItemListByUserId(String userId,int itemId);
 }

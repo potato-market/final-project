@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.kosta.finalproject.model.domain.Authority;
 import org.kosta.finalproject.model.domain.UserVO;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface UserService {
 

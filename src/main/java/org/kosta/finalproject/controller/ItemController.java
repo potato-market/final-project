@@ -1,8 +1,12 @@
 package org.kosta.finalproject.controller;
 
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.kosta.finalproject.model.domain.CategoryVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ChattingService;
@@ -42,11 +46,7 @@ public class ItemController {
 	// 중고물품 게시물 등록하기
 	@PostMapping("registerItem")
 	public String registerItem(ItemVO itemVO,MultipartHttpServletRequest request, @RequestParam(value="item_Images",required=false) @Nullable
-			MultipartFile[] imgfile) throws IllegalStateException, IOException {
-	
-		
-			
-		 
+		  MultipartFile[] imgfile) throws IllegalStateException, IOException {
 		  int itemId= itemService.registerItem(itemVO);
 		  itemVO.setItemId(itemId);
 		  System.out.println("register"+itemId);
@@ -59,10 +59,22 @@ public class ItemController {
 
 	// 중고물품 게시물 ItemId로 검색하기 -- 게시물 상세보기 페이지
 	@GetMapping("selectItemByItemId")
-	public String selectItemByItemId(int itemId, Model model) {
-		 
+	public String selectItemByItemId(int itemId, String userId, Model model , HttpSession session) {
+		System.out.println("상세보기페이지 controller : " +userId);
+		List<ItemVO> userItemList  = itemService.getUserItemListByUserId(userId , itemId);
+		System.out.println(userItemList.size());
+		  @SuppressWarnings("unchecked")
+		  ArrayList<Integer> noList =  (ArrayList<Integer>) session.getAttribute("noList");
+		  // HomeController의  home메서드를 확인 
+		  if (noList.contains(itemId) == false) {
+			 // noList에 존재하지 않는 글이면 조회수 증가 
+		  itemService.itemHitUpdate(itemId);
+		  noList.add(itemId);
+		  // 읽은 글번호를noList에 추가한다 
+		  }
 		model.addAttribute("crnum", chattingService.getChatCount(itemId));
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
+		model.addAttribute("userItemList",userItemList);
 		model.addAttribute("imageList",itemService.findItemImageListByItemId(itemId));
 		return "item/item-detail.tiles";
 	}
@@ -86,8 +98,6 @@ public class ItemController {
 			,MultipartHttpServletRequest request, @RequestParam(value="item_Images",required=false) @Nullable
 	MultipartFile[] imgfile) throws IllegalStateException, IOException
 	  {
-		
-		
 		if(!list.isEmpty())
 			itemService.delCheckedImg(list);
 		System.out.println("image 삭제");
@@ -99,8 +109,8 @@ public class ItemController {
 		if(imgfile[0].getSize()>0)itemService.uploadMultiImage(itemVO,request,imgfile);
 		
 		System.out.println("image 등록");
-		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemVO.getItemId()));
-		return "item/item-detail.tiles";
+		//model.addAttribute("itemDetail", itemService.selectItemByItemId(itemVO.getItemId()));
+		return "redirect:main";
 	}
   
 	//중고물품 게시물 삭제하기

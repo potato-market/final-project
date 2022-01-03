@@ -9,10 +9,24 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+ 
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="ThemeStarz">
+<meta name="viewport" content="width-device-width, initial-scale=1">
+<style>
+  df-messenger {
+   --df-messenger-bot-message: #878fac;
+   --df-messenger-button-titlebar-color: #df9b56;
+   --df-messenger-chat-background-color: #fafafa;
+   --df-messenger-font-color: white;
+   --df-messenger-send-icon: #878fac;
+   --df-messenger-user-message: #479b3d;
+  }
+</style>
+
 
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Varela+Round"
@@ -231,13 +245,13 @@
                               <h3>
                                  <a href="#" class="tag category">${itemList.categoryVO.categoryName}</a>
                                  <!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
-                                       <a href="selectItemByItemId?itemId=${itemList.itemId}"
-                                          class="title"> ${itemList.itemTitle}
+                                       <a href="selectItemByItemId?itemId=${itemList.itemId}&userId=${itemList.userVO.userId}"
+                                          class="title"> ${fn:substring(itemList.itemTitle,0,12) }
                                            <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
                                        </a>
                                     </h3>
                               <!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
-                              <a href="selectItemByItemId?itemId=${itemList.itemId}"
+                              <a href="selectItemByItemId?itemId=${itemList.itemId}&userId=${itemList.userVO.userId}"
                                  class="image-wrapper background-image"> <img
 											src="assets/upload/${imageList[status.index].imageName}"
 											alt="">
@@ -261,6 +275,7 @@
                               <figure>
                                  <a href="chatForm?userId=${userId}&selleId=${itemList.userVO.userId}&itemId=${itemList.itemId}"> <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
                                  </a>
+   
                               </figure>
                               </c:when>
                               <c:when test="${userId eq itemList.userVO.userId}">
@@ -283,8 +298,9 @@
                찾으시는 상품이 없습니다.
                </c:otherwise>
                </c:choose>
+				  
+ 	 
 				 
-					 	<%-- <c:choose>
 					 	<c:when test="${not empty itemList}">
 		
 						<c:forEach items="${itemList}" var="itemList" varStatus="status">
@@ -361,5 +377,16 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="PotatoAI"
+  agent-id="c3277a2b-ecf7-497e-8f01-a65947bc1223"
+  language-code="ko"
+></df-messenger>
+	
+
+
+
 </body>
 </html>

@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <sec:authentication property="principal.userId" var="userId" />
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -51,7 +52,7 @@
 				<div class="page-title">
 					<div class="container clearfix">
 						<div class="float-left float-xs-none">
-							<h1>${itemDetail.itemTitle}</h1>
+							<h1> <!-- &nbsp&nbsp  -->${itemDetail.itemTitle}</h1>
 						</div>
 						<div class="float-right float-xs-none price">
 							<div class="number">${itemDetail.itemPrice}원</div>
@@ -87,7 +88,7 @@
 									 
 										<div class="gallery-carousel-thumbs owl-carousel">
 									<c:forEach var="kwon" items="${imageList }" varStatus="status">
-										<a href="#"+"${status.index }"
+										<a href="#"+"${status.index}"
 											class="owl-thumb active-thumb background-image"> <img
 										src="assets/upload/${kwon.imageName}" alt="">
 									</a>
@@ -172,107 +173,54 @@
 						<div class="col-md-3">
 							<aside class="sidebar">
 								<section>
-									<h2>감자마켓 인기 중고</h2>
+									<h2>판매자님 최신 중고상품</h2>
 									<div class="items compact">
+<%-- 									  <c:choose>
+                  						<c:when test="${not empty itemList}"> --%>
+										<c:forEach items="${userItemList}" var="userItemList"
+										varStatus="status">
 										<div class="item">
-											<div class="ribbon-featured">Featured</div>
+											<div class="ribbon-featured">${userItemList.itemStatus}</div>
 											<!--end ribbon-->
 											<div class="wrapper">
 												<div class="image">
 													<h3>
-														<a href="#" class="tag category">Home & Decor</a> <a
-															href="single-listing-1.html" class="title">Furniture
-															for sale</a>
+														<a href="#" class="tag category">${userItemList.categoryVO.categoryName}</a> 
+														<!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
+														<a
+															href="selectItemByItemId?itemId=${userItemList.itemId}&userId=${userItemList.userVO.userId}"
+															class="title"> ${userItemList.itemTitle} <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
+														</a>
 													</h3>
-													<a href="single-listing-1.html"
+													<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
+													<a
+														href="selectItemByItemId?itemId=${userItemList.itemId}&userId=${userItemList.userVO.userId}"
 														class="image-wrapper background-image"> <img
-														src="assets/img/image-01.jpg" alt="">
+														src="assets/upload/${imageList[status.index].imageName}"
+														alt="">
 													</a>
 												</div>
 												<!--end image-->
 												<h4 class="location">
-													<a href="#">Manhattan, NY</a>
+													<a href="#">${userItemList.userVO.userAddress}</a>
 												</h4>
-												<div class="price">$80</div>
+												<div class="price">${userItemList.itemPrice}원</div>
 												<div class="meta">
 													<figure>
-														<i class="fa fa-calendar-o"></i>02.05.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Jane Doe
-														</a>
+													<div>조회수 ${userItemList.itemHit}회</div>
 													</figure>
 												</div>
 												<!--end meta-->
 											</div>
-											<!--end wrapper-->
+											<!-- <div class="wrapper"> -->
 										</div>
-										<!--end item-->
-
-										<div class="item">
-											<div class="wrapper">
-												<div class="image">
-													<h3>
-														<a href="#" class="tag category">Education</a> <a
-															href="single-listing-1.html" class="title">Creative
-															Course</a>
-													</h3>
-													<a href="single-listing-1.html"
-														class="image-wrapper background-image"> <img
-														src="assets/img/image-02.jpg" alt="">
-													</a>
-												</div>
-												<!--end image-->
-												<h4 class="location">
-													<a href="#">Nashville, TN</a>
-												</h4>
-												<div class="price">$125</div>
-												<div class="meta">
-													<figure>
-														<i class="fa fa-calendar-o"></i>28.04.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Peter Browner
-														</a>
-													</figure>
-												</div>
-												<!--end meta-->
-											</div>
-											<!--end wrapper-->
-										</div>
-										<!--end item-->
-
-										<div class="item">
-											<div class="wrapper">
-												<div class="image">
-													<h3>
-														<a href="#" class="tag category">Adventure</a> <a
-															href="single-listing-1.html" class="title">Into The
-															Wild</a>
-													</h3>
-													<a href="single-listing-1.html"
-														class="image-wrapper background-image"> <img
-														src="assets/img/image-03.jpg" alt="">
-													</a>
-												</div>
-												<!--end image-->
-												<h4 class="location">
-													<a href="#">Seattle, WA</a>
-												</h4>
-												<div class="price">$1,560</div>
-												<div class="meta">
-													<figure>
-														<i class="fa fa-calendar-o"></i>21.04.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Peak Agency
-														</a>
-													</figure>
-												</div>
-												<!--end meta-->
-											</div>
-										</div>
-										<!--end item-->
+										<!-- <div class="item"> -->
+									</c:forEach>
+<%-- 				               </c:when>
+				               <c:otherwise>
+			               판매자님의 다른 상품 리스트는 없습니다.
+				               </c:otherwise>
+				               </c:choose>	 --%>								
 									</div>
 								</section>
 							</aside>
