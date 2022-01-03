@@ -145,11 +145,6 @@ public class UserController {
 		return "user/update_result";
 	}
 
-	@RequestMapping("adminHome")
-	@Secured("ROLE_ADMIN")
-	public String adminHome() {
-		return "admin/adminHome";
-	}
 
 	// 회원정보수정 - 현재위치를 받아와서 수정할 수 있도록 한다
 	@PostMapping("profileAddressUpdate")
