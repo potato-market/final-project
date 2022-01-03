@@ -34,9 +34,9 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public List<ChatMessage> findByChatRoomId(long chatRoomId) {
 		// TODO Auto-generated method stub		
-		System.out.println("Error check"+chatRoomId);
+//		System.out.println("Error check"+chatRoomId);
 		list = cmr.findByChatRoomId(chatRoomId);
-		System.out.println("chatRoomId 로 채팅 정보가져오기 성공");
+//		System.out.println("chatRoomId 로 채팅 정보가져오기 성공");
 //		for(int i=0;i<list.size();i++)System.out.println(list.get(i).toString());
 		return list;
 	}
@@ -44,29 +44,34 @@ public class ChattingServiceImpl implements ChattingService{
 	public Long createChatRoom(int itemId,String userId,String sellerId) {
 		//중복 체크 진행
  
-		System.out.println("c	cvo=(ChatRoomVO) reateChatRoom"+itemId+userId);
-		Long chatRoomId;
-		if(crp.findByUserIdAndItemId(userId, itemId).isEmpty()) {
-			System.out.println("중복결과 없음");
+//		System.out.println("c	cvo=(ChatRoomVO) reateChatRoom"+itemId+userId);
+		Long chatRoomId=null;
+		System.out.println("method createChatRoom running");
+		if(crp.findByUserIdOrSellerIdAndItemId(userId, userId, itemId)==null) {
+			
+//			System.out.println("중복결과 없음");
 			//중복 확인 결과 비어있음
 //			public ChatRoomVO(long chatRoomId, String userId, String sellerId, int itemId) {
-			
+			System.out.println("createRoom start");
+			System.out.println(crp.findByUserIdOrSellerIdAndItemId(userId, sellerId, itemId));
 			cvo=new ChatRoomVO(sequence.getNextSequenceId("hosting"),userId,sellerId, itemId);
-			System.out.println("시콴스 실행");
+//			System.out.println("시콴스 실행");
 //			sequenceDAO.getNextSequenceId("hosting");
 			
-			System.out.println("시콴스 저장완료");
+//			System.out.println("시콴스 저장완료");
 			//cvo insert 시퀀스 자동생성
 			crp.insert(cvo);
 			chatRoomId=cvo.getChatRoomId();
 			
-			System.out.println("sequence ChatRoomId"+cvo.getChatRoomId());
+//			System.out.println("sequence ChatRoomId"+cvo.getChatRoomId());
 			
 		}else {
-			//result_message="이미 중복된 아이디가 있음" 
-			System.out.println("중복된 아이디가 있음");
-			List<ChatRoomVO> crlist=crp.findByUserIdAndItemId(userId, itemId);
-			chatRoomId=crlist.get(0).getChatRoomId();
+			//result_message="이미 중복된 채팅방 있음" 
+//			System.out.println("중복된 채팅방 있음");
+			//userId와 sellerId가 같은경우 발생 판매자의 경우 메세지 센더의 아이디를 가져와야함
+			
+			chatRoomId=crp.findByUserIdOrSellerIdAndItemId(userId, userId, itemId).getChatRoomId();
+			System.out.println(chatRoomId);
 			
 		
 		}
@@ -75,13 +80,11 @@ public class ChattingServiceImpl implements ChattingService{
 	}
 	
 	public Map<String, List<ChatMessage>> findListByUserId(int itemId,String userId){
-		System.out.println("findListByUserId");	
-		
-		
-		
-		//ChatRoomId 조회
-		List <ChatRoomVO> crlist = crp.findByUserIdOrItemId(userId, itemId);
-//		System.out.println("시발"+crlist);
+//		System.out.println("findListByUserId");	
+		//ChatRoomId 조회 userId와 itemId  AND 조회
+//		 crp.findByUserIdOrItemId(userId, itemId); --> error 원인 userId일 경우에만 불러옴 그러므로 sellerId일때 값 줄어들음
+		List <ChatRoomVO> crlist = crp.findChatRoomByUserIdHeader(userId,userId);
+		System.out.println("시발"+crlist);
 		Map <String,List<ChatMessage>> map = new HashMap<String,List<ChatMessage>>();
 		
 		LocalDateTime now = LocalDateTime.now();
@@ -94,8 +97,8 @@ public class ChattingServiceImpl implements ChattingService{
 			System.out.println(crlist.get(i).toString());
 			chatRoomId=crlist.get(i).getChatRoomId();
 //			map.put(chatRoomId, cmr.findByChatRoomId(chatRoomId));
-			System.out.println(chatRoomId);
-			System.out.println(cmr.findByChatRoomId(chatRoomId));
+//			System.out.println(chatRoomId);
+//			System.out.println(cmr.findByChatRoomId(chatRoomId));
 			if(cmr.findByChatRoomId(chatRoomId).isEmpty()) {
 //			비어있으면 //map.put(Long.toString(chatRoomId), cmr.findByChatRoomId(chatRoomId));
 					cmr.insert(new ChatMessage(chatRoomId, " ",formatedNow));
@@ -103,7 +106,7 @@ public class ChattingServiceImpl implements ChattingService{
 			map.put(Long.toString(chatRoomId), cmr.findByChatRoomId(chatRoomId));
 			
 		}
-		System.out.println("출력"+map);
+//		System.out.println("출력"+map);
 				
 		
 		return map;
@@ -124,7 +127,7 @@ public class ChattingServiceImpl implements ChattingService{
 				if(sf.parse(chatmessagelist.get(i).getUpdateAt()).after(sf.parse(chatmessagelist.get(j).getUpdateAt()))) 
 				{
 					Collections.swap(chatmessagelist, i, j);
-					System.out.println("순서 정렬");
+//					System.out.println("순서 정렬");
 				}
 			}
 		}
@@ -139,32 +142,30 @@ public class ChattingServiceImpl implements ChattingService{
 	}
 
 	@Override
-	public ChatRoomVO findItemIdByChatRoomId(Long chatRoomId) {
+	public ChatRoomVO findChatRoomVOIdByChatRoomId(Long chatRoomId) {
 		// TODO Auto-generated method stub
-		
-		
-		return crp.findItemIdByChatRoomId(chatRoomId);
+		return crp.findChatRoomVOIdByChatRoomId(chatRoomId);
 	}
 	
 	//item Id로 챗룸 아이디 를 갖고옴
 	@Override
 	public Map<String, List<ChatMessage>> findListByUserIdHeader(String userId){
-		System.out.println("findListByUserId");	
-		//ChatRoomId 조회
+//		System.out.println("findListByUserId");	
+		//ChatRoomId 조회 userId 와 sellerId 둘중 하나만 있어도 출력 
 		List <ChatRoomVO> crlist = crp.findChatRoomByUserIdHeader(userId, userId);
-		System.out.println("시발"+crlist);
+		System.out.println("시발 여기서 sellid userId 바꿔"+crlist);
 		Map <String,List<ChatMessage>> map = new HashMap<String,List<ChatMessage>>();
 //		Map <Long,ChatMessage> map = new HashMap<Long,ChatMessage>();
 		long chatRoomId;
 		//ChatMessage Content
 		for(int i=0;i<crlist.size();i++) {
-			System.out.println(crlist.get(i).toString());
+//			System.out.println(crlist.get(i).toString());
 			chatRoomId=crlist.get(i).getChatRoomId();
 //			map.put(chatRoomId, cmr.findByChatRoomId(chatRoomId));
-			System.out.println(chatRoomId);
-			System.out.println(cmr.findByChatRoomId(chatRoomId));
-			 
+//			System.out.println(chatRoomId);
+//			System.out.println(cmr.findByChatRoomId(chatRoomId));
 			map.put(Long.toString(chatRoomId), cmr.findByChatRoomId(chatRoomId));
+//			map.put(chatRoomId, cmr.findByChatRoomId(chatRoomId));
 			
 		}
 		System.out.println("출력"+map);
@@ -178,6 +179,18 @@ public class ChattingServiceImpl implements ChattingService{
 		// TODO Auto-generated method stub
 		int crnum=crp.findChatCount(itemId).size();
 		return crnum;
+	}
+
+	@Override
+	public ChatRoomVO findChatRoomVOBySellerIdAndItemId(int itemId, String sellerId) {
+		// TODO Auto-generated method stub
+		return crp.findChatRoomVOByItemIdAndSellerId(itemId,sellerId);
+	}
+
+	@Override
+	public ChatRoomVO findChatRoomVOByUserIdAndItemId(int itemId, String userId) {
+		// TODO Auto-generated method stub
+		return crp.findChatRoomVOByItemIdAndUserId(itemId,userId);
 	}
 
 	

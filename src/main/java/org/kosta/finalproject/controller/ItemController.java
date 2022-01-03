@@ -63,6 +63,7 @@ public class ItemController {
 		 
 		model.addAttribute("crnum", chattingService.getChatCount(itemId));
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
+		System.out.println(itemService.selectItemByItemId(itemId).getUserVO());
 		model.addAttribute("imageList",itemService.findItemImageListByItemId(itemId));
 		return "item/item-detail.tiles";
 	}
