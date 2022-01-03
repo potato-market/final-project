@@ -4,7 +4,7 @@
 	namespace="org.kosta.finalproject.model.mapper.CommunityMapper">
 	
 	<select id="getAllCommunityList" resultMap="AllCommunityList">
-		SELECT C.COMMUNITY_ID, U.USER_ID, U.USER_ADDRESS, C.COMMUNITY_CONTENT 
+		SELECT C.COMMUNITY_ID, U.USER_ID,U.USER_IMAGE,U.USER_IMAGE, U.USER_ADDRESS, C.COMMUNITY_CONTENT 
 		FROM COMMUNITY C, USER U
 		WHERE C.USER_ID=U.USER_ID
 		ORDER BY COMMUNITY_ID DESC;
@@ -14,11 +14,12 @@
 		<id property="communityId" column="COMMUNITY_ID"/>
 		<association property="userVO" javaType="UserVO" autoMapping="true">
 			<id property="userId" column="USER_ID"/>
+			<id property="userImage" column="USER_IMAGE" />
 		</association> 
 	</resultMap>
 	
 	<select id="getCommunityById" parameterType="int" resultMap="AllCommunityList">
-		SELECT C.COMMUNITY_ID,C.COMMUNITY_CONTENT, U.USER_ID,U.USER_ADDRESS
+		SELECT C.COMMUNITY_ID,C.COMMUNITY_CONTENT,U.USER_IMAGE, U.USER_ID,U.USER_ADDRESS
 		FROM COMMUNITY C, USER U
 		WHERE C.USER_ID=U.USER_ID
 		AND
