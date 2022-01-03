@@ -9,6 +9,7 @@ import org.kosta.finalproject.model.domain.Authority;
 import org.kosta.finalproject.model.domain.UserVO;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface UserService {
 

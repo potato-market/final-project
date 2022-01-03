@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="org.kosta.finalproject.model.mapper.ItemMapper">
-	
+
 	<!-- 중고물품 등록하기 -->
 	<insert id="registerItem"
 		parameterType="org.kosta.finalproject.model.domain.ItemVO">
@@ -14,52 +14,60 @@
        			 SELECT LAST_INSERT_ID()
     	 </selectKey>
 	</insert>
-	
+
 	<!-- 중고물품 itemId로 검색하기 -->
-		<resultMap id="selectItemResultMap" type="ItemVO">
-		<id column="ITEM_ID" 					property="itemId" />
-		<result column="ITEM_TITLE" 		property="itemTitle" />
-		<result column="ITEM_PRICE" 			property="itemPrice" />
-		<result column="ITEM_HIT" 			property="itemHit" />
-		<result column="ITEM_CONTENT"		 property="itemContent" />
-		<result column="ITEM_STATUS" 		property="itemStatus" />
-		<result column="ITEM_CREATED_AT"			property="itemCreatedAt" />
+	<resultMap id="selectItemResultMap" type="ItemVO">
+		<id column="ITEM_ID" property="itemId" />
+		<result column="ITEM_TITLE" property="itemTitle" />
+		<result column="ITEM_PRICE" property="itemPrice" />
+		<result column="ITEM_HIT" property="itemHit" />
+		<result column="ITEM_CONTENT" property="itemContent" />
+		<result column="ITEM_STATUS" property="itemStatus" />
+		<result column="ITEM_CREATED_AT" property="itemCreatedAt" />
 		<collection property="userVO" ofType="UserVO">
 			<id property="userId" column="USER_ID" />
 			<result property="userAddress" column="USER_ADDRESS" />
 			<result property="userTel" column="USER_TEL" />
 			<result property="userImage" column="USER_IMAGE" />
 		</collection>
-			<collection property="categoryVO" ofType="CategoryVO">
+		<collection property="categoryVO" ofType="CategoryVO">
 			<id property="categoryId" column="CATEGORY_ID" />
 			<result property="categoryName" column="CATEGORY_NAME" />
 		</collection>
 	</resultMap>
-	<select id="selectItemByItemId" parameterType="int" resultMap="selectItemResultMap">
+	<select id="selectItemByItemId" parameterType="int"
+		resultMap="selectItemResultMap">
 		SELECT
-		I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT,
-		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS , U.USER_ID,U.USER_TEL, U.USER_IMAGE,C.CATEGORY_NAME
+		I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT,
+		I.ITEM_CREATED_AT,
+		I.ITEM_HIT,I.ITEM_STATUS, U.USER_ADDRESS ,
+		U.USER_ID,U.USER_TEL, U.USER_IMAGE,C.CATEGORY_NAME
 		FROM
-		ITEM I, USER U, CATEGORY C
+		ITEM I, USER U,
+		CATEGORY C
 		WHERE
 		U.USER_ID = I.USER_ID
 		AND
 		I.CATEGORY_ID = C.CATEGORY_ID
-		AND 
+		AND
 		I.ITEM_ID= #{itemId}
 	</select>
-	
-	 <!-- item 목록 가지고오기-->
+
+	<!-- item 목록 가지고오기 -->
 	<select id="getAllItemList" resultMap="selectItemResultMap">
-		SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
-		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
+		SELECT I.ITEM_ID,
+		I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT,
+		U.USER_ADDRESS, I.CATEGORY_ID,
+		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID ,
+		U.USER_TEL, C.CATEGORY_NAME
 		FROM
 		ITEM I, USER U, CATEGORY C
 		WHERE
 		U.USER_ID = I.USER_ID
 		AND
 		I.CATEGORY_ID = C.CATEGORY_ID
-		ORDER BY I.ITEM_CREATED_AT DESC
+		ORDER BY
+		I.ITEM_CREATED_AT DESC
 	</select>
 	
 		 <!-- user의 item 목록 가지고오기-->
@@ -86,63 +94,70 @@
 		FROM
 		ITEM I, USER U, CATEGORY C
 		WHERE
-		I.USER_ID = U.USER_ID 
+		I.USER_ID =
+		U.USER_ID
 		AND
 		I.CATEGORY_ID = C.CATEGORY_ID
-	    AND
+		AND
 		I.ITEM_TITLE LIKE CONCAT('%', #{itemTitle},'%')
-	   AND
-       I.CATEGORY_ID = #{categoryVO.categoryId}
-        AND
-       U.USER_ADDRESS = #{userVO.userAddress}
-	   ORDER BY I.ITEM_CREATED_AT DESC
-	</select> 
-	
+		AND
+		I.CATEGORY_ID = #{categoryVO.categoryId}
+		AND
+		U.USER_ADDRESS = #{userVO.userAddress}
+		ORDER BY I.ITEM_CREATED_AT DESC
+	</select>
+
 	<!-- 중고물품 수정하기 -->
 	<update id="updateItem"
 		parameterType="org.kosta.finalproject.model.domain.ItemVO">
-		UPDATE ITEM I, USER U, CATEGORY C set I.CATEGORY_ID = #{categoryVO.categoryId}, I.ITEM_STATUS = #{itemStatus},I.ITEM_TITLE = #{itemTitle}, 
+		UPDATE ITEM I, USER U, CATEGORY C set I.CATEGORY_ID =
+		#{categoryVO.categoryId}, I.ITEM_STATUS = #{itemStatus},I.ITEM_TITLE =
+		#{itemTitle},
 		I.ITEM_PRICE = #{itemPrice}, I.ITEM_CONTENT = #{itemContent}
 		WHERE
-		U.USER_ID = I.USER_ID
+		U.USER_ID =
+		I.USER_ID
 		AND
 		I.CATEGORY_ID = C.CATEGORY_ID
-		AND 
+		AND
 		I.ITEM_ID= #{itemId}
-	  </update>
+	</update>
 
 
-		<!-- 중고물품 삭제하기 -->
-    <delete id="deleteItem" parameterType="int">
-    	DELETE FROM ITEM 
-    	WHERE  
+	<!-- 중고물품 삭제하기 -->
+	<delete id="deleteItem" parameterType="int">
+		DELETE FROM ITEM
+		WHERE
 		ITEM_ID= #{itemId}
- 	</delete>
- 	
- 	
-	<insert id="uploadMultiImage" parameterType="org.kosta.finalproject.model.domain.ImageVO">
+	</delete>
+
+
+	<insert id="uploadMultiImage"
+		parameterType="org.kosta.finalproject.model.domain.ImageVO">
 		insert into IMAGE(ITEM_ID,IMAGE_NAME) VALUES(
-			#{itemId},#{imageName}
+		#{itemId},#{imageName}
 		)
-		
-	
+
+
 	</insert>
-	
-	<select id="findItemImageListByItemId" resultType="org.kosta.finalproject.model.domain.ImageVO">
-		SELECT * 
+
+	<select id="findItemImageListByItemId"
+		resultType="org.kosta.finalproject.model.domain.ImageVO">
+		SELECT *
 		FROM IMAGE
 		WHERE ITEM_ID=#{itemId}
-		
+
 	</select>
-	
-	 <delete id="deleteImage" parameterType="int">
-    	DELETE FROM IMAGE 
-    	WHERE  
+
+	<delete id="deleteImage" parameterType="int">
+		DELETE FROM IMAGE
+		WHERE
 		IMAGE_ID= #{imageId}
- 	</delete>
- 	
- 	<!--  chatting 용 -->
- 	<select id="selectItemByUserId" parameterType="String" resultMap="selectItemResultMap">
+	</delete>
+
+	<!-- chatting 용 -->
+	<select id="selectItemByUserId" parameterType="String"
+		resultMap="selectItemResultMap">
 		SELECT
 		I.ITEM_ID,U.USER_ADDRESS , U.USER_ID
 		FROM
@@ -150,26 +165,35 @@
 		WHERE
 		U.USER_ID = I.USER_ID
 		AND
-		I.USER_ID= #{userId} 
+		I.USER_ID= #{userId}
 	</select>
-	
- 	     <!-- 카테고리 목록 가지고오기-->
-	<resultMap id="selectCategoryResultMap" type="org.kosta.finalproject.model.domain.CategoryVO">
-		<id column="CATEGORY_ID"              property="categoryId" />
-		<result column="CATEGORY_NAME"  property="categoryName" />
-	</resultMap>   
-	<select id="getAllCategoryList" resultMap="selectCategoryResultMap" >
-		SELECT CATEGORY_ID , CATEGORY_NAME FROM CATEGORY
+
+	<!-- 카테고리 목록 가지고오기 -->
+	<resultMap id="selectCategoryResultMap"
+		type="org.kosta.finalproject.model.domain.CategoryVO">
+		<id column="CATEGORY_ID" property="categoryId" />
+		<result column="CATEGORY_NAME" property="categoryName" />
+	</resultMap>
+	<select id="getAllCategoryList"
+		resultMap="selectCategoryResultMap">
+		SELECT CATEGORY_ID , CATEGORY_NAME
+		FROM CATEGORY
 	</select>
-	
-	 <!-- 조회수 증가시키기 -->
-   <update id="itemHitUpdate" parameterType="int" >
- 		UPDATE ITEM
- 		SET 
- 		ITEM_HIT = ITEM_HIT+1
- 		WHERE 
+
+	<!-- 조회수 증가시키기 -->
+	<update id="itemHitUpdate" parameterType="int">
+		UPDATE ITEM
+		SET
+		ITEM_HIT = ITEM_HIT+1
+		WHERE
 		ITEM_ID = #{itemId}
-  </update>
-	
- 	
+	</update>
+
+
+	<select id="findItemImageVOByItemId"
+		resultType="org.kosta.finalproject.model.domain.ImageVO">
+		SELECT * FROM IMAGE WHERE ITEM_ID=#{itemId} ORDER BY IMAGE_ID ASC LIMIT 1;
+	</select>
+
+
 </mapper>

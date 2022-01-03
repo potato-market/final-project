@@ -88,7 +88,7 @@
 									 
 										<div class="gallery-carousel-thumbs owl-carousel">
 									<c:forEach var="kwon" items="${imageList }" varStatus="status">
-										<a href="#"+"${status.index }"
+										<a href="#"+"${status.index}"
 											class="owl-thumb active-thumb background-image"> <img
 										src="assets/upload/${kwon.imageName}" alt="">
 									</a>

@@ -27,13 +27,14 @@
 
 </head>
 <body>
-<a href="/">home</a>
+<a href="main">home</a>
 	<noscript>
 		<h2>Sorry! Your browser doesn't support Javascript</h2>
 	</noscript>
 	<section class="content">
 		<section class="block">
-
+			<c:choose>
+			<c:when test="${not flag}">
 			<div id="username-page">
 				<div class="username-page-container">
 					<form id="usernameForm" name="usernameForm" style="display: none;">
@@ -43,7 +44,7 @@
 							<input type="hidden" id="name" name="name" value=${userId } /> <input
 								type="hidden" id="chatRoomId" name="chatRoomId"
 								value=${chatRoomId } class=chatRoomId /> <input type="hidden"
-								name="itemId" value="${itemId }" />
+								name="itemId" value="${itemId }" />								
 						</div>
 						<div class="form-group">
 							<button type="submit" id="userFormAutoClick"
@@ -52,7 +53,8 @@
 					</form>
 				</div>
 			</div>
-
+			</c:when>
+			</c:choose>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-lg-6 col-xl-5">
@@ -70,41 +72,38 @@
 							<!-- 작업드가자~ -->
 							<div class="messaging__content">
 								<ul class="messaging__persons-list">
-
+									 
 									<c:forEach var="item" items="${itemchatlist}"
-										varStatus="status">
-					 
-										<li><a href="chatForm?userId=${userId}&selleId=${item.userVO.userId}&itemId=${item.itemId}" class="messaging__person">
+										varStatus="status">					 
+										<li><a href="chatForm?userId=${userId}&sellerId=${item.userVO.userId}&itemId=${item.itemId}&chatRoomId=${chatmessagelist[status.index].chatRoomId}" class="messaging__person">
 												<figure class="messaging__image-person"
-												data-background-image="assets/upload/${itemimglist[status.index] }"
-													>
-											
+												data-background-image="assets/upload/${userimglist[status.index]}"
+													>	 									
 												</figure>
 												<figure class="content">
 													<h5>
-
 														<!-- 이름 -->
-														<small> ${item.userVO.userId} <!-- 장소 -->
-														</small> &nbsp&nbsp&nbsp ${item.userVO.userAddress} <small>
+														<small> ${chatpartnerlist[status.index].userId} <!-- 장소 -->
+														
+														</small> &nbsp&nbsp&nbsp ${chatpartnerlist[status.index].userAddress} <small>
 															<!-- 시간 --> ${chatmessagelist[status.index].updateAt}
 														</small>
+														 
 													</h5>
 													<p>
 														<!-- 
-															채팅 내용		
-												 													
+															채팅 내용														 													
 													 -->
 														${chatmessagelist[status.index].content}
 													</p>
 												</figure>
 												<figure class="messaging__image-item" 
-												data-background-image="assets/upload/${userimglist[status.index] }"
+												data-background-image="assets/upload/${itemimglist[status.index] }"
 												>
 											    </figure>
-
 										</a> <!--messaging__person--></li>
 									</c:forEach>
-
+								 
 								</ul>
 								<!--end messaging__persons-list-->
 							</div>
@@ -125,9 +124,19 @@
 							<!-- 메세지 창 머리 -->
 							<div class="messaging__header">
 								<div class="float-left flex-row-reverse messaging__person">
-									<h5 class="font-weight-bold">Rosina Warner</h5>
+									<!-- 해당 채팅방 아이디 에 대한 상대방 이름과 사진  헤더를 통해서 들어왔을 경우 표시하면안됨-->
+									<c:forEach var="en" items="${itemchatlist}" varStatus="status">
+									<c:choose>
+									<c:when test="${en.itemId eq itemId}">
+									<h5 class="font-weight-bold">
+										${en.userVO.userId} ${itemId }
+									</h5>
+									
 									<figure class="mr-4 messaging__image-person"
-										data-background-image="assets/img/author-02.jpg"></figure>
+										data-background-image="assets/upload/${userimglist[status.index] }"></figure>
+									</c:when>
+									</c:choose>
+									</c:forEach>
 								</div>
 							</div>
 

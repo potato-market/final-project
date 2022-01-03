@@ -25,8 +25,6 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public int registerItem(ItemVO itemVO) {
 		int itemId=itemMapper.registerItem(itemVO);
-		System.out.println(itemId);
-		System.out.println("registerServiceImpl");
 		return itemVO.getItemId();
 	}
 
@@ -64,7 +62,8 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		
 		
- 		String filepath=request.getServletContext().getRealPath("assets/upload/");
+// 		String filepath=request.getServletContext().getRealPath("assets/upload/");
+ 		String filepath="E:/projectjava/potato_market/final-project/src/main/resources/static/assets/upload/";
 	 
 		//File OriginName
 		String originalFile;
@@ -72,9 +71,6 @@ public class ItemServiceImpl implements ItemService {
 		String originalFileExtension;
 		File file;
 		ImageVO imageVO=new ImageVO();
-		
-		System.out.println("imgController");
-		System.out.println(imgfile[0].getOriginalFilename());
 		
 		for(int i=0; i<imgfile.length; i++) {
 			MultipartFile img = imgfile[i];
@@ -106,9 +102,28 @@ public class ItemServiceImpl implements ItemService {
 		// TODO Auto-generated method stub
 		List<ImageVO> list = 
 		itemMapper.findItemImageListByItemId(itemId);
-		
-		
+		ImageVO ivo=new ImageVO();
+		ivo.setImageName("123.jpg");
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i)==null) {
+				list.set(i, ivo);
+			}
+		}
 		return list;
+	}
+	
+	@Override
+	public ImageVO findItemImageVOByItemId(int itemId) {
+		ImageVO imageVO=new ImageVO();
+		
+		imageVO=
+		itemMapper.findItemImageVOByItemId(itemId);
+		if(imageVO==null) {		 
+			imageVO=new ImageVO(0,"루피감자.png");
+		}
+//		System.out.println(imageVO);
+		
+		return imageVO;
 	}
 
 	@Override
