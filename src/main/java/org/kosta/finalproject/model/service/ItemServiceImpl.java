@@ -30,8 +30,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public ItemVO selectItemByItemId(int itemId) {
-		 itemMapper.itemHitUpdate(itemId);
 		return itemMapper.selectItemByItemId(itemId);
+	}
+	
+	@Override
+	public void itemHitUpdate(int itemId) {
+		 itemMapper.itemHitUpdate(itemId);
 	}
 
 	@Override
@@ -44,6 +48,11 @@ public class ItemServiceImpl implements ItemService {
 		return itemMapper.getAllItemList();
 	}
 
+	@Override
+	public List<ItemVO> getUserItemListByUserId(String userId, int itemId) {
+		return   itemMapper.getUserItemListByUserId(userId, itemId);
+	}
+	
 	@Override
 	public void deleteItem(int itemId) {
 		itemMapper.deleteItem(itemId);
@@ -124,14 +133,10 @@ public class ItemServiceImpl implements ItemService {
 		
 		
 	}
-	@Override
-	public List<ItemVO> selectItemByUserId(String userId) {
-		// TODO Auto-generated method stub
-		
-		return itemMapper.selectItemByUserId(userId);
-	}
 	
-
+	  @Override public List<ItemVO> selectItemByUserId(String userId) { return
+	  itemMapper.selectItemByUserId(userId); }
+	 
 
 	
 	@Override

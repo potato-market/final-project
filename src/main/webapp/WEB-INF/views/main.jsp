@@ -245,13 +245,13 @@
                               <h3>
                                  <a href="#" class="tag category">${itemList.categoryVO.categoryName}</a>
                                  <!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
-                                       <a href="selectItemByItemId?itemId=${itemList.itemId}"
-                                          class="title"> ${itemList.itemTitle}
+                                       <a href="selectItemByItemId?itemId=${itemList.itemId}&userId=${itemList.userVO.userId}"
+                                          class="title"> ${fn:substring(itemList.itemTitle,0,12) }
                                            <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
                                        </a>
                                     </h3>
                               <!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
-                              <a href="selectItemByItemId?itemId=${itemList.itemId}"
+                              <a href="selectItemByItemId?itemId=${itemList.itemId}&userId=${itemList.userVO.userId}"
                                  class="image-wrapper background-image"> <img
 											src="assets/upload/${imageList[status.index].imageName}"
 											alt="">
@@ -301,7 +301,6 @@
 				  
  	 
 				 
-					 	<%-- <c:choose>
 					 	<c:when test="${not empty itemList}">
 		
 						<c:forEach items="${itemList}" var="itemList" varStatus="status">
