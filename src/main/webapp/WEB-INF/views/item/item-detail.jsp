@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authentication property="principal.userId" var="userId" />
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,67 +48,56 @@
 					<!--end container-->
 				</div>
 				<!--============ End Main Navigation ================================================================-->
-			  <!--============ Page Title =========================================================================-->
-                <div class="page-title">
-                    <div class="container clearfix">
-                        <div class="float-left float-xs-none">
-                           <h1>${itemDetail.itemTitle}</h1>
-                        </div>
-                        <div class="float-right float-xs-none price">
-                            <div class="number">${itemDetail.itemPrice} 원</div>
-                        </div>
-                    </div>
-                    <!--end container-->
-                </div>
-                <!--============ End Page Title =====================================================================-->
-                <div class="background"></div>
-                <!--end background-->
-            </div>
-            <!--end hero-wrapper-->
-        </section>
-        <!--end hero-->
+				<!--============ Page Title =========================================================================-->
+				<div class="page-title">
+					<div class="container clearfix">
+						<div class="float-left float-xs-none">
+							<h1> <!-- &nbsp&nbsp  -->${itemDetail.itemTitle}</h1>
+						</div>
+						<div class="float-right float-xs-none price">
+							<div class="number">${itemDetail.itemPrice}원</div>
+						</div>
+					</div>
+					<!--end container-->
+				</div>
+				<!--============ End Page Title =====================================================================-->
+				<div class="background"></div>
+				<!--end background-->
+			</div>
+			<!--end hero-wrapper-->
+		</section>
+		<!--end hero-->
 
-        <!--*********************************************************************************************************-->
-        <!--************ CONTENT ************************************************************************************-->
-        <!--*********************************************************************************************************-->
-        <section class="content">
-            <section class="block">
-                <div class="container">
-                    <div class="row">
-                        <!--============ Listing Detail =============================================================-->
-                        <div class="col-md-9">
-                            <!--Gallery Carousel-->
-                            <section>
-                                <div class="gallery-carousel owl-carousel">
-                                    <img src="assets/img/image-20.jpg" alt="" data-hash="1">
-                                    <img src="assets/img/image-01.jpg" alt="" data-hash="2">
-                                    <img src="assets/img/image-21.jpg" alt="" data-hash="3">
-                                    <img src="assets/img/image-22.jpg" alt="" data-hash="4">
-                                    <img src="assets/img/image-23.jpg" alt="" data-hash="5">
-                                    <img src="assets/img/image-14.jpg" alt="" data-hash="6">
-                                </div>
-                                <div class="gallery-carousel-thumbs owl-carousel">
-                                    <a href="#1" class="owl-thumb active-thumb background-image">
-                                        <img src="assets/img/image-20.jpg" alt="">
-                                    </a>
-                                    <a href="#2" class="owl-thumb background-image">
-                                        <img src="assets/img/image-01.jpg" alt="">
-                                    </a>
-                                    <a href="#3" class="owl-thumb background-image">
-                                        <img src="assets/img/image-21.jpg" alt="">
-                                    </a>
-                                    <a href="#4" class="owl-thumb background-image">
-                                        <img src="assets/img/image-22.jpg" alt="">
-                                    </a>
-                                    <a href="#5" class="owl-thumb background-image">
-                                        <img src="assets/img/image-23.jpg" alt="">
-                                    </a>
-                                    <a href="#6" class="owl-thumb background-image">
-                                        <img src="assets/img/image-14.jpg" alt="">
-                                    </a>
-                                </div>
-                            </section>
-                            <!--end Gallery Carousel-->
+		<!--*********************************************************************************************************-->
+		<!--************ CONTENT ************************************************************************************-->
+		<!--*********************************************************************************************************-->
+		<section class="content">
+			<section class="block">
+				<div class="container">
+					<div class="row">
+						<!--============ Listing Detail =============================================================-->
+						<div class="col-md-9">
+							<!--Gallery Carousel-->
+							<section>
+								<div class="gallery-carousel owl-carousel">
+								<c:forEach var="kwon" items="${imageList }" varStatus="status"> 
+									 			<img src="assets/upload/${kwon.imageName}" alt=""
+											data-hash="${status.index} style="width:510px; height:390px;" >
+								</c:forEach>
+									</div>
+									 
+										<div class="gallery-carousel-thumbs owl-carousel">
+									<c:forEach var="kwon" items="${imageList }" varStatus="status">
+										<a href="#"+"${status.index}"
+											class="owl-thumb active-thumb background-image"> <img
+										src="assets/upload/${kwon.imageName}" alt="">
+									</a>
+								</c:forEach>
+							</div>
+								
+
+							</section>
+							<!--end Gallery Carousel-->
 
 							<!--Author-->
 							<section id="article-profile">
@@ -116,8 +107,9 @@
 											<div class="space-between">
 												<div>
 													<div id="article-profile-image">
-														<img alt="${itemDetail.userVO.userId}"
-															src="https://dnvefa72aowie.cloudfront.net/origin/profile/202111/812C55C307D33D81E0FBC697E4E7DADC17FA56C2FA09E4EB87DAA79ED6EB5FB3.jpg?q=82&amp;s=80x80&amp;t=crop">
+														<img alt=""
+															src="assets/upload/${itemDetail.userVO.userImage}">
+														
 													</div>
 													<div id="article-profile-left">
 														<div id="nickname">${itemDetail.userVO.userId}</div>
@@ -147,23 +139,33 @@
 							<section>
 								<p>${itemDetail.itemContent}</p>
 							</section>
-							<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 ∙채팅 11 ∙조회 ${itemDetail.itemHit}</p> 
-							<button type="button">채팅하기</button>
-							
-							<sec:authentication var="user" property="principal" />
+						<p id="article-counts">날짜 ${itemDetail.itemCreatedAt }  ∙관심 6 
+								∙채팅 ${crnum} ∙조회  ${itemDetail.itemHit}</p> 
+							<c:choose>
+							<c:when test="${userId ne itemDetail.userVO.userId}">
+							<form action="chatForm">
+								<input type="hidden" name="userId" value="${userId}" > 								 
+								<input type="hidden" name="sellerId" value="${itemDetail.userVO.userId }" > 
+								<input type="hidden" name="itemId" value="${itemDetail.itemId}" >
+								<button type="submit" class="btn btn-primary width-100">채팅하기</button>
+							</form>
+							</c:when>
+							<c:otherwise>
 							<!-- 수정하기 -->
-							<c:if test="${itemDetail.userVO.userId==user.userId}">
 							<form action="updateForm">
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
-								<button type="submit">수정하기</button>
+								<button type="submit" class="btn btn-primary width-100">수정하기</button>
 							</form>
+							<br />
 							<!-- 삭제하기 -->
 							<form action="deleteItem" method="post">
-							<sec:csrfInput/>
+								<sec:csrfInput />
 								<input type="hidden" name="itemId" value="${itemDetail.itemId}">
-								<button type="submit">삭제하기</button>
+								<button type="submit" class="btn btn-primary width-100">삭제하기</button>
 							</form>
-							</c:if>
+							</c:otherwise>
+							</c:choose>
+							<!--end Description-->
 							
 						</div>
 						<!--============ End Listing Detail =========================================================-->
@@ -171,107 +173,54 @@
 						<div class="col-md-3">
 							<aside class="sidebar">
 								<section>
-									<h2>감자마켓 인기 중고</h2>
+									<h2>판매자님 최신 중고상품</h2>
 									<div class="items compact">
+<%-- 									  <c:choose>
+                  						<c:when test="${not empty itemList}"> --%>
+										<c:forEach items="${userItemList}" var="userItemList"
+										varStatus="status">
 										<div class="item">
-											<div class="ribbon-featured">Featured</div>
+											<div class="ribbon-featured">${userItemList.itemStatus}</div>
 											<!--end ribbon-->
 											<div class="wrapper">
 												<div class="image">
 													<h3>
-														<a href="#" class="tag category">Home & Decor</a> <a
-															href="single-listing-1.html" class="title">Furniture
-															for sale</a>
+														<a href="#" class="tag category">${userItemList.categoryVO.categoryName}</a> 
+														<!-- 제목을 눌러도 item-detail 화면으로 넘어가야함. -->
+														<a
+															href="selectItemByItemId?itemId=${userItemList.itemId}&userId=${userItemList.userVO.userId}"
+															class="title"> ${userItemList.itemTitle} <%-- ${fn:substring(itemList.itemTitle,0,13) } --%>
+														</a>
 													</h3>
-													<a href="single-listing-1.html"
+													<!-- 이미지를 눌러도 item-detail 화면으로 넘어가야함. -->
+													<a
+														href="selectItemByItemId?itemId=${userItemList.itemId}&userId=${userItemList.userVO.userId}"
 														class="image-wrapper background-image"> <img
-														src="assets/img/image-01.jpg" alt="">
+														src="assets/upload/${imageList[status.index].imageName}"
+														alt="">
 													</a>
 												</div>
 												<!--end image-->
 												<h4 class="location">
-													<a href="#">Manhattan, NY</a>
+													<a href="#">${userItemList.userVO.userAddress}</a>
 												</h4>
-												<div class="price">$80</div>
+												<div class="price">${userItemList.itemPrice}원</div>
 												<div class="meta">
 													<figure>
-														<i class="fa fa-calendar-o"></i>02.05.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Jane Doe
-														</a>
+													<div>조회수 ${userItemList.itemHit}회</div>
 													</figure>
 												</div>
 												<!--end meta-->
 											</div>
-											<!--end wrapper-->
+											<!-- <div class="wrapper"> -->
 										</div>
-										<!--end item-->
-
-										<div class="item">
-											<div class="wrapper">
-												<div class="image">
-													<h3>
-														<a href="#" class="tag category">Education</a> <a
-															href="single-listing-1.html" class="title">Creative
-															Course</a>
-													</h3>
-													<a href="single-listing-1.html"
-														class="image-wrapper background-image"> <img
-														src="assets/img/image-02.jpg" alt="">
-													</a>
-												</div>
-												<!--end image-->
-												<h4 class="location">
-													<a href="#">Nashville, TN</a>
-												</h4>
-												<div class="price">$125</div>
-												<div class="meta">
-													<figure>
-														<i class="fa fa-calendar-o"></i>28.04.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Peter Browner
-														</a>
-													</figure>
-												</div>
-												<!--end meta-->
-											</div>
-											<!--end wrapper-->
-										</div>
-										<!--end item-->
-
-										<div class="item">
-											<div class="wrapper">
-												<div class="image">
-													<h3>
-														<a href="#" class="tag category">Adventure</a> <a
-															href="single-listing-1.html" class="title">Into The
-															Wild</a>
-													</h3>
-													<a href="single-listing-1.html"
-														class="image-wrapper background-image"> <img
-														src="assets/img/image-03.jpg" alt="">
-													</a>
-												</div>
-												<!--end image-->
-												<h4 class="location">
-													<a href="#">Seattle, WA</a>
-												</h4>
-												<div class="price">$1,560</div>
-												<div class="meta">
-													<figure>
-														<i class="fa fa-calendar-o"></i>21.04.2017
-													</figure>
-													<figure>
-														<a href="#"> <i class="fa fa-user"></i>Peak Agency
-														</a>
-													</figure>
-												</div>
-												<!--end meta-->
-											</div>
-										</div>
-										<!--end item-->
+										<!-- <div class="item"> -->
+									</c:forEach>
+<%-- 				               </c:when>
+				               <c:otherwise>
+			               판매자님의 다른 상품 리스트는 없습니다.
+				               </c:otherwise>
+				               </c:choose>	 --%>								
 									</div>
 								</section>
 							</aside>

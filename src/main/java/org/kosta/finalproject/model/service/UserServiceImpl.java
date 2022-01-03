@@ -1,6 +1,11 @@
 package org.kosta.finalproject.model.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.kosta.finalproject.model.domain.Authority;
 import org.kosta.finalproject.model.domain.UserVO;
@@ -9,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,9 +63,9 @@ public class UserServiceImpl implements UserService {
 		return  userMapper.findAuthorityByUsername(username);
 	}
 
-	@Override //회원정보수정 TEL, EMAIL 업데이트
-	public void updateUserPhoneAndEmail(UserVO userVO) {
-		userMapper.updateUserPhoneAndEmail(userVO);
+	@Override //회원정보수정 PW  EMAIL  TEL 업데이트
+	public void updateUserPartPET(UserVO userVO) {
+		userMapper.updateUserPET(userVO);
 	}
 
 	@Override
@@ -99,4 +105,82 @@ public class UserServiceImpl implements UserService {
 	 * @Override public List<Authority> findAuthorityByUsername(String username) {
 	 * return userMapper.findAuthorityByUsername(username); }
 	 */
+	
+	
+	/*
+		Register upload Single image  return value : savedImageName 
+		DataFlow :Service ->Controller -> savedname input(UserVO) ->register->DB
+	*/
+	@Override
+	public String uploadSingleImage(UserVO userVO, HttpServletRequest request, MultipartFile imgfile) throws IllegalStateException, IOException {
+		// TODO Auto-generated method stub
+		 
+//		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+		String filepath="E:/projectjava/potato_market/final-project/src/main/resources/static/assets/upload/";
+		 
+		//File OriginName
+		String originName=imgfile.getOriginalFilename();
+		//File extension
+		String fileExtension= originName.substring(originName.lastIndexOf("."));
+		//saved file Name
+		String savedname=UUID.randomUUID()+fileExtension;
+//		System.out.println(savedname);	
+		//file Object Create
+		File file = new File(filepath+savedname);
+//		System.out.println("filePath ->"+file.getPath());
+		
+		// save file
+		imgfile.transferTo(file); 
+		
+		//save database 
+		return savedname;
+	}
+
+	/*
+		UpdateProfile version Upload Single image return value : none 
+		DataFlow : Service ->DB Update set
+	*/
+	@Override
+	public void updateUploadSingleImage(UserVO userVO,HttpServletRequest request, MultipartFile imgfile)
+			throws IllegalStateException, IOException {
+		// TODO Auto-generated method stub
+//		String filepath=request.getServletContext().getRealPath("/assets/upload/");
+		String filepath="E:/projectjava/potato_market/final-project/src/main/resources/static/assets/upload/";
+		//File OriginName
+		String originName=imgfile.getOriginalFilename();
+		//File extension
+		String fileExtension= originName.substring(originName.lastIndexOf("."));
+		//saved file Name
+		String savedname=UUID.randomUUID()+fileExtension;
+		//file Object Create
+		File file = new File(filepath+savedname);
+//		System.out.println("filePath ->"+file.getPath());
+		
+		// save file
+		imgfile.transferTo(file);
+		userVO.setUserImage(savedname);
+		//Transfer to Database
+		userMapper.updateUserImage(userVO);
+		 
+	}
+
+	@Override
+	public List<UserVO> findAdminUsers() {
+		return userMapper.findAdminUsers();
+	}
+
+	@Override
+	public UserVO findMemberUserById(String userId) {
+		return userMapper.findMemberUserById(userId);
+	}
+
+	@Override
+	public void addAdmin(String userId) {
+		userMapper.addAdmin(userId);
+	}
+
+	@Override
+	public void deleteAdmin(String userName) {
+		userMapper.deleteAdmin(userName);
+	}
 }

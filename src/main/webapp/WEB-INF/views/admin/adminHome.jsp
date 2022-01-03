@@ -6,8 +6,8 @@
 <%-- javascript 한글처리가 안될 때는 변수에 담아서 el로 처리한다  --%>
 <sec:authentication property="principal.userId" var="userId"/>
  <script>
- alert("안녕하세요 관리자님. 관리자만 볼 수 있는 페이지입니다.");
- //location.href="profile";
+ alert("안녕하세요 ${userId}님. 관리자만 볼 수 있는 페이지입니다.");
+ location.href="adminMain";
  </script>
  </body>
 </html>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!doctype html>
 <html lang="en">
 <head>
@@ -72,7 +73,7 @@
 						</div>
 						<!--end col-md-3-->
 						<div class="col-md-9">
-							<form method="post" class="form" action="profileUpdate">
+							<form method="post" class="form" action="profileUpdate" enctype="multipart/form-data">
 								<sec:csrfInput />
 								<sec:authentication var="user" property="principal" />
 								<!-- <form class="form"> -->
@@ -133,10 +134,19 @@
 									<div class="col-md-4">
 										<div class="profile-image">
 											<div class="image background-image">
+												<c:choose>
+													<c:when test="${not empty user.userImage}">
+														<img src="assets/upload/${user.userImage}" alt="">
+													</c:when>
+													<c:otherwise>
+														<img src="assets/img/author-09.jpg" alt="">
+													</c:otherwise>
+												</c:choose>
 												<img src="assets/img/author-09.jpg" alt="">
 											</div>
 											<div class="single-file-input">
-												<input type="file" id="user_image" name="user_image">
+												<input type="file" id="user_image" name="update_user_image">
+												
 												<div class="btn btn-framed btn-primary small">Upload a
 													picture</div>
 											</div>

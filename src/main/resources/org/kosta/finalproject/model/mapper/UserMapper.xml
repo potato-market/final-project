@@ -10,8 +10,8 @@
 </select>
 
 <insert id="registerUser" parameterType="org.kosta.finalproject.model.domain.UserVO"> <!-- 이 경로 자동 설정하는 부분은 어디임?? -->
-insert into USER (USER_ID,USER_PASSWORD,USER_TEL,USER_ADDRESS,USER_EMAIL)
-VALUES (#{userId},#{userPassword},#{userTel},#{userAddress},#{userEmail})
+insert into USER (USER_ID,USER_PASSWORD,USER_TEL,USER_ADDRESS,USER_EMAIL,USER_IMAGE)
+VALUES (#{userId},#{userPassword},#{userTel},#{userAddress},#{userEmail},#{userImage})
 </insert>
 
 <select id="registerIdCheck" parameterType="String" resultType="int">
@@ -34,9 +34,16 @@ from AUTHORITIES
 where username=#{username}
 </select>
 
-<update id="updateUserPhoneAndEmail" parameterType="UserVO">
+<update id="updateUserPET" parameterType="UserVO">
 update USER
-set USER_TEL=#{userTel},USER_EMAIL=#{userEmail} 
+set USER_TEL=#{userTel},USER_EMAIL=#{userEmail}
+WHERE USER_ID=#{userId}
+</update>
+
+
+<update id="updateUserImage" parameterType="UserVO">
+UPDATE USER
+SET USER_IMAGE=#{userImage}
 WHERE USER_ID=#{userId}
 </update>
 
@@ -100,6 +107,30 @@ select count(*) from USER where USER_TEL=#{userTel};
        U.USER_ID = #{userVO.userAddress}
       ORDER BY I.ITEM_CREATED_AT DESC
    </select> 
+   
+<select id="findAdminUsers" resultType="org.kosta.finalproject.model.domain.UserVO">
+SELECT U.USER_ID, A.AUTHORITY
+FROM USER U, AUTHORITIES A
+WHERE U.USER_ID=A.USERNAME
+AND AUTHORITY='ROLE_ADMIN'
+</select>   
+
+<select id="findMemberUserById" parameterType="String" resultType="org.kosta.finalproject.model.domain.UserVO">
+SELECT *
+FROM USER U, AUTHORITIES A
+WHERE U.USER_ID=A.USERNAME	
+AND U.USER_ID=#{userId}
+GROUP BY U.USER_ID
+HAVING COUNT(*)=1
+</select>
+   
+<insert id="addAdmin" parameterType="String">
+INSERT INTO AUTHORITIES(USERNAME, AUTHORITY) VALUES(#{userId},'ROLE_ADMIN');
+</insert>   
+
+<delete id="deleteAdmin" parameterType="String">
+DELETE FROM AUTHORITIES WHERE USERNAME=#{userName} AND AUTHORITY='ROLE_ADMIN';
+</delete>
 </mapper>
 
 

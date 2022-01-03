@@ -69,8 +69,8 @@
 
 			<section class="block">
 				<div class="container">
-					<form class="form form-submit" action="registerItem" method="post">
-					<input type="hidden" name="userVO.userId" value="${userId}"> 
+					<form class="form form-submit" action="registerItem" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="userVO.userId" value="${userId }"> 
 					<sec:csrfInput/>
 						<section style="margin-bottom: 0px">
 							<div class="row">
@@ -99,14 +99,14 @@
 								<div class="col-md-8">
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
-										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="13" required>
+										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="20" required>
 									</div>
 								</div>
 								<!-- 3. PRICE -->
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
-										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
+										<input name="itemPrice" type="number" class="form-control" id="itemPrice" min="0" required> <span class="input-group-addon">원</span>
 									</div>
 								</div>
 							</div>
@@ -126,9 +126,13 @@
 						  <!-- 5. Item Image -->
 							<div class="file-upload-previews"></div>
 							<div class="file-upload">
-								<input type="file" name="files[]" class="file-upload-input with-preview" multiple title="Click to add files" maxlength="10" accept="gif|jpg|png">
-								<span><i class="fa fa-plus-circle"></i>Click or drag images here</span>
-							</div>
+								<input type="file" name="item_Images"
+									class="file-upload-input with-preview"
+									  maxlength="100" accept="gif|jpg|png"
+									multiple								
+									>
+									<span><i class="fa fa-plus-circle"></i>Click or drag
+									images here</span>
 						</section>
 						 <section class="clearfix">
                             <div class="form-group">

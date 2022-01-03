@@ -3,51 +3,46 @@
 <mapper
 	namespace="org.kosta.finalproject.model.mapper.CommentMapper">
 	
-<!-- 
-CREATE TABLE COMMENT(
-	COMMENT_ID               INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	COMMUNITY_ID               INTEGER NOT NULL,
-	COMMENT_CONTENT 		LONGTEXT NOT NULL,
-	USER_ID 			 VARCHAR(100) NOT NULL,
-	COMMENT_CREATED_AT				DATETIME NOT NULL,
-	CONSTRAINT FK_COMMENT_1 FOREIGN KEY (COMMUNITY_ID) REFERENCES COMMUNITY(COMMUNITY_ID),
-	CONSTRAINT FK_COMMENT_2 FOREIGN KEY (USER_ID) REFERENCES USER(USER_ID)
-)
-
- -->	
-	
-<!-- 댓글 쓰기 -->
-	<!-- <insert id="writeComment" parameterType="org.kosta.finalproject.model.domain.CommentVO" useGeneratedKeys="true" keyColumn="COMMENT_ID" keyProperty="commentId">
-		INSERT INTO COMMENT (COMMUNITY_ID, COMMENT_CONTENT, USER_ID, COMMENT_CREATED_AT)
-		VALUES (#{communityVO.communityId}, #{commentContent}, #{userVO.userId}, now())
-	</insert> -->
-	
 	<insert id="writeComment" parameterType="org.kosta.finalproject.model.domain.CommentVO">
 		INSERT INTO COMMENT (COMMUNITY_ID, COMMENT_CONTENT, USER_ID, COMMENT_CREATED_AT)
 		VALUES (#{communityVO.communityId}, #{commentContent}, #{userVO.userId}, now())
 		  <selectKey  keyColumn="COMMENT_ID" keyProperty="commentId" resultType="int" order="AFTER">  
                  SELECT LAST_INSERT_ID()
         </selectKey>
-		
 	</insert>
 	
 	<select id="findCommentByCommentId" resultMap="commentListRM" >
-		SELECT COMMENT_ID,COMMUNITY_ID,COMMENT_CONTENT, USER_ID,COMMENT_CREATED_AT FROM COMMENT WHERE COMMENT_ID=#{commentId};
+		SELECT C.COMMENT_ID,C.COMMUNITY_ID,C.COMMENT_CONTENT, C.USER_ID,C.COMMENT_CREATED_AT ,U.USER_IMAGE
+		FROM COMMENT C, USER U
+		WHERE COMMENT_ID=#{commentId} AND C.USER_ID=U.USER_ID; 
 	</select>
 	
-	<select id="getCommentList" parameterType="int" resultMap="commentListRM" >
-		SELECT COMMENT_ID,COMMUNITY_ID,COMMENT_CONTENT, USER_ID,COMMENT_CREATED_AT 
+	<!-- <select id="getCommentList" parameterType="int" resultMap="commentListRM" >
+		SELECT COMMENT_ID,COMMUNITY_ID,COMMENT_CONTENT,USER_ID,COMMENT_CREATED_AT 
 		FROM COMMENT 
 		WHERE COMMUNITY_ID=#{communityId}
 		ORDER BY COMMENT_ID ASC
+	</select> -->
+	
+		<select id="getCommentList" parameterType="int" resultMap="commentListRM" >
+		SELECT C.COMMENT_ID,C.COMMUNITY_ID,C.COMMENT_CONTENT,C.USER_ID,C.COMMENT_CREATED_AT,U.USER_IMAGE
+		FROM COMMENT C, USER U
+		WHERE COMMUNITY_ID=#{communityId} AND C.USER_ID=U.USER_ID
+		ORDER BY COMMENT_ID ASC
 	</select>
+	
 	
 	<resultMap type="CommentVO" id="commentListRM">
 		<result column="USER_ID" property="userVO.userId" />
+		<result column="USER_IMAGE" property="userVO.userImage" />
 		<result column="COMMUNITY_ID" property="communityVO.communityId" />
 	</resultMap>
 	
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM COMMENT WHERE COMMENT_ID=#{commentId}
 	</delete>
+	
+	<update id="updateComment" parameterType="org.kosta.finalproject.model.domain.CommentVO">
+		UPDATE COMMENT SET COMMENT_CONTENT=#{commentContent} WHERE COMMENT_ID=#{commentId}
+	</update>
 </mapper>
