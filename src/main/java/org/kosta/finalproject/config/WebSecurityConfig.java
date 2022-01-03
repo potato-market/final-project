@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/login_form") // 로그인 폼이 있는 url
 				.loginProcessingUrl("/login")// login form 의 action 경로  << 시큐리티 자체 내장이라함
 				.failureUrl("/login_fail") // 로그인 실패시 메세지 보여줄 url
-				.defaultSuccessUrl("/main",true) // 로그인 성공 후 이동할 url
+				.defaultSuccessUrl("/login_success",true) // 로그인 성공 후 이동할 url
 				.usernameParameter("id")
 				.passwordParameter("password").and() //로그인 폼에서 전달할 폼 입력양식의 name 
 				.formLogin().permitAll();//로그인 폼은 인증없이 접근하도록 설정 

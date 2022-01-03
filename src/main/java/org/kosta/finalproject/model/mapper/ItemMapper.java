@@ -21,6 +21,7 @@ public interface ItemMapper {
 	public List<ItemVO> selectItemByUserId(String userId);
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
 	public int itemHitUpdate(int itemId);
+	public List<ItemVO> getUserItemListByUserId(String userId, int itemId);
 }
 
 

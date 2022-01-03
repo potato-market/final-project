@@ -99,14 +99,14 @@
 								<div class="col-md-8">
 									<div class="form-group">
 										<label for="itemTitle" class="col-form-label required">Title</label>
-										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="13" required>
+										<input name="itemTitle" type="text" class="form-control" id="itemTitle" placeholder="Title" maxlength="20" required>
 									</div>
 								</div>
 								<!-- 3. PRICE -->
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="itemPrice" class="col-form-label required">Price</label>
-										<input name="itemPrice" type="number" class="form-control" id="itemPrice" required> <span class="input-group-addon">원</span>
+										<input name="itemPrice" type="number" class="form-control" id="itemPrice" min="0" required> <span class="input-group-addon">원</span>
 									</div>
 								</div>
 							</div>
