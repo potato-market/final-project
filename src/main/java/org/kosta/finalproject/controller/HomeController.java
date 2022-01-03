@@ -41,14 +41,15 @@ public class HomeController {
 	public String home(Model model) {
 		List<ItemVO> list = itemService.getAllItemList();	 
 		List<ImageVO>imageList =new ArrayList<ImageVO>();
-//		for(int i=0;i<list.size();i++) {
+		List <Integer> crnumlist= new ArrayList<Integer>();
+		for(int i=0;i<list.size();i++) {
 //			System.out.println(list.get(i).getItemId());			
-// 			imageList.add(
-// 			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
-//			itemService.findItemImageVOByItemId(list.get(i).getItemId()));
-// 			crnumlist.add(chattingService.getChatCount(list.get(i).getItemId()));			
-//		}		
-		List <Integer> crnumlist= new ArrayList<Integer>();		
+ 			imageList.add(
+//			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
+			itemService.findItemImageVOByItemId(list.get(i).getItemId()));
+ 			crnumlist.add(chattingService.getChatCount(list.get(i).getItemId()));			
+		}		
+				
 		/*
 		 * for(int i=0;i<list.size();i++) { imageList.add(
 		 * itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
