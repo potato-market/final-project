@@ -21,24 +21,27 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-	
+
 @Controller
 public class HomeController {
 	
 	private static final Logger LOGGER = LogManager.getLogger(HomeController.class);
 	@Autowired
 	private ItemService itemService;
-	
+
 	@Autowired
 	private ChattingService chattingService;
+ 
 	
 	@RequestMapping(value={"/","home"})
 	public String index(Authentication a) { 
+    System.out.println("homecont1 " + a);
 		return "home";
 	}
-	
+
 	@RequestMapping("main")
 	public String home(Model model) {
+ 
 		List<ItemVO> list = itemService.getAllItemList();	 
 		List<ImageVO>imageList =new ArrayList<ImageVO>();
 //		for(int i=0;i<list.size();i++) {
@@ -54,12 +57,13 @@ public class HomeController {
 		 * itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
 		 * crnumlist.add(chattingService.getChatCount(list.get(i).getItemId())); }
 		 */	
+ 
 		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
-    
-		model.addAttribute("crnum",crnumlist);	
+
+		model.addAttribute("crnum", crnumlist);
 		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("itemList",list);
-		model.addAttribute("imageList",imageList);
+		model.addAttribute("itemList", list);
+		model.addAttribute("imageList", imageList);
 		return "main.tiles";
 	}
   
@@ -74,7 +78,7 @@ public class HomeController {
 	 * @RequestMapping("accessDeniedView") public String accessDeniedView() { return
 	 * "auth/accessDeniedView"; }
 	 */
-	
+
 	@Bean
 	public ApplicationRunner applicationRunner() {
 		return args ->{
@@ -86,6 +90,6 @@ public class HomeController {
 			
 		 
 		};
-	
+
 	}
 }

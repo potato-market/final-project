@@ -36,6 +36,14 @@ public interface UserMapper {
 	int registerTelCheck(String userTel);
 	
 	void updateUserImage(UserVO userVO);
+
+	List<UserVO> findAdminUsers();
+
+	UserVO findMemberUserById(String userId);
+
+	void addAdmin(String userId);
+
+	void deleteAdmin(String userName);
 	
 }
  

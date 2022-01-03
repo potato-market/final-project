@@ -32,5 +32,10 @@ public class CommentServiceImpl implements CommentService {
 		commentMapper.deleteComment(commentId);
 	}
 
+	@Override
+	public void updateComment(CommentVO commentVO) {
+		commentMapper.updateComment(commentVO);
+	}
+
 	
 }

@@ -107,6 +107,30 @@ select count(*) from USER where USER_TEL=#{userTel};
        U.USER_ID = #{userVO.userAddress}
       ORDER BY I.ITEM_CREATED_AT DESC
    </select> 
+   
+<select id="findAdminUsers" resultType="org.kosta.finalproject.model.domain.UserVO">
+SELECT U.USER_ID, A.AUTHORITY
+FROM USER U, AUTHORITIES A
+WHERE U.USER_ID=A.USERNAME
+AND AUTHORITY='ROLE_ADMIN'
+</select>   
+
+<select id="findMemberUserById" parameterType="String" resultType="org.kosta.finalproject.model.domain.UserVO">
+SELECT *
+FROM USER U, AUTHORITIES A
+WHERE U.USER_ID=A.USERNAME	
+AND U.USER_ID=#{userId}
+GROUP BY U.USER_ID
+HAVING COUNT(*)=1
+</select>
+   
+<insert id="addAdmin" parameterType="String">
+INSERT INTO AUTHORITIES(USERNAME, AUTHORITY) VALUES(#{userId},'ROLE_ADMIN');
+</insert>   
+
+<delete id="deleteAdmin" parameterType="String">
+DELETE FROM AUTHORITIES WHERE USERNAME=#{userName} AND AUTHORITY='ROLE_ADMIN';
+</delete>
 </mapper>
 
 

@@ -163,4 +163,24 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateUserImage(userVO);
 		 
 	}
+
+	@Override
+	public List<UserVO> findAdminUsers() {
+		return userMapper.findAdminUsers();
+	}
+
+	@Override
+	public UserVO findMemberUserById(String userId) {
+		return userMapper.findMemberUserById(userId);
+	}
+
+	@Override
+	public void addAdmin(String userId) {
+		userMapper.addAdmin(userId);
+	}
+
+	@Override
+	public void deleteAdmin(String userName) {
+		userMapper.deleteAdmin(userName);
+	}
 }
