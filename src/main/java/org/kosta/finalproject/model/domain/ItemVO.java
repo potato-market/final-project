@@ -7,15 +7,17 @@ public class ItemVO {
 	private int itemHit;
 	private String itemContent;
 	private String itemStatus;
+	private int itemLikeHit;
 	private String itemCreatedAt;
 	private CategoryVO categoryVO;
 	private UserVO userVO;
+	//private ItemLikeVO itemLikeVO;
 
 	public ItemVO() {
 		super();
 	}
 
-	public ItemVO(int itemId, String itemTitle, long itemPrice, int itemHit, String itemContent, String itemStatus,
+	public ItemVO(int itemId, String itemTitle, long itemPrice, int itemHit, String itemContent, String itemStatus, int itemLikeHit,
 			String itemCreatedAt, CategoryVO categoryVO, UserVO userVO) {
 		super();
 		this.itemId = itemId;
@@ -24,6 +26,7 @@ public class ItemVO {
 		this.itemHit = itemHit;
 		this.itemContent = itemContent;
 		this.itemStatus = itemStatus;
+		this.itemLikeHit = itemLikeHit;
 		this.itemCreatedAt = itemCreatedAt;
 		this.categoryVO = categoryVO;
 		this.userVO = userVO;
@@ -100,11 +103,19 @@ public class ItemVO {
 	public void setUserVO(UserVO userVO) {
 		this.userVO = userVO;
 	}
+	
+	public int getItemLikeHit() {
+		return itemLikeHit;
+	}
+
+	public void setItemLikeHit(int itemLikeHit) {
+		this.itemLikeHit = itemLikeHit;
+	}
 
 	@Override
 	public String toString() {
 		return "ItemVO [itemId=" + itemId + ", itemTitle=" + itemTitle + ", itemPrice=" + itemPrice + ", itemHit="
-				+ itemHit + ", itemContent=" + itemContent + ", itemStatus=" + itemStatus + ", itemCreatedAt="
+				+ itemHit + ", itemContent=" + itemContent + ", itemStatus=" + itemStatus + ", itemLikeHit=\" + itemLikeHit + \", itemCreatedAt="
 				+ itemCreatedAt + ", categoryVO=" + categoryVO + ", userVO=" + userVO + "]";
 	}
 
