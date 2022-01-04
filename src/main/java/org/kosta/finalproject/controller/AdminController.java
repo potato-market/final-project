@@ -62,7 +62,15 @@ public class AdminController {
 		userService.deleteAdmin(userName);
 		return userService.findUserById(userName);
 	}
-	 
+
+	
+	@RequestMapping("categoryManagement") 
+	@Secured("ROLE_ADMIN")
+	public String categoryManagement() {
+		return "admin/category-management";
+	}
+	
+
 	@RequestMapping("faqManagement")
 	@Secured("ROLE_ADMIN")
 	public String faqManagement(Model model) {
