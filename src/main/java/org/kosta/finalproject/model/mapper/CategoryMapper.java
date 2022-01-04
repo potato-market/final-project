@@ -10,4 +10,6 @@ public interface CategoryMapper {
 	 void updateCategory(CategoryVO categoryVO);
 	 void deleteCategory(CategoryVO categoryVO);
 	 List<CategoryVO> findCategory();
+	void categoryAdd(CategoryVO categoryVO);
+	CategoryVO findCategoryById(int categoryId);
 }

@@ -93,7 +93,7 @@
 							    <!-- 2. Change Item Status -->
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="submit-category" class="col-form-label">Category</label>
+										<label for="submit-category" class="col-form-label">Item Status</label>
 										<select class="change-tab" data-change-tab-target="category-tabs" name="itemStatus"  id="submit_category" data-placeholder="Select Category" required="required">
 											<option value="">Change Item Status</option>
 												<option value="SELLING">SELLING</option>

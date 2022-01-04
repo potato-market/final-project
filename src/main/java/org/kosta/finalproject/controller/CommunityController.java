@@ -80,9 +80,9 @@ public class CommunityController {
 	
 	@PostMapping("updateComment")
 	@ResponseBody
-	public String updateComment(CommentVO commentVO) {
+	public CommentVO updateComment(CommentVO commentVO) {
 		commentService.updateComment(commentVO);
-		return "findCommentByCommentId";
+		 return commentService.findCommentByCommentId(commentVO.getCommentId());
 	}
 	
 	@GetMapping("findCommentByCommentId")

@@ -316,13 +316,13 @@ $(function(){
                 		updateInfo+="			</div>";
                 		updateInfo+="			</a>";
                 		updateInfo+="		<div class='author-description' style='margin-left: 0rem; padding-top: 0rem; margin-left: 6rem; margin-bottom:5px;'>";
-                		updateInfo+="			<div class='meta'>";
+                	/* 	updateInfo+="			<div class='meta'>";
                 		updateInfo+="				<h5>";
                 		updateInfo+="					<a>이름</a>";
                 		updateInfo+="					<a>작성번호</a>";
                 		updateInfo+="				</h5>";
                 		updateInfo+="				<span>작성일시</span>";
-                		updateInfo+="			</div> <!--end meta-->";
+                		updateInfo+="			</div> <!--end meta-->"; */
                 		updateInfo+="			<input type='text' id='updateCommentContent' placeholder='수정할 내용'>";
                 		updateInfo+="			<div class='meta' style='margin-top:10px;'>";
                 		updateInfo+="				<div class='float-right float-xs-none d-xs-none'>";
@@ -476,13 +476,12 @@ $(function(){
 		updateInfo+="			</div>";
 		updateInfo+="			</a>";
 		updateInfo+="		<div class='author-description' style='margin-left: 0rem; padding-top: 0rem; margin-left: 6rem; margin-bottom:5px;'>";
-		updateInfo+="			<div class='meta'>";
+		/* updateInfo+="			<div class='meta'>";
 		updateInfo+="				<h5>";
 		updateInfo+="					<a>이름</a>";
-		updateInfo+="					<a>작성번호</a>";
 		updateInfo+="				</h5>";
 		updateInfo+="				<span>작성일시</span>";
-		updateInfo+="			</div> <!--end meta-->";
+		updateInfo+="			</div> <!--end meta-->"; */
 		updateInfo+="			<input type='text' id='updateCommentContent' placeholder='수정할 내용'>";
 		updateInfo+="			<div class='meta' style='margin-top:10px;'>";
 		updateInfo+="				<div class='float-right float-xs-none d-xs-none'>";
@@ -514,7 +513,6 @@ $(function(){
 				},
 				success:function(result){
 					alert("수정되었습니다.");
-					console.log(result);
 					
 					let commentInfo="";
 		               
@@ -531,7 +529,6 @@ $(function(){
                 	commentInfo+="            <div class='meta'>";
  	               	commentInfo+="               <h5>";
     	            commentInfo+="                  <a>"+result.userVO.userId+"</a>";
-        	        commentInfo+="                  <a>"+result.commentId +"</a>";
             	    commentInfo+="               </h5>";
   	              	commentInfo+="               <span>"+result.commentCreatedAt+"</span>";
     	            commentInfo+="               <div class='float-right float-xs-none d-xs-none' id='buttonDiv"+result.commentId+"'>";

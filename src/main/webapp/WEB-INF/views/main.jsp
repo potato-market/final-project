@@ -10,7 +10,6 @@
 <html lang="en">
 <head>
 
- 
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,6 +39,9 @@
 <link rel="stylesheet" href="assets/css/user.css">
 
 <title>감자마켓</title>
+<link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+ 
+
 </head>
 <body>
 	<div class="page home-page">
@@ -232,10 +234,14 @@
 					<!--============ Items ==========================================================================-->
 					<div
 						class="items masonry grid-xl-4-items grid-lg-4-items grid-md-2-items">
-						
-						  <c:choose>
+			 
+			
+			  <c:choose>
                   <c:when test="${not empty itemList}">
+                                  	 
                   <c:forEach items="${itemList}" var="itemList" varStatus="status">
+               		<c:choose>
+                     <c:when test="${itemList.userVO.userAddress == userAddress}">
                      <div class="item">
                         <div class="ribbon-featured">${itemList.itemStatus }</div>
                         <!--end ribbon-->
@@ -281,10 +287,13 @@
                               <c:when test="${userId eq itemList.userVO.userId}">
                               <figure>
                                   <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-                                 
+                              </figure>
+                              <figure>
+                                  <i class="fa fa-user"></i>판매자 
+                                 ${itemList.userVO.userId}
                               </figure>
                               </c:when>
-                              </c:choose>
+                         </c:choose>
                               
                            </div>
                            <!--end meta-->
@@ -292,12 +301,17 @@
                         <!-- <div class="wrapper"> -->
                      </div>
                      <!-- <div class="item"> -->
+                     
+                     </c:when>
+                     </c:choose>                
                   </c:forEach>
+               
                </c:when>
                <c:otherwise>
                찾으시는 상품이 없습니다.
                </c:otherwise>
                </c:choose>
+               
 				  <%-- 
  	 
 				 
