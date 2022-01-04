@@ -70,39 +70,24 @@
 
 	<div class="container">
 		<section>
-			<h3>카테고리 관리</h3>
-			<a href="categoryWriteForm" style="float: right;">카테고리추가</a>
-			<!--end form-group-->
+			<h3>카테고리 수정</h3>
 		</section>
-		<table class="table">
+		<table class="table" >
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>NAME</th>
-					<th>DEL</th>
-					<th>EDIT</th>
+					<th>CONFIRM</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="l" items="${list}">
-					<tr>
-						<td>${l.categoryId}</td>
-						<td>${l.categoryName}</td>
-						<td><form action="categoryDel" method="POST">
-								<sec:csrfInput />
-								<input type="hidden" name="categoryId" value="${l.categoryId}" />
-								<button type="submit">DEL</button>
-							</form></td>
-						<td><form action="categoryUpForm" method="post">
-								<sec:csrfInput />
-								<input type="hidden" name="categoryId" value="${l.categoryId}" />
-								<input type="hidden" name="categoryName"
-									value="${l.categoryName}" />
-								<button type="submit">EDIT</button>
-							</form></td>
-						<td></td>
-					</tr>
-				</c:forEach>
+				<tr>
+				<form action="categoryUp" method="POST">
+					<td>${cg.categoryId }</td>
+					<td><input type="text" name="categoryName" value="${cg.categoryName }" style="padding:0.5rem;"/></td>
+					<td><button type="submit">수정</button> </td>
+				</form>
+				</tr>
 			</tbody>
 		</table>
 	</div>

@@ -19,5 +19,16 @@
       <id property="categoryId" column="CATEGORY_ID"/>
       <result property="categoryName" column="CATEGORY_NAME"/>
    </resultMap> 
+   
+   <insert id="categoryAdd" parameterType="org.kosta.finalproject.model.domain.CategoryVO">
+   	INSERT INTO CATEGORY(CATEGORY_NAME) VALUES(#{categoryName})
+    <selectKey  keyColumn="CATEGORY_ID" keyProperty="categoryId" resultType="int" order="AFTER">  
+                 SELECT LAST_INSERT_ID()
+        </selectKey>
+   </insert>
+   
+   <select id="findCategoryById" parameterType="int" resultType="org.kosta.finalproject.model.domain.CategoryVO">
+   		SELECT * FROM CATEGORY WHERE CATEGORY_ID=#{categoryId}
+   </select>
 	
 </mapper>

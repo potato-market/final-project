@@ -24,9 +24,22 @@
 <link rel="stylesheet" href="assets/css/selectize.css" type="text/css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/user.css">
+
+<%@ include file="../templates/common-js.jsp"%>
 <script src="assets/js/admin.js"></script>
 <title>admin main</title>
 <style>
+#column1 {
+	float: left;
+	width: 70%;
+	padding: 5px;
+}
+
+#column2 {
+	float: left;
+	width: 30%;
+}
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -47,6 +60,13 @@ th, td {
 tr:nth-child(even) {
 	background-color: #f2f2f2;
 }
+
+.scrolltable {
+  display: block;
+  overflow: auto;
+}
+
+
 </style>
 </head>
 <body>
@@ -94,36 +114,37 @@ tr:nth-child(even) {
 				<div class="row">
 					<div class="col-md-12">
 						<section>
-							<h3>FAQ 관리 (${TotalFAQCount })</h3>
-							<a href="faq-write-form" style="float: right;">글쓰기</a>
+							<h3>카테고리 추가</h3>
 							<!--end form-group-->
 						</section>
-						<section>
-							<table>
-								<tr>
-									<th style="width:80px;"><a href="#">No.</a></th>
-									<th style="width:250px;"><a href="#">제목</a></th>
-									<th >내용</th>
-									<th style="width:100px;">작성자</th>
-									<th style="width:80px;text-align:center;">수정</th>
-									<th style="width:80px;text-align:center;">삭제</th>
-								</tr>
-								<c:forEach var="l" items="${list }" varStatus="status">
-									<form method="post" action="deleteFAQ" id="deleteForm">
-										<sec:csrfInput />
-										<input type="hidden" value="${l.faqId }" name="faqId">
+						<div id="column1">
+								<div class="col-md-4" style="display:block;">
+									<input name="categoryName" type="text" id="categoryName" placeholder="카테고리명">
+								</div>
+						</div>
+						<!--end column-->
+
+						<div id="column2">
+							<label for="admin" class="col-form-label">category</label>
+							<section>
+								<table class='scrolltable'style="height: 300px;width:68%;">
+									<thead>
 										<tr>
-											<td>${status.count}</td>
-											<td>${l.faqTitle }</td>
-											<td >${l.faqContent }</td>
-											<td>${l.userVO.userId }</td>
-											<td style="text-align:center;"><a href="faq-update-form?faqId=${l.faqId }"><i class="fa fa-wrench"></i></a></td>
-											<td style="text-align:center;"><a href="#" class="deleteBtn"><i class="fa fa-trash"></i></a></td>
+											<th>아이디</th>
+											<th>카테고리명</th>
 										</tr>
-									</form>
-								</c:forEach>
-							</table>
-						</section>
+									</thead>
+									<tbody  id="categoryTable">
+										<c:forEach var="l" items="${list }" varStatus="status">
+										<tr>
+											<td>${l.categoryId}</td>
+											<td>${l.categoryName}</td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</section>
+						</div>
 					</div>
 					<!--end col-md-12-->
 				</div>
@@ -134,16 +155,38 @@ tr:nth-child(even) {
 		<!--end block-->
 	</section>
 	<!--end content-->
-	<script>
-		$(document).ready(function() {
-			$(".deleteBtn").click(function() {
-				if (!confirm("삭제 하시겠습니까?")) {
-					location.href = "#";
-				} else {
-					$("#deleteForm").submit();
-				}
-			});
-		});
-	</script>
+<script>
+$(document).ready(function(){
+	$("#categoryName").empty();
+	   $('#categoryName').keydown(function(key) {
+		   
+		   if(key.keyCode ==13){
+	      	let categoryName = $("#categoryName").val();
+	      	
+	      	var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			
+	      	$.ajax({
+					type:"post",
+					url:"categoryWrite",
+					data:"categoryName="+categoryName,
+					beforeSend: function(xhr){
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+					},
+					success:function(result){
+						
+							let categoryInfo="";
+							categoryInfo+="<tr>";
+							categoryInfo+="<td>"+result.categoryId+"</td>";
+							categoryInfo+="<td>"+result.categoryName+"</td>";
+							categoryInfo+="</tr>";
+							$("#categoryTable").append(categoryInfo);
+							
+					}//success callback
+				});//ajax
+		   } //if
+	   }); //keydown
+	});//ready
+</script>
 </body>
 </html>
