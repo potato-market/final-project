@@ -285,7 +285,10 @@
                               <c:when test="${userId eq itemList.userVO.userId}">
                               <figure>
                                   <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
-                                 
+                              </figure>
+                              <figure>
+                                  <i class="fa fa-user"></i>판매자 
+                                 ${itemList.userVO.userId}
                               </figure>
                               </c:when>
                          </c:choose>
