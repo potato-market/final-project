@@ -22,36 +22,31 @@
 						<div class="col-md-6 col-sm-6">
 							<nav>
 								<ul class="list-unstyled">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Listing</a></li>
-									<li><a href="#">Pages</a></li>
-									<li><a href="#">Extras</a></li>
-									<li><a href="#">Contact</a></li>
-									<li><a href="#">Submit Ad</a></li>
+									<li><a href="main">홈</a></li>
+									<li><a href="profile">내 감자</a></li>
+									<li><a href="communityBoard">동네생활</a></li>
+									<li><a href="headerChatForm?userId=${headeruserId}">채팅</a></li>
+									<li><a href="faqBoard">FAQ</a></li>
 								</ul>
 							</nav>
 						</div>
-						<div class="col-md-6 col-sm-6">
-							<nav>
-								<ul class="list-unstyled">
-									<li><a href="#">My Ads</a></li>
-									<li><a href="#">Sign In</a></li>
-									<li><a href="#">Register</a></li>
-								</ul>
-							</nav>
-						</div>
+						
 					</div>
 				</div>
 				<!--end col-md-3-->
-				<div class="col-md-4">
-					<h2>Contact</h2>
+				<div class="col-md-4" style="color:black;">
+					<h2>여카코</h2>
 					<address>
 						<figure>
-							124 Abia Martin Drive
-							<br> New York, NY 10011
+							행복은 감자칩 통 바닥에 있다
+							<br> 
 						</figure>
-						<br> <strong>Email:</strong> <a href="#">hello@example.com</a>
-						<br> <strong>Skype: </strong> Craigs <br> <br> <a
+						<br> <strong>Git:</strong> <a href="https://github.com/potato-market/final-project">github.com/potato-market</a>
+						<br> <strong>Jira: </strong> <a href="https://project-kosta.atlassian.net/jira/software/projects/POTATO/boards/1/roadmap?atlOrigin=eyJpIjoiYjQxZjU5MzM3MDI3NGYwYzg2OTY0NWQ1MGJhNzExOWUiLCJwIjoiaiJ9">
+						여카코 프로젝트 관리</a><br> 
+						<strong>Confluence:</strong> <a href="https://project-kosta.atlassian.net/wiki/spaces/MOEXA/overview">여카코 문서 정리 페이지</a>
+						<br><br> 
+						<a
 							href="contact.html" class="btn btn-primary text-caps btn-framed">Contact
 							Us</a>
 					</address>

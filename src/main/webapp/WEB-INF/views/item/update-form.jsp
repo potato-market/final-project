@@ -81,12 +81,17 @@
 										<label for="submit-category" class="col-form-label">Category</label>
 										<select class="change-tab" data-change-tab-target="category-tabs" name="categoryVO.categoryId"  id="submit_category" data-placeholder="Select Category" required="required">
 											<!-- <option value="">Select Category</option> -->
-												<c:forEach items="${categoryList}" var="category">
+												<%-- <c:forEach items="${categoryList}" var="category">
 														<option value="${category.categoryId}">${category.categoryName}</option>
 												   <c:if test=" ${itemDetail.categoryVO.categoryId} eq ${category.categoryId} ">
 												  	  <option value="${itemDetail.categoryVO.categoryId}" selected>${itemDetail.categoryVO.categoryName}</option>
 												  </c:if>
+												</c:forEach> --%>
+												
+												<c:forEach items="${categoryList}" var="category">
+														<option value="${category.categoryId}">${category.categoryName}</option>
 												</c:forEach>
+												
 										</select>
 									</div>
 								</div>
@@ -94,7 +99,8 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="submit-category" class="col-form-label">Item Status</label>
-										<select class="change-tab" data-change-tab-target="category-tabs" name="itemStatus"  id="submit_category" data-placeholder="Select Category" required="required">
+										<input type="hidden" id="statusCheck" value="${itemDetail.itemStatus }">
+										<select class="change-tab" data-change-tab-target="category-tabs" name="itemStatus"  id="submit_select" data-placeholder="Select Category" required="required">
 											<option value="">Change Item Status</option>
 												<option value="SELLING">SELLING</option>
 												<option value="RESERVED">RESERVED</option>
@@ -257,5 +263,27 @@
 		<!--end content-->
 	</div>
 	<!--end page-->
+	<script>
+	var selectStatusCheck = document.querySelectorAll("#submit_select option");
+	let statusCheck=$("#statusCheck").val(); 
+	
+	for (var i = 0; i < selectStatusCheck.length; i++) {
+		if (selectStatusCheck[i].value == statusCheck) {
+			$("#submit_select option:eq("+i+")").attr("selected","selected");	
+			break;
+		}
+	}
+	
+	var selectCategoryCheck = document.querySelectorAll("submit_category option");
+	let categoryCheck=document.querySelectorAll("#submit_category option");
+	let itemCategory = "${itemDetail.categoryVO.categoryId}";
+	
+	for (var i = 0; i < categoryCheck.length; i++) {
+		if (categoryCheck[i].value == itemCategory) {
+			$("#submit_category option:eq("+i+")").attr("selected","selected");	
+			break;
+		}
+	}
+	</script>
 </body>
 </html>

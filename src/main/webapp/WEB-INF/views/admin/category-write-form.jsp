@@ -157,9 +157,8 @@ tr:nth-child(even) {
 	<!--end content-->
 <script>
 $(document).ready(function(){
-	$("#categoryName").empty();
+		
 	   $('#categoryName').keydown(function(key) {
-		   
 		   if(key.keyCode ==13){
 	      	let categoryName = $("#categoryName").val();
 	      	
@@ -180,6 +179,7 @@ $(document).ready(function(){
 							categoryInfo+="<td>"+result.categoryId+"</td>";
 							categoryInfo+="<td>"+result.categoryName+"</td>";
 							categoryInfo+="</tr>";
+							
 							$("#categoryTable").append(categoryInfo);
 							
 					}//success callback
