@@ -125,7 +125,7 @@ public class ChatController {
 //			sellerId = chattingService.findChatRoomVOIdByChatRoomId(chatRoomId).getSellerId();
 //		}
 		model.addAttribute("itemId",itemId);
-		model.addAttribute("userId", userId);
+		model.addAttribute("userIdC", userId);
 		model.addAttribute("chatRoomId", chatRoomId);
 		System.out.println("Controller" + chatRoomId);
 		model.addAttribute("chatHistory", chattingService.findByChatRoomId(chatRoomId));
@@ -188,18 +188,20 @@ public class ChatController {
 		 */
 		
 		for (int i = 0; i < itemchatlist.size(); i++) {
-			itemimglist.add(itemService.findItemImageVOByItemId(itemchatlist.get(i).getItemId()).getImageName());
-			
+			itemimglist.add(itemService.findItemImageVOByItemId(itemchatlist.get(i).getItemId()).getImageName());			
 			if (itemchatlist.get(i).getUserVO().getUserId().equals(userId)) {
 				// 상대방 UserVO 에 대한 userId 찾기
-				userimglist.add(userService
-						.findUserById(chattingService
-								.findChatRoomVOBySellerIdAndItemId(itemchatlist.get(i).getItemId(), userId).getUserId())
+				userimglist.add(
+						userService.findUserById(
+								chattingService.findChatRoomVOBySellerIdAndItemId(
+										itemchatlist.get(i).getItemId()
+										, userId).getUserId())
 						.getUserImage());
 				// 상대방 UserVO로 바꿔주기 리펙토링 필요 --=> 상대방 UserVO를 새로운 리스트에 담아서 리퀘스트보낸다
 				//ChatRoomVO 객체의 userId값 가져옴 userId 
-				chatpartnerlist.add(userService.findUserById(chattingService
-						 .findChatRoomVOBySellerIdAndItemId(itemchatlist.get(i).getItemId(),userId).getUserId())							
+				chatpartnerlist.add(
+						userService.findUserById(
+						chattingService.findChatRoomVOBySellerIdAndItemId(itemchatlist.get(i).getItemId(),userId).getUserId())							
 						);
 				/*
 				 * itemchatlist.get(i).setUserVO(userService.findUserById(chattingService
@@ -209,11 +211,10 @@ public class ChatController {
 			} else {
 				userimglist.add(userService.findUserById(itemchatlist.get(i).getUserVO().getUserId()).getUserImage());
 				chatpartnerlist.add(
-						
 					userService.findUserById(
 							// sellerId 에 대한 정보 필요
 							chattingService.findChatRoomVOByUserIdAndItemId(itemchatlist.get(i).getItemId(),userId)						 
-						.getUserId())							
+						.getSellerId())							
 						);
 			}
 
@@ -334,7 +335,7 @@ public class ChatController {
 					userService.findUserById(
 							// sellerId 에 대한 정보 필요
 							chattingService.findChatRoomVOByUserIdAndItemId(itemchatlist.get(i).getItemId(),userId)						 
-						.getUserId())							
+						.getSellerId())							
 						);
 			}
 

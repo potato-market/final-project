@@ -129,7 +129,7 @@
 									<c:choose>
 									<c:when test="${en.itemId eq itemId}">
 									<h5 class="font-weight-bold">
-										${en.userVO.userId} ${itemId }
+										${chatpartnerlist[status.index].userId }
 									</h5>
 									
 									<figure class="mr-4 messaging__image-person"
@@ -158,7 +158,9 @@
 											<c:otherwise>
 												<div class="messaging__main-chat__bubble">
 													<ul>
-														<p>${l.content}</p>
+														<p>${l.content}
+														
+														</p>
 													</ul>
 												</div>
 											</c:otherwise>
