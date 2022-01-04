@@ -237,6 +237,38 @@
                                 <!--end addition-info-->
                             </div>
                         </div>
+                        
+                        <div class="item author">
+                            <div class="wrapper">
+                                <div class="image">
+                                    <h3>
+                                        <a href="seller-detail-1.html" class="title">권용은</a>
+                                    </h3>
+                                    <a href="single-listing-1.html" class="image-wrapper background-image">
+                                        <img src="assets/img/author-07.jpg" alt="">
+                                    </a>
+                                </div>
+                                <!--end image-->
+                                <!--end meta-->
+                                <div class="description">
+                                	<p>권용은</p>
+                                    <p>
+                                        Main developer
+                                    </p>
+                                </div>
+                                <!--end description-->
+                                <div class="additional-info">
+                                    <ul>
+                                        <li style="padding-bottom:10px;">
+                                            <figure>Git</figure>
+                                            <aside><a href="https://github.com/jenkwon92">https://github.com/jenkwon92</a></aside>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end addition-info-->
+                            </div>
+                        </div>
+                        
                         <!--end item-->
                     </div>
                     <!--============ End Items ======================================================================-->
