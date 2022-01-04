@@ -34,4 +34,17 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryMapper.findCategory();
 	}
 
+
+	@Override
+	public void categoryAdd(CategoryVO categoryVO) {
+		categoryMapper.categoryAdd(categoryVO);
+		
+	}
+
+
+	@Override
+	public CategoryVO findCategoryById(int categoryId) {
+		return categoryMapper.findCategoryById(categoryId);
+	}
+
 }

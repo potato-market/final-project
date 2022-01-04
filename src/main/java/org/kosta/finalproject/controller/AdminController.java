@@ -22,7 +22,7 @@ public class AdminController {
 	private UserService userService;
 
 	@Autowired
-	private CategoryService cs;
+	private CategoryService categoryService;
 	
 	@RequestMapping("adminHome")
 	@Secured("ROLE_ADMIN")
@@ -64,11 +64,12 @@ public class AdminController {
 	}
 
 	
-	@RequestMapping("categoryManagement") 
-	@Secured("ROLE_ADMIN")
-	public String categoryManagement() {
-		return "admin/category-management";
-	}
+	/*
+	 * @RequestMapping("categoryManagement")
+	 * 
+	 * @Secured("ROLE_ADMIN") public String categoryManagement() { return
+	 * "admin/category-management"; }
+	 */
 	
 
 	@RequestMapping("faqManagement")
@@ -84,31 +85,45 @@ public class AdminController {
 	@RequestMapping("categoryManagement")
 	@Secured("ROLE_ADMIN")
 	public String categoryForm(Model model) { 
-		model.addAttribute("list",cs.findCategory());
+		model.addAttribute("list",categoryService.findCategory());
 
-		return "admin/cat-form";
+		return "admin/category-management";
 	}
 	
 
 	@RequestMapping("categoryUpForm")
-	public String categoryUpForm(CategoryVO cg,Model model) {
-		model.addAttribute("cg",cg);
-		System.out.println(cg);
+	public String categoryUpForm(CategoryVO categoryVO,Model model) {
+		model.addAttribute("cg",categoryVO);
+		System.out.println(categoryVO);
 
-		return "admin/cat-update-form";
+		return "admin/category-update-form";
 	}
 	
 	@RequestMapping("categoryUp")
-	public String categoryUP(CategoryVO cg) {
-		cs.updateCategory(cg);
-		System.out.println(cg);
+	public String categoryUP(CategoryVO categoryVO) {
+		categoryService.updateCategory(categoryVO);
+		System.out.println(categoryVO);
 		return "redirect:categoryManagement";
 	}
 	
 	@RequestMapping("categoryDel")
-	public String categoryDel(CategoryVO cg) {
-		cs.deleteCategory(cg);
+	public String categoryDel(CategoryVO categoryVO) {
+		categoryService.deleteCategory(categoryVO);
 		return "redirect:categoryManagement";
+	}
+	
+	
+	@RequestMapping("categoryWriteForm")
+	public String categoryWriteForm(Model model) {
+		model.addAttribute("list",categoryService.findCategory());
+		return "admin/category-write-form";
+	}
+	
+	@PostMapping("categoryWrite")
+	@ResponseBody
+	public CategoryVO categoryAdd(CategoryVO categoryVO) {
+		categoryService.categoryAdd(categoryVO);
+		return categoryService.findCategoryById(categoryVO.getCategoryId());
 	}
 	
 	
