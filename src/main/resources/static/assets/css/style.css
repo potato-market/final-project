@@ -1878,7 +1878,7 @@ Headers:		'Varela Round', sans-serif;
 }
 .ribbon-featured .ribbon-content {
     box-shadow: 0 0.1rem rgba(0,0,0,.15);
-    background-color: #ff0000;
+    background-color: #8B4513;
     text-transform: uppercase;
     color: #fff;
     font-weight: 600;
@@ -1887,7 +1887,7 @@ Headers:		'Varela Round', sans-serif;
     padding: .7rem;
 }
 .ribbon-featured .ribbon-content:after {
-    background-color: #ff0000;
+    background-color: #8B4513;
     width: .5rem;
     height: 100%;
     content: "";
@@ -1896,7 +1896,8 @@ Headers:		'Varela Round', sans-serif;
     right: -.5rem;
 }
 .ribbon-featured .ribbon-content:before {
-    background-color: #ff0000;
+    /* background-color: #ff0000; */
+    background-color: #8B4513;
     width: 1rem;
     height: 1rem;
     position: absolute;
@@ -1906,7 +1907,7 @@ Headers:		'Varela Round', sans-serif;
     border-top-right-radius: 50%;
 }
 .ribbon-featured .ribbon-start, .ribbon-featured .ribbon-start::after {
-    background: #ff0000;
+    background: #8B4513;
     content: "";
     display: inline-block;
     height: 1rem;
@@ -1940,11 +1941,11 @@ Headers:		'Varela Round', sans-serif;
 }
 .ribbon-featured .ribbon-end:before, .ribbon-featured .ribbon-end .ribbon-shadow::before {
     border-width: 0 1.5rem 1.5rem 0;
-    border-color: transparent #ff0000 transparent transparent;
+    border-color: transparent #8B4513 transparent transparent;
 }
 .ribbon-featured .ribbon-end:after, .ribbon-featured .ribbon-end .ribbon-shadow::after {
     border-width: 0 0 1.5rem 1.5rem;
-    border-color: transparent transparent #ff0000 transparent;
+    border-color: transparent transparent #8B4513 transparent;
     bottom: 0;
 }
 .ribbon-featured .ribbon-end .ribbon-shadow::before {
