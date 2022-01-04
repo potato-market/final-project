@@ -10,6 +10,8 @@
 		<!--============ Secondary Navigation ===============================================================-->
 		<div class="secondary-navigation">
 			<div class="container">
+			<ul class="left"><li><a href="main"> <i class="fa fa-home"></i>Home
+						</a></li></ul>
 				<ul class="right">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a href="adminHome"> <i class="fa fa-wrench"></i>관리자 페이지</a></li>

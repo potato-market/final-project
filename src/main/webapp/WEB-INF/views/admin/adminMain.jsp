@@ -31,8 +31,7 @@
 	<div id="myNav" class="overlay">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<div class="overlay-content">
-			<a href="userManagement">관리자</a> 
-			<a href="categoryManagement">카테고리</a> 
+			<a href="userManagement">관리자</a> <a href="categoryManagement">카테고리</a>
 			<a href="faqManagement">FAQ</a>
 		</div>
 	</div>
@@ -42,13 +41,18 @@
 			<!--============ Secondary Navigation ===============================================================-->
 			<div class="secondary-navigation">
 				<div class="container">
+				<ul class="left"><li><a href="main"> <i class="fa fa-home"></i>Home
+						</a></li></ul>
 					<ul class="right">
-						<li><a id="managingBtn" href="#"> <i class="fa fa-wrench"></i>관리 </a></li>
-						<li><a href="#" id="logoutAction"> <i class="fa fa-sign-in"></i>Sign Out </a></li>
+						<li><a id="managingBtn" href="#"> <i class="fa fa-wrench"></i>관리
+						</a></li>
+						<li><a href="#" id="logoutAction"> <i
+								class="fa fa-sign-in"></i>Sign Out
+						</a></li>
 					</ul>
-						<form id="logoutForm" action="/logout" method="post">
-							<sec:csrfInput />
-						</form>
+					<form id="logoutForm" action="/logout" method="post">
+						<sec:csrfInput />
+					</form>
 					<!--end right-->
 				</div>
 				<!--end container-->
@@ -57,197 +61,156 @@
 		</div>
 	</header>
 
- <div class="page sub-page">
-                <!--============ Hero Form ==========================================================================-->
-                <div class="collapse" id="collapseMainSearchForm">
-                    <form class="hero-form form">
-                        <div class="container">
-                            <!--Main Form-->
-                            <div class="main-search-form">
-                                <div class="form-row">
-                                    <div class="col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <label for="what" class="col-form-label">What?</label>
-                                            <input name="keyword" type="text" class="form-control small" id="what" placeholder="What are you looking for?">
-                                        </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-3-->
-                                    <div class="col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <label for="input-location" class="col-form-label">Where?</label>
-                                            <input name="location" type="text" class="form-control small" id="input-location" placeholder="Enter Location">
-                                            <span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>
-                                        </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-3-->
-                                    <div class="col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <label for="category" class="col-form-label">Category?</label>
-                                            <select name="category" id="category" class="small" data-placeholder="Select Category">
-                                                <option value="">Select Category</option>
-                                                <option value="1">Computers</option>
-                                                <option value="2">Real Estate</option>
-                                                <option value="3">Cars & Motorcycles</option>
-                                                <option value="4">Furniture</option>
-                                                <option value="5">Pets & Animals</option>
-                                            </select>
-                                        </div>
-                                        <!--end form-group-->
-                                    </div>
-                                    <!--end col-md-3-->
-                                    <div class="col-md-3 col-sm-3">
-                                        <button type="submit" class="btn btn-primary width-100 small">Search</button>
-                                    </div>
-                                    <!--end col-md-3-->
-                                </div>
-                                <!--end form-row-->
-                            </div>
-                            <!--end main-search-form-->
-                            <!--Alternative Form-->
-                            <div class="alternative-search-form">
-                                <a href="#collapseAlternativeSearchForm" class="icon" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseAlternativeSearchForm"><i class="fa fa-plus"></i>More Options</a>
-                                <div class="collapse" id="collapseAlternativeSearchForm">
-                                    <div class="wrapper">
-                                        <div class="form-row">
-                                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 d-xs-grid d-flex align-items-center justify-content-between">
-                                                <label>
-                                                    <input type="checkbox" name="new">
-                                                    New
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="used">
-                                                    Used
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="with_photo">
-                                                    With Photo
-                                                </label>
-                                                <label>
-                                                    <input type="checkbox" name="featured">
-                                                    Featured
-                                                </label>
-                                            </div>
-                                            <!--end col-xl-6-->
-                                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
-                                                <div class="form-row">
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <input name="min_price" type="text" class="form-control small" id="min-price" placeholder="Minimal Price">
-                                                            <span class="input-group-addon small">$</span>
-                                                        </div>
-                                                        <!--end form-group-->
-                                                    </div>
-                                                    <!--end col-md-4-->
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <input name="max_price" type="text" class="form-control small" id="max-price" placeholder="Maximal Price">
-                                                            <span class="input-group-addon small">$</span>
-                                                        </div>
-                                                        <!--end form-group-->
-                                                    </div>
-                                                    <!--end col-md-4-->
-                                                    <div class="col-md-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <select name="distance" id="distance" class="small" data-placeholder="Distance" >
-                                                                <option value="">Distance</option>
-                                                                <option value="1">1km</option>
-                                                                <option value="2">5km</option>
-                                                                <option value="3">10km</option>
-                                                                <option value="4">50km</option>
-                                                                <option value="5">100km</option>
-                                                            </select>
-                                                        </div>
-                                                        <!--end form-group-->
-                                                    </div>
-                                                    <!--end col-md-3-->
-                                                </div>
-                                                <!--end form-row-->
-                                            </div>
-                                            <!--end col-xl-6-->
-                                        </div>
-                                        <!--end row-->
-                                    </div>
-                                    <!--end wrapper-->
-                                </div>
-                                <!--end collapse-->
-                            </div>
-                            <!--end alternative-search-form-->
-                        </div>
-                        <!--end container-->
-                    </form>
-                    <!--end hero-form-->
-                </div>
-                <!--end collapse-->
-                <!--============ End Hero Form ======================================================================-->
-                <!--============ Page Title =========================================================================-->
-                <div class="page-title">
-                    <div class="container">
-                        <h1>여카코 관리자들</h1>
-                    </div>
-                    <!--end container-->
-                </div>
-                <!--============ End Page Title =====================================================================-->
-                <div class="background"></div>
-                <!--end background-->
-            </div>
-            <!--end hero-wrapper-->
-        </section>
-        <!--end hero-->
+	<div class="page sub-page">
+		<!--============ Page Title =========================================================================-->
+		<div class="page-title">
+			<div class="container">
+				<h1>관리자</h1>
+				<h4 style="margin-top: 10px;">
+					<a href="https://github.com/potato-market/final-project">Git Hub project으로
+						이동</a>
+				</h4>
+			</div>
+			<!--end container-->
+		</div>
+		<!--============ End Page Title =====================================================================-->
+		<div class="background"></div>
+		<!--end background-->
+	</div>
+	<!--end hero-wrapper-->
+	</section>
+	<!--end hero-->
 
-        <!--*********************************************************************************************************-->
-        <!--************ CONTENT ************************************************************************************-->
-        <!--*********************************************************************************************************-->
-        <section class="content">
-            <section class="block">
-                <div class="container">
-                    <!--============ Items ==========================================================================-->
-                    <div class="authors masonry items grid-xl-4-items grid-lg-4-items grid-md-4-items">
+	<!--*********************************************************************************************************-->
+	<!--************ CONTENT ************************************************************************************-->
+	<!--*********************************************************************************************************-->
+	<section class="content">
+		<section class="block">
+			<div class="container">
+				<!--============ Items ==========================================================================-->
+				<div class="authors masonry items grid-xl-5-items grid-lg-5-items grid-md-5-items" style="margin-left: -2rem; margin-right: -3.5rem">
+					<div class="item author" style="padding-right:1rem; padding-left:1rem;">
+						<div class="wrapper">
+							<div class="image">
+							 <img src="assets/img/용은2.png" alt="" style="height:250px; width:200px; margin:5px;">
+							</div>
+							<!--end image-->
+							<div class="additional-info">
+									<p style="height:10px;overflow:visible;">권용은</p>
+								<ul>
+									<li style="padding-bottom: 10px;">
+									<figure>Main developer </figure><aside><a>&nbsp</a></aside>
+										<aside>
+											<a href="https://github.com/jenkwon92">https://github.com/jenkwon92</a>
+										</aside>
+									</li>
+								</ul>
+							</div>
+							<!--end addition-info-->
+						</div>
+					</div>
+					<!--============ End Item===============-->
+					
+						<div class="item author" style="padding-right:1rem; padding-left:1rem;">
+						<div class="wrapper">
+							<div class="image">
+							 <img src="assets/img/정훈.png" alt="" style="height:250px; width:200px; margin:5px;">
+							</div>
+							<!--end image-->
+							<div class="additional-info">
+									<p style="height:10px;overflow:visible;">김정훈</p>
+								<ul>
+									<li style="padding-bottom: 10px;">
+									<figure>Main developer </figure><aside><a>&nbsp</a></aside>
+										<aside>
+											<a href="https://github.com/anngdung2">https://github.com/anngdung2</a>
+										</aside>
+									</li>
+								</ul>
+							</div>
+							<!--end addition-info-->
+						</div>
+					</div>
+					<!--============ End Item===============-->
+					
+						<div class="item author" style="padding-right:1rem; padding-left:1rem;">
+						<div class="wrapper">
+							<div class="image">
+							 <img src="assets/img/건홍.PNG" alt="" style="height:250px; width:200px; margin:5px;">
+							</div>
+							<!--end image-->
+							<div class="additional-info">
+									<p style="height:10px;overflow:visible;">민건홍</p>
+								<ul>
+									<li style="padding-bottom: 10px;">
+									<figure>Main developer </figure><aside><a>&nbsp</a></aside>
+										<aside>
+											<a href="https://github.com/Gunhong">https://github.com/Gunhong</a>
+										</aside>
+									</li>
+								</ul>
+							</div>
+							<!--end addition-info-->
+						</div>
+					</div>
+					<!--============ End Item===============-->
+					
+						<div class="item author" style="padding-right:1rem; padding-left:1rem;">
+						<div class="wrapper">
+							<div class="image">
+							 <img src="assets/img/기랑.PNG" alt="" style="height:250px; width:200px; margin:5px;">
+							</div>
+							<!--end image-->
+							<div class="additional-info">
+									<p style="height:10px;overflow:visible;">박기랑</p>
+								<ul>
+									<li style="padding-bottom: 10px;">
+									<figure>Main developer </figure><aside><a>&nbsp</a></aside>
+										<aside>
+											<a href="https://github.com/cecyrang">https://github.com/cecyrang</a>
+										</aside>
+									</li>
+								</ul>
+							</div>
+							<!--end addition-info-->
+						</div>
+					</div>
+					<!--============ End Item===============-->
+					
+						<div class="item author" style="padding-right:1rem; padding-left:1rem;">
+						<div class="wrapper">
+							<div class="image">
+							 <img src="assets/img/정민.jpg" alt="" style="height:250px; width:200px; margin:5px;">
+							</div>
+							<!--end image-->
+							<div class="additional-info">
+									<p style="height:10px;overflow:visible;">이정민</p>
+								<ul>
+									<li style="padding-bottom: 10px;">
+									<figure>Main developer </figure><aside><a>&nbsp</a></aside>
+										<aside>
+											<a href="https://github.com/leetingman">https://github.com/leetingman</a>
+										</aside>
+									</li>
+								</ul>
+							</div>
+							<!--end addition-info-->
+						</div>
+					</div>
+					<!--============ End Item===============-->
+					
+					
+					
+				</div>
+				<!--============ End Items ======================================================================-->
+			</div>
+			<!--end container-->
+		</section>
+		<!--end block-->
+	</section>
+	<!--end content-->
 
-
-
-                        <div class="item author">
-                            <div class="wrapper">
-                                <div class="image">
-                                    <h3>
-                                        <a href="seller-detail-1.html" class="title">권용은</a>
-                                    </h3>
-                                    <a href="single-listing-1.html" class="image-wrapper background-image">
-                                        <img src="assets/img/author-07.jpg" alt="">
-                                    </a>
-                                </div>
-                                <!--end image-->
-                                <!--end meta-->
-                                <div class="description">
-                                	<p>권용은</p>
-                                    <p>
-                                        Main developer
-                                    </p>
-                                </div>
-                                <!--end description-->
-                                <div class="additional-info">
-                                    <ul>
-                                        <li style="padding-bottom:10px;">
-                                            <figure>Git</figure>
-                                            <aside><a href="https://github.com/jenkwon92">https://github.com/jenkwon92</a></aside>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--end addition-info-->
-                            </div>
-                        </div>
-                        <!--end item-->
-                    </div>
-                    <!--============ End Items ======================================================================-->
-                </div>
-                <!--end container-->
-            </section>
-            <!--end block-->
-        </section>
-        <!--end content-->
-
-    </div>
-    <!--end page-->
+	</div>
+	<!--end page-->
 </body>
 </html>

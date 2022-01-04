@@ -61,7 +61,7 @@ public class AdminController {
 	@RequestMapping("categoryManagement") 
 	@Secured("ROLE_ADMIN")
 	public String categoryManagement() {
-		return "admin/categoryManagement";
+		return "admin/category-management";
 	}
 	
 	@RequestMapping("faqManagement")
