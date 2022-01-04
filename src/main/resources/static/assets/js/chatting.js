@@ -111,7 +111,9 @@ function onMessageReceived(payload) {
 		messageElement.className = 'messaging__main-chat__bubble user';
 	}
 	messageArea.appendChild(messageElement);
-	messageArea.scrollTop = messageArea.scrollIntoView(false);
+	//messageArea.scr = messageArea.scrollIntoView(false);
+	//messageArea.scrollTop = messageArea.scrollscrollHeight;
+	messageArea.scrollTop -= messageArea.scrollHeight;
 
 }
 
