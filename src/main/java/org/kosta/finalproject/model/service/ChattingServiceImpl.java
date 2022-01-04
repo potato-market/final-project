@@ -184,13 +184,19 @@ public class ChattingServiceImpl implements ChattingService{
 	@Override
 	public ChatRoomVO findChatRoomVOBySellerIdAndItemId(int itemId, String sellerId) {
 		// TODO Auto-generated method stub
+		System.out.println("sellerId findChatRoomVOBySellerIdAndItemId"+sellerId);
+		System.out.println(crp.findChatRoomVOByItemIdAndSellerId(itemId,sellerId));
 		return crp.findChatRoomVOByItemIdAndSellerId(itemId,sellerId);
+//		return crp.findChatRoomVOByItemIdAndUserId(itemId,sellerId);
 	}
 
 	@Override
 	public ChatRoomVO findChatRoomVOByUserIdAndItemId(int itemId, String userId) {
 		// TODO Auto-generated method stub
+		System.out.println("userId findChatRoomVOByUserIdAndItemId:"+userId);	
+		System.out.println(crp.findChatRoomVOByItemIdAndUserId(itemId,userId));
 		return crp.findChatRoomVOByItemIdAndUserId(itemId,userId);
+//		return crp.findChatRoomVOByItemIdAndSellerId(itemId,userId);
 	}
 
 	

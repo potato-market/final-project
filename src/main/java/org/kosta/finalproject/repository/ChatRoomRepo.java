@@ -30,6 +30,7 @@ public List<ChatRoomVO> findChatRoomByUserIdHeader(String userId,String sellerId
 //itemId와 sellerId로 ChatRoomVO찾기
 @Query("{$and:[{'itemId':?0}, {'sellerId':?1}]}")
 public ChatRoomVO findChatRoomVOByItemIdAndSellerId(int itemId,String sellerId);
+
 @Query("{$and:[{'itemId':?0}, {'userId':?1}]}")
 public ChatRoomVO findChatRoomVOByItemIdAndUserId(int itemId,String userId);
 }

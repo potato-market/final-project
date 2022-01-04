@@ -39,7 +39,7 @@
       	<td>${l.categoryName}</td>
         <td><form action="categoryDel" method="POST">
            <sec:csrfInput/>
-           <input type="hidden" value="${l.categoryId}" />        
+           <input type="hidden" name="categoryId" value="${l.categoryId}" />        
         	<button type="submit">DEL</button>
         </form></td>
         <td><form action="categoryUpForm" method="post">
