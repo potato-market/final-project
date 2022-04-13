@@ -146,7 +146,14 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO) {
-		return itemMapper.selectAllItemListByCondition(itemVO);
+		if(itemVO.getCategoryVO().getCategoryId()==999) {	
+			System.out.println("all list"+itemMapper.selectAllItemListByConditionJustItemName(itemVO));
+			return itemMapper.selectAllItemListByConditionJustItemName(itemVO);
+		}
+		else 
+		{
+			return itemMapper.selectAllItemListByCondition(itemVO);
+		}
 	}
 	
 }

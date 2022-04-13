@@ -99,8 +99,7 @@
 										<label for="category" class="col-form-label">Category?</label>
 										<select name="categoryVO.categoryId" id="category"
 											data-placeholder="Select Category" required="required">
-											<option value="" autofocus="autofocus" draggable="false">Select
-												Category</option>
+											<option value="999" autofocus="autofocus" draggable="false">All</option>
 											<c:forEach items="${categoryList}" var="category">
 												<option value="${category.categoryId}">${category.categoryName}</option>
 											</c:forEach>
@@ -129,12 +128,12 @@
 											class="col-xl-12 col-lg-12 col-md-12 col-sm-12 d-xs-grid d-flex align-items-center justify-content-between">
 											<div>
 												<p onclick="this.parentElement.style.display='none';">
-													New <i class="fa fa-times"></i>
+													화장품 <i class="fa fa-times"></i>
 												</p>
 											</div>
 											<div>
 												<p onclick="this.parentElement.style.display='none';">
-													New <i class="fa fa-times"></i>
+													화장대나무 <i class="fa fa-times"></i>
 												</p>
 											</div>
 											<div>
@@ -288,10 +287,7 @@
                               <figure>
                                   <i class="fa fa-user"></i>채팅 ${crnum[status.index] }
                               </figure>
-                              <figure>
-                                  <i class="fa fa-user"></i>판매자 
-                                 ${itemList.userVO.userId}
-                              </figure>
+                              
                               </c:when>
                          </c:choose>
                               

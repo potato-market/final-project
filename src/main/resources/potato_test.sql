@@ -1,4 +1,7 @@
 DROP Table user;
+show tables;
+DROP TABLE NEW_TABLE;
+
 
 CREATE TABLE USER
 (
@@ -21,7 +24,7 @@ create table AUTHORITIES(
    CONSTRAINT USER_AUTHORITIES primary key(USERNAME,AUTHORITY)
    );
 
-
+SHOW DATABASES;
 
 /*CREATE TABLE USER
 (
