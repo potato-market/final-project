@@ -21,6 +21,7 @@ public interface ItemMapper {
 	public void deleteImage(int imageId);	 
 	public List<ItemVO> selectItemByUserId(String userId);
 	public List<ItemVO> selectAllItemListByCondition(ItemVO itemVO);
+	public List<ItemVO> selectAllItemListByConditionJustItemName(ItemVO itemVO);
 	public int itemHitUpdate(int itemId);
 	public List<ItemVO> getUserItemListByUserId(String userId, int itemId);
 }

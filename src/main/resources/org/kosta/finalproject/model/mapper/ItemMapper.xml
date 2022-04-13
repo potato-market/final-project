@@ -106,6 +106,22 @@
 		U.USER_ADDRESS = #{userVO.userAddress}
 		ORDER BY I.ITEM_CREATED_AT DESC
 	</select>
+	<select id="selectAllItemListByConditionJustItemName"  parameterType="org.kosta.finalproject.model.domain.ItemVO"  resultMap="selectItemResultMap" >
+		SELECT I.ITEM_ID, I.ITEM_TITLE, I.ITEM_PRICE, I.ITEM_CONTENT, I.ITEM_CREATED_AT, U.USER_ADDRESS, I.CATEGORY_ID,
+		I.ITEM_HIT, I.ITEM_STATUS, I.USER_ID , U.USER_TEL, C.CATEGORY_NAME
+		FROM
+		ITEM I, USER U, CATEGORY C
+		WHERE
+		I.USER_ID =
+		U.USER_ID
+		AND
+		I.CATEGORY_ID = C.CATEGORY_ID
+		AND
+		I.ITEM_TITLE LIKE CONCAT('%', #{itemTitle},'%')
+		AND
+		U.USER_ADDRESS = #{userVO.userAddress}
+		ORDER BY I.ITEM_CREATED_AT DESC
+	</select>
 
 	<!-- 중고물품 수정하기 -->
 	<update id="updateItem"

@@ -196,7 +196,7 @@
 													<a
 														href="selectItemByItemId?itemId=${userItemList.itemId}&userId=${userItemList.userVO.userId}"
 														class="image-wrapper background-image"> <img
-														src="assets/upload/${imageList[status.index].imageName}"
+														src="assets/upload/${userItemImageList[status.index].imageName}"
 														alt="">
 													</a>
 												</div>

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.kosta.finalproject.model.domain.CategoryVO;
+import org.kosta.finalproject.model.domain.ImageVO;
 import org.kosta.finalproject.model.domain.ItemVO;
 import org.kosta.finalproject.model.service.ChattingService;
 import org.kosta.finalproject.model.service.ItemService;
@@ -62,6 +63,14 @@ public class ItemController {
 	public String selectItemByItemId(int itemId, String userId, Model model , HttpSession session) {
 		System.out.println("상세보기페이지 controller : " +userId);
 		List<ItemVO> userItemList  = itemService.getUserItemListByUserId(userId , itemId);
+		List<ImageVO>userItemImageList =new ArrayList<ImageVO>();
+		for(int i=0;i<userItemList.size();i++) {
+//			System.out.println(list.get(i).getItemId());			
+			userItemImageList.add(
+//			itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
+			itemService.findItemImageVOByItemId(userItemList.get(i).getItemId()));
+ 			
+		}		
 		System.out.println(userItemList.size());
 		  @SuppressWarnings("unchecked")
 		  ArrayList<Integer> noList =  (ArrayList<Integer>) session.getAttribute("noList");
@@ -75,6 +84,7 @@ public class ItemController {
 		model.addAttribute("crnum", chattingService.getChatCount(itemId));
 		model.addAttribute("itemDetail", itemService.selectItemByItemId(itemId));
 		model.addAttribute("userItemList",userItemList);
+		model.addAttribute("userItemImageList",userItemImageList);
 		model.addAttribute("imageList",itemService.findItemImageListByItemId(itemId));
 		return "item/item-detail.tiles";
 	}
@@ -124,10 +134,23 @@ public class ItemController {
 	// 중고물품 게시물 ItemTitle + UserAddress + CategoryId로 검색하기
 	@GetMapping("selectAllItemListByCondition")
 	public String selectAllItemListByCondition(ItemVO itemVO, Model model) {
+		System.out.println(itemVO);
 		List<ItemVO> listByCondition = itemService.selectAllItemListByCondition(itemVO);
+		List<ImageVO>imageList =new ArrayList<ImageVO>();
+		if(listByCondition.size()>0) {
+			for(int i=0;i<listByCondition.size();i++) {
+				imageList.add(
+//						itemService.findItemImageListByItemId(list.get(i).getItemId()).get(0));
+						itemService.findItemImageVOByItemId(listByCondition.get(i).getItemId()));
+				
+			}
+		}
+		
 		List<CategoryVO> categoryList = itemService.getAllCategoryList();// 카테고리 목록 가지고오기
+		model.addAttribute("imageList", imageList);
 		model.addAttribute("categoryList", categoryList);
-		System.out.println(listByCondition);
+//		System.out.println(listByCondition);
+			
 		//model.addAttribute("selectAllItemListByCondition", listByCondition);
 		model.addAttribute("itemList", listByCondition);
 		return "main.tiles";
